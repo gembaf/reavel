@@ -1,0 +1,26 @@
+
+@import "twitter/bootstrap/bootstrap";
+@import "variable";
+
+.my-navbar {
+  .navbar;
+  .navbar-default;
+  .navbar-fixed-top;
+
+  background-color: @black;
+
+  a.navbar-brand {
+    color: WHITE;
+    &:hover, &:focus {
+      color: WHITE;
+    }
+  }
+
+  .navbar-nav > li > a {
+    color: WHITE;
+    &:hover {
+      color: @light-blue;
+    }
+  }
+}
+
