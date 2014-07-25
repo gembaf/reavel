@@ -1,9 +1,14 @@
 
+= render partial: "shared/error", locals: {is_error: @is_error}
+
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
+  .buttons
+    = render partial: "shared/add", locals: {id: nil}
+  br
 
 .col-lg-9
-  table.table-base
+  table.table-base.novel.list
     tr
       th.title タイトル
       th.comment コメント

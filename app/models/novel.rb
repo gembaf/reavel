@@ -8,6 +8,15 @@ class Novel < ActiveRecord::Base
   Scope.serial_by(self)
   Scope.updated_by(self)
 
+  Mode = ["部 > 章 > 編 > 話", "部 > 章 > 話", "部 > 話"]
+
+  def self.mode_format
+    {
+      Mode[0] => 0,
+      Mode[1] => 1,
+      Mode[2] => 2
+    }
+  end
 
 end
 

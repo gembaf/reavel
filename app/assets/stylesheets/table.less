@@ -1,42 +1,58 @@
 
 @import "twitter/bootstrap/bootstrap";
 
+//-- base
 .table-base {
   .table;
   .table-hover;
   .table-bordered;
 
+  td {
+    &.title, &.mode, &.edit, &.disable { text-align: center; }
+    &.time, &.episode { text-align: right; }
+    input[type="text"], textarea { width: 90%; }
+  }
+
   th {
     text-align: center;
+  }
+}
 
-    &.title {
-      width: 30%;
+
+//-- form
+.form {
+  //-- novel
+  &.novel {
+    td {
+      &.comment, &.summary { text-align: center; }
+      &.summary > textarea { height: 100px; }
     }
-    &.time, &.episode {
-      width: 12.5%;
-    }
-    &.comment {
-      width: 20%;
-    }
-    &.edit, &.disable {
-      width: 12.5%;
+    th {
+      &.title, &.mode { width: 20%; }
     }
   }
+}
 
-  td {
-    &.title, &.edit, &.disable {
-      text-align: center;
+
+//-- list
+.list {
+  //-- novel
+  &.novel {
+    td {
+      &.summary { font-size: 14px; }
     }
-
-    &.time, &.episode {
-      text-align: right;
-    }
-
-    &.summary {
-      font-size: 14px;
+    th {
+      &.title { width: 30%; }
+      &.time, &.episode, &.edit, &.disable { width: 12.5%; }
+      &.comment { width: 20%; }
     }
   }
+}
 
+
+//-- 最後に書かないと上書きできない
+@media (min-width: 1200px) {
+  .table-base.form { width: 70%; }
 }
 
 
