@@ -1,0 +1,27 @@
+
+.col-lg-3
+  /= render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
+
+.col-lg-9
+  table.table-base
+    tr
+      th.title タイトル
+      th.comment コメント
+      th.time 読了時間
+      th.episode 話数
+      th.edit 編集
+      th.disable 無効化
+    - @novels.each do |novel|
+      tr
+        td.title= novel.title
+        td.comment= novel.comment
+        td.time= render partial: "shared/time", locals: {time: novel.time}
+        td.episode= render partial: "shared/episode", locals: {episode: novel.episode}
+        td.edit= render partial: "shared/edit", locals: {id: novel.id}
+        td.disable
+          button 無効化
+      tr
+        td.summary colspan="6"
+          = novel.summary.empty? ? "なし" : novel.summary
+
+

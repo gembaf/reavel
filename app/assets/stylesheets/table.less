@@ -1,0 +1,42 @@
+
+@import "twitter/bootstrap/bootstrap";
+
+.table-base {
+  .table;
+  .table-hover;
+  .table-bordered;
+
+  th {
+    text-align: center;
+
+    &.title {
+      width: 30%;
+    }
+    &.time, &.episode {
+      width: 12.5%;
+    }
+    &.comment {
+      width: 20%;
+    }
+    &.edit, &.disable {
+      width: 12.5%;
+    }
+  }
+
+  td {
+    &.title, &.edit, &.disable {
+      text-align: center;
+    }
+
+    &.time, &.episode {
+      text-align: right;
+    }
+
+    &.summary {
+      font-size: 14px;
+    }
+  }
+
+}
+
+
