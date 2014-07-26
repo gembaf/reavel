@@ -4,7 +4,6 @@
 //-- base
 .table-base {
   .table;
-  .table-hover;
   .table-bordered;
 
   td {
@@ -15,6 +14,15 @@
 
   th {
     text-align: center;
+  }
+}
+
+//--  fields_for
+#fields_for {
+  &.novel {
+    td {
+      &.comment { text-align: center }
+    }
   }
 }
 

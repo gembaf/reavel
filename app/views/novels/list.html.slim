@@ -15,17 +15,17 @@
       th.time 読了時間
       th.episode 話数
       th.edit 編集
-      th.disable 無効化
+      th.disable
     - @novels.each do |novel|
-      tr
-        td.title= novel.title
-        td.comment= novel.comment
-        td.time= render partial: "shared/time", locals: {time: novel.time}
-        td.episode= render partial: "shared/episode", locals: {episode: novel.episode}
-        td.edit= render partial: "shared/edit", locals: {id: novel.id}
-        td.disable
-          button 無効化
-      tr
-        td.summary colspan="6"
-          = novel.summary.empty? ? "なし" : novel.summary
+      = render partial: "shared/active_row", locals: {is_active: novel.is_active}
+      td.title= link_to novel.title, chapters_list_path, id: novel.id
+      td.comment= novel.comment
+      td.time= render partial: "shared/time", locals: {time: novel.time}
+      td.episode= render partial: "shared/episode", locals: {episode: novel.episode}
+      td.edit rowspan="2" = render partial: "shared/edit", locals: {id: novel.id}
+      td.disable rowspan="2" = render partial: "shared/active", locals: {id: novel.id, is_active: novel.is_active}
+
+      = render partial: "shared/active_row", locals: {is_active: novel.is_active}
+      td.summary colspan="4"
+        = novel.summary.empty? ? "なし" : novel.summary
 

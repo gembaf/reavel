@@ -1,9 +1,9 @@
 
-= form_for @novel, url: novels_add_path do |f|
+= form_for @novel, url: novels_edit_path do |f|
   .col-lg-3
     = render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
     .buttons
-      = render partial: "shared/create"
+      = render partial: "shared/update"
     br
 
   .col-lg-9

@@ -1,5 +1,5 @@
 module Common
-  def url(is_success)
+  def list_path(is_success)
     url = {action: :list}
     url[:error] = true unless is_success
     url
@@ -13,6 +13,6 @@ module Common
     !val.nil?
   end
 
-  module_function :url, :create_success?, :error?
+  module_function :list_path, :create_success?, :error?
 end
 

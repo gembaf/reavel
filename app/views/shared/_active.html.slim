@@ -1,0 +1,10 @@
+= link_to action: :active, id: id, is_active: !is_active do
+  - if is_active
+    button.btn.btn-warning
+      span.glyphicon.glyphicon-minus-sign
+      | &nbsp;&nbsp;無効化
+  - else
+    button.btn.btn-default
+      span.glyphicon.glyphicon-ok-sign
+      | &nbsp;&nbsp;有効化
+
