@@ -2,7 +2,7 @@
 = render partial: "shared/error", locals: {is_error: @is_error}
 
 .col-lg-3
-  = render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
+  = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
     = render partial: "shared/buttons/add", locals: {path: novels_add_path}
   br

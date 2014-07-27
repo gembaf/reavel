@@ -1,10 +1,11 @@
 .sidemenu
   h3 小説管理
   ul.admin-list
-    - names = {novels: "Novel", chapters: "Chapters", parts: "Part", stories: "Story"}
-    /- names.each do |key, value|
-      - if key == controller_name.intern
-        li.selected= link_to value, controller: key, action: :list, id: nil
+    - titles = get_titles([p[:nid], p[:cid], p[:pid], p[:sid]])
+    - last_key = titles.keys.last
+    - titles.each do |key, value|
+      - if key == last_key
+        li.selected= link_to value, controller: key, action: :list
       - else
         li= link_to value, controller: key, action: :list
 
