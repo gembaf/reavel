@@ -1,0 +1,34 @@
+
+= form_for @novel, url: novels_add_path do |f|
+  .col-lg-3
+    = render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
+    .buttons
+      = render partial: "shared/create"
+      | &nbsp;&nbsp;
+      = render partial: "shared/add_row", locals: {message: "Chapter"}
+    br
+
+  .col-lg-9
+    table.table-base.novel.form
+      tr
+        th.title タイトル
+        td.title= f.text_field :title
+        th.mode モード
+        td.mode= f.select :mode, Novel.mode_format
+      tr
+        th.comment コメント
+        td.comment colspan="3" = f.text_area :comment
+      tr
+        th.summary あらすじ
+        td.summary colspan="3" = f.text_area :summary
+
+    table.table-base.novel#fields_for
+      = f.fields_for :chapters do |f_chapters|
+        tr.hidden
+          th.title タイトル
+          td.title= f_chapters.text_field :title
+          th.comment コメント
+          td.comment= f_chapters.text_area :comment
+
+
+

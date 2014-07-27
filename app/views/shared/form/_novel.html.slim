@@ -3,7 +3,7 @@ table.table-base.novel.form
     th.title タイトル
     td.title= f.text_field :title
     th.mode モード
-    td.mode= f.select :mode, Novel.mode_format
+    td.mode= f.select :mode, Novel.format_mode
   tr
     th.comment コメント
     td.comment colspan="3" = f.text_area :comment

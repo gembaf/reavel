@@ -8,11 +8,12 @@ Rails.application.routes.draw do
   get   'novels/active/:id' => 'novels#active'
 
   # Chapter
-  get  'chapters/add'        => 'chapters#add'
-  post 'chapters/add'        => 'chapters#create'
-  get  'chapters/edit/:id'   => 'chapters#edit', as: :chapters_edit
-  post 'chapters/edit/:id'   => 'chapters#update'
-  get  'chapters/list(/:id)' => 'chapters#list', as: :chapters_list
+  get   'chapters/add(/:id)'  => 'chapters#add', as: :chapters_add
+  post  'chapters/add(/:id)'  => 'chapters#create'
+  get   'chapters/edit/:id'   => 'chapters#edit', as: :chapters_edit
+  patch 'chapters/edit/:id'   => 'chapters#update'
+  get   'chapters/list(/:id)' => 'chapters#list', as: :chapters_list
+  get   'chapters/active/:id' => 'chapters#active'
 
   # Part
   get  'parts/add'        => 'parts#add'

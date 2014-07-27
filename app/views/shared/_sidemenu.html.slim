@@ -4,7 +4,7 @@
     - names = {novels: "Novel", chapters: "Chapters", parts: "Part", stories: "Story"}
     - names.each do |key, value|
       - if key == controller_name.intern
-        li.selected= link_to value, controller: key, action: :list
+        li.selected= link_to value, controller: key, action: :list, id: nil
       - else
         li= link_to value, controller: key, action: :list
 
