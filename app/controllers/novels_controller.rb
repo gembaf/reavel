@@ -1,6 +1,6 @@
 class NovelsController < ApplicationController
   def list
-    @novels = Novel.all.updated_by
+    @novels = Novel.active_by.updated_by
     @is_error = Common.error?(params[:error])
   end
 

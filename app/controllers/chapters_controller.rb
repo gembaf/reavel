@@ -37,8 +37,8 @@ class ChaptersController < ApplicationController
   end
 
   def get_chapters
-    return Chapter.all if params[:id].nil?
-    Chapter.where(novel_id: params[:id])
+    return Chapter.active_by.updated_by if params[:id].nil?
+    Chapter.where(novel_id: params[:id]).active_by.updated_by
   end
 end
 

@@ -8,6 +8,7 @@ class Novel < ActiveRecord::Base
 
   Scope.active(self)
   Scope.updated_by(self)
+  Scope.active_by(self)
 
   MODE = ["部 > 章 > 編 > 話", "部 > 章 > 話", "部 > 話"]
 

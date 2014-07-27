@@ -18,6 +18,12 @@ module Scope
     end
   end
 
-  module_function :active, :serial_by, :updated_by
+  def active_by(base)
+    base.class_eval do
+      scope :active_by, -> { order("is_active DESC") }
+    end
+  end
+
+  module_function :active, :serial_by, :updated_by, :active_by
 end
 

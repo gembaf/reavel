@@ -10,6 +10,7 @@ class Chapter < ActiveRecord::Base
   Scope.active(self)
   Scope.serial_by(self)
   Scope.updated_by(self)
+  Scope.active_by(self)
 
 end
 
