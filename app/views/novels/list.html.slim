@@ -4,7 +4,7 @@
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
   .buttons
-    = render partial: "shared/buttons/add", locals: {id: nil}
+    = render partial: "shared/buttons/add", locals: {path: novels_add_path}
   br
 
 .col-lg-9
@@ -18,12 +18,14 @@
       th.disable
     - @novels.each do |novel|
       = render partial: "shared/active_row", locals: {is_active: novel.is_active}
-      td.title= link_to novel.title, chapters_list_path(id: novel.id)
+      td.title= link_to novel.title, chapters_list_path(nid: novel.id)
       td.comment= novel.comment
       td.time= format_time(novel.time)
       td.episode= format_episode(novel.episode)
-      td.edit rowspan="2" = render partial: "shared/buttons/edit", locals: {id: novel.id}
-      td.disable rowspan="2" = render partial: "shared/buttons/active", locals: {id: novel.id, is_active: novel.is_active}
+      td.edit rowspan="2"
+        = render partial: "shared/buttons/edit", locals: {path: novels_edit_path(nid: novel.id)}
+      td.disable rowspan="2"
+        = render partial: "shared/buttons/active", locals: {path: novels_active_path(nid: novel.id, is_active: !novel.is_active), is_active: novel.is_active}
 
       = render partial: "shared/active_row", locals: {is_active: novel.is_active}
       td.summary colspan="4"

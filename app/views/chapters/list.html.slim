@@ -4,7 +4,7 @@
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {controller_name: controller.controller_name}
   .buttons
-    = render partial: "shared/buttons/add", locals: {id: params[:id]}
+    = render partial: "shared/buttons/add", locals: {path: chapters_add_path}
   br
 
 .col-lg-9
@@ -18,10 +18,10 @@
       th.disable
     - @chapters.each do |chapter|
       = render partial: "shared/active_row", locals: {is_active: chapter.is_active}
-      td.title= link_to chapter.title, parts_list_path(id: chapter.id)
+      td.title= link_to chapter.title, parts_list_path(cid: chapter.id)
       td.comment= chapter.comment
       td.time= format_time(chapter.time)
       td.episode= format_episode(chapter.episode)
-      td.edit = render partial: "shared/buttons/edit", locals: {id: chapter.id}
-      td.disable = render partial: "shared/buttons/active", locals: {id: chapter.id, is_active: chapter.is_active}
+      td.edit= render partial: "shared/buttons/edit", locals: {path: chapters_edit_path(cid: chapter.id)}
+      td.disable= render partial: "shared/buttons/active", locals: {path: chapters_active_path(cid: chapter.id, is_active: !chapter.is_active), is_active: chapter.is_active}
 

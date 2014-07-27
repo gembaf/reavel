@@ -1,12 +1,5 @@
-
-- if id.nil?
-  .button= link_to action: :add do
-    button.btn.btn-primary
-      span.glyphicon.glyphicon-tag
-      | &nbsp;&nbsp;新規登録
-- else
-  .button= link_to action: :add, id: id do
-    button.btn.btn-primary
-      span.glyphicon.glyphicon-tag
-      | &nbsp;&nbsp;新規登録
+.button= link_to path do
+  button.btn.btn-primary
+    span.glyphicon.glyphicon-tag
+    | &nbsp;&nbsp;新規登録
 

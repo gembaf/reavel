@@ -12,21 +12,21 @@ class ChaptersController < ApplicationController
     result = Chapter.create(chapter_params)
     is_success = Common.create_success?(result)
 
-    redirect_to Common.list_path(is_success, params[:id])
+    redirect_to Common.list_path(is_success, params[:cid])
   end
 
   def edit
-    @chapter = Chapter.where(id: params[:id]).first
+    @chapter = Chapter.where(id: params[:cid]).first
   end
 
   def update
-    chapter = Chapter.where(id: params[:id]).first
+    chapter = Chapter.where(id: params[:cid]).first
     is_success = chapter.update_attributes(chapter_params)
-    redirect_to Common.list_path(is_success, chapter.novel_id)
+    redirect_to Common.list_path(is_success, params[:cid])
   end
 
   def active
-    chapter = Chapter.where(id: params[:id]).first
+    chapter = Chapter.where(id: params[:cid]).first
     is_success = chapter.update_attributes(is_active: params[:is_active])
     redirect_to Common.list_path(is_success)
   end
@@ -37,8 +37,7 @@ class ChaptersController < ApplicationController
   end
 
   def get_chapters
-    return Chapter.active_by.updated_by if params[:id].nil?
-    Chapter.where(novel_id: params[:id]).active_by.updated_by
+    Chapter.where(novel_id: params[:nid]).active_by.updated_by
   end
 end
 
