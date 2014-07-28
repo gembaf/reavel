@@ -11,6 +11,7 @@ class Novel < ActiveRecord::Base
   Scope.active_by(self)
 
   MODE = ["部 > 章 > 編 > 話", "部 > 章 > 話", "部 > 話"]
+  CHAPTER_LIMIT = 20
 
   def self.format_mode
     {
@@ -24,6 +25,10 @@ class Novel < ActiveRecord::Base
     self.active.map do |novel|
       [novel.title, novel.id]
     end
+  end
+
+  def build_chapters
+    CHAPTER_LIMIT.times {self.chapters.build}
   end
 end
 

@@ -5,6 +5,10 @@
   = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
     = render partial: "shared/buttons/add", locals: {path: chapters_add_path}
+    | &nbsp;&nbsp;
+    = render partial: "shared/buttons/add_many", locals: {path: many_chapters_add_path}
+    | &nbsp;&nbsp;
+    = render partial: "shared/buttons/edit_many", locals: {path: many_chapters_edit_path}
   br
 
 .col-lg-9

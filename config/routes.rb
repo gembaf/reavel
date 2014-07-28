@@ -16,6 +16,13 @@ Rails.application.routes.draw do
   patch 'admin/:nid/:cid/edit'   => 'chapters#update'
   get   'admin/:nid/:cid/active' => 'chapters#active', as: :chapters_active
 
+  # Many Chapters
+  get   'admin/:nid'             => 'many_chapters#list'
+  get   'admin/:nid/add_many'    => 'many_chapters#add', as: :many_chapters_add
+  post  'admin/:nid/add_many'    => 'many_chapters#create'
+  get   'admin/:nid/edit_many'   => 'many_chapters#edit', as: :many_chapters_edit
+  patch 'admin/:nid/edit_many'   => 'many_chapters#update'
+
   # Part
   get   'admin/:nid/:cid'             => 'parts#list', as: :parts_list
   get   'admin/:nid/:cid/add'         => 'parts#add', as: :parts_add

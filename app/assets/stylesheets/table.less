@@ -7,9 +7,12 @@
   .table-bordered;
 
   td {
-    &.title, &.mode, &.edit, &.disable, &.select { text-align: center; }
+    &.title, &.mode, &.edit, &.disable, &.select, &.serial { text-align: center; }
     &.time, &.episode { text-align: right; }
     input[type="text"], select, textarea { width: 90%; }
+    &.serial {
+      input[type="text"] { text-align: right; }
+    }
   }
 
   th {
@@ -19,9 +22,16 @@
 
 //--  fields_for
 #fields_for {
-  &.novel {
+  .placeholder {
+    background-color: WHITE;
+    height: 80px;
+  }
+
+  //--  chapter
+  &.chapter {
     td {
       &.comment { text-align: center }
+      &.serial { width: 10%; }
     }
   }
 }

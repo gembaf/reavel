@@ -1,0 +1,25 @@
+
+= form_for @novel, url: many_chapters_add_path do |f|
+  .col-lg-3
+    = render partial: "shared/sidemenu", locals: {p: params}
+    .buttons
+      = render partial: "shared/buttons/create"
+      | &nbsp;&nbsp;
+      = render partial: "shared/buttons/add_row", locals: {message: "Chapter"}
+    br
+
+  .col-lg-9
+    table.table-base.chapter.form#fields_for
+      tr
+        th.serial
+        th.title タイトル
+        th.comment コメント
+      - i = 0
+      = f.fields_for :chapters do |f_chapters|
+        tr.hidden
+          td.serial= i += 1
+          td.title= f_chapters.text_field :title
+          td.comment= f_chapters.text_area :comment
+
+
+
