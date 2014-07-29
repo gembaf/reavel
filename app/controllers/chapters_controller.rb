@@ -12,7 +12,7 @@ class ChaptersController < ApplicationController
     result = Chapter.create(chapter_params)
     is_success = Common.create_success?(result)
 
-    redirect_to Common.list_path(is_success, params[:cid])
+    redirect_to Common.list_path(is_success)
   end
 
   def edit
@@ -22,7 +22,7 @@ class ChaptersController < ApplicationController
   def update
     chapter = Chapter.where(id: params[:cid]).first
     is_success = chapter.update_attributes(chapter_params)
-    redirect_to Common.list_path(is_success, params[:cid])
+    redirect_to Common.list_path(is_success)
   end
 
   def active
