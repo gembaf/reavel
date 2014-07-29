@@ -22,13 +22,13 @@ class ManyChaptersController < ApplicationController
 
   def edit
     @novel = Novel.where(id: params[:nid]).first
-    @novel.chapters = @novel.chapters.active
   end
 
   def update
-    @novel = Novel.where(id: params[:nid]).first
     results = []
-    @novel.chapters.zip(chapters_params).each do |chapter, val|
+    chapters_params.each do |val|
+      chapter = Chapter.where(id: val[:id]).first
+      val.delete(:id)
       results << chapter.update_attributes(val)
     end
 

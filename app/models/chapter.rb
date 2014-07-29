@@ -1,6 +1,4 @@
 class Chapter < ActiveRecord::Base
-  default_scope { order("serial") }
-
   belongs_to :novel
   has_many :parts, dependent: :destroy
 
