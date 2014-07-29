@@ -1,7 +1,7 @@
 class Story < ActiveRecord::Base
-  belongs_to :part
+  belongs_to :volume
 
-  validates :part_id, :title, presence: true
+  validates :volume_id, :title, presence: true
   validates :title, :comment, length: {maximum: 250}
 end
 

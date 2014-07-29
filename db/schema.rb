@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140712093738) do
+ActiveRecord::Schema.define(version: 20140729164833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,13 +53,25 @@ ActiveRecord::Schema.define(version: 20140712093738) do
   end
 
   create_table "stories", force: true do |t|
-    t.integer  "part_id",                        null: false
+    t.integer  "volume_id",                      null: false
     t.string   "title",      default: "notitle"
     t.string   "comment",    default: ""
     t.string   "content"
     t.integer  "serial",     default: 0
     t.integer  "time",       default: 0
     t.boolean  "is_scene",   default: false
+    t.boolean  "is_active",  default: true
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "volumes", force: true do |t|
+    t.integer  "part_id",                        null: false
+    t.string   "title",      default: "notitle"
+    t.string   "comment",    default: ""
+    t.integer  "serial",     default: 0
+    t.integer  "time",       default: 0
+    t.integer  "episode",    default: 0
     t.boolean  "is_active",  default: true
     t.datetime "created_at"
     t.datetime "updated_at"
