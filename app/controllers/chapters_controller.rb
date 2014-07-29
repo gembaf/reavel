@@ -11,7 +11,6 @@ class ChaptersController < ApplicationController
   def create
     result = Chapter.create(chapter_params)
     is_success = Common.create_success?(result)
-
     redirect_to Common.list_path(is_success)
   end
 

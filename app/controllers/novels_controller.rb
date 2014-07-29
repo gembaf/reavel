@@ -11,7 +11,6 @@ class NovelsController < ApplicationController
   def create
     result = Novel.create(novel_params)
     is_success = Common.create_success?(result)
-
     redirect_to Common.list_path(is_success)
   end
 
