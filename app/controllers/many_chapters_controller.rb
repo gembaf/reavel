@@ -10,7 +10,7 @@ class ManyChaptersController < ApplicationController
 
   def create
     results = []
-    params.require(:novel).require(:chapters_attributes).each do |_, val|
+    chapters_params.each do |val|
       break if Common.skip?(val)
       val[:novel_id] = params[:nid]
       results << Chapter.create(val)
@@ -26,7 +26,18 @@ class ManyChaptersController < ApplicationController
   end
 
   def update
-    render text: params
+    @novel = Novel.where(id: params[:nid]).first
+    results = []
+    @novel.chapters.zip(chapters_params).each do |chapter, val|
+      results << chapter.update_attributes(val)
+    end
+
+    redirect_to Common.list_path(results.all?)
+  end
+
+  private
+  def chapters_params
+    params.require(:novel).require(:chapters_attributes).values
   end
 end
 

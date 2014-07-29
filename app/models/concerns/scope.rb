@@ -8,7 +8,7 @@ module Scope
 
   def serial_by(base)
     base.class_eval do
-      scope :serial_by, -> { order("episode") }
+      scope :serial_by, -> { order("serial") }
     end
   end
 

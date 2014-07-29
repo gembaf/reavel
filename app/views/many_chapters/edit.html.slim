@@ -8,13 +8,15 @@
 
   .col-lg-9
     table.table-base.chapter.form#fields_for
-      tr
-        th.title タイトル
-        th.comment コメント
-      = f.fields_for :chapters do |f_chapters|
+      thead
         tr
-          td.title= f_chapters.text_field :title
-          td.comment= f_chapters.text_area :comment
-
-
+          th.serial
+          th.title タイトル
+          th.comment コメント
+      tbody#sortable
+        = f.fields_for :chapters do |f_chapters|
+          tr
+            td.serial= f_chapters.text_field :serial
+            td.title= f_chapters.text_field :title
+            td.comment= f_chapters.text_area :comment
 

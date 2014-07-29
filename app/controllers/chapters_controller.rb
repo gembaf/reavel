@@ -27,7 +27,7 @@ class ChaptersController < ApplicationController
 
   def active
     chapter = Chapter.where(id: params[:cid]).first
-    is_success = chapter.update_attributes(is_active: params[:is_active])
+    is_success = chapter.update_attributes(is_active: params[:is_active], serial: 0)
     redirect_to Common.list_path(is_success)
   end
 
@@ -37,7 +37,7 @@ class ChaptersController < ApplicationController
   end
 
   def get_chapters
-    Chapter.where(novel_id: params[:nid]).active_by.updated_by
+    Chapter.where(novel_id: params[:nid]).active_by.serial_by
   end
 end
 

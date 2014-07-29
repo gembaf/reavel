@@ -1,5 +1,5 @@
 class Novel < ActiveRecord::Base
-  has_many :chapters, dependent: :destroy
+  has_many :chapters, -> {order("serial")}, dependent: :destroy
 
   accepts_nested_attributes_for :chapters
 
