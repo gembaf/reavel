@@ -1,0 +1,10 @@
+table.table-base.volume.form
+  tr
+    th.title タイトル
+    td.title= f.text_field :title
+    th.select 小説選択
+    td.select= f.select :part_id, Common.select_format(Part), selected: id
+  tr
+    th.comment コメント
+    td.comment colspan="3" = f.text_area :comment
+

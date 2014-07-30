@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   get   'admin/:nid/:cid/active' => 'chapters#active', as: :chapters_active
 
   # Many Chapters
-  get   'admin/:nid'             => 'many_chapters#list'
-  get   'admin/:nid/add_many'    => 'many_chapters#add', as: :many_chapters_add
-  post  'admin/:nid/add_many'    => 'many_chapters#create'
-  get   'admin/:nid/edit_many'   => 'many_chapters#edit', as: :many_chapters_edit
-  patch 'admin/:nid/edit_many'   => 'many_chapters#update'
+  get   'admin/:nid'           => 'many_chapters#list'
+  get   'admin/:nid/add_many'  => 'many_chapters#add', as: :many_chapters_add
+  post  'admin/:nid/add_many'  => 'many_chapters#create'
+  get   'admin/:nid/edit_many' => 'many_chapters#edit', as: :many_chapters_edit
+  patch 'admin/:nid/edit_many' => 'many_chapters#update'
 
   # Part
   get   'admin/:nid/:cid'             => 'parts#list', as: :parts_list
@@ -32,11 +32,11 @@ Rails.application.routes.draw do
   get   'admin/:nid/:cid/:pid/active' => 'parts#active', as: :parts_active
 
   # Many Parts
-  get   'admin/:nid/:cid'             => 'many_parts#list'
-  get   'admin/:nid/:cid/add_many'    => 'many_parts#add', as: :many_parts_add
-  post  'admin/:nid/:cid/add_many'    => 'many_parts#create'
-  get   'admin/:nid/:cid/edit_many'   => 'many_parts#edit', as: :many_parts_edit
-  patch 'admin/:nid/:cid/edit_many'   => 'many_parts#update'
+  get   'admin/:nid/:cid'           => 'many_parts#list'
+  get   'admin/:nid/:cid/add_many'  => 'many_parts#add', as: :many_parts_add
+  post  'admin/:nid/:cid/add_many'  => 'many_parts#create'
+  get   'admin/:nid/:cid/edit_many' => 'many_parts#edit', as: :many_parts_edit
+  patch 'admin/:nid/:cid/edit_many' => 'many_parts#update'
 
   # Volume
   get   'admin/:nid/:cid/:pid'             => 'volumes#list', as: :volumes_list
@@ -46,8 +46,15 @@ Rails.application.routes.draw do
   patch 'admin/:nid/:cid/:pid/:vid/edit'   => 'volumes#update'
   get   'admin/:nid/:cid/:pid/:vid/active' => 'volumes#active', as: :volumes_active
 
+  # Many Volumes
+  get   'admin/:nid/:cid/:pid'           => 'many_volumes#list'
+  get   'admin/:nid/:cid/:pid/add_many'  => 'many_volumes#add', as: :many_volumes_add
+  post  'admin/:nid/:cid/:pid/add_many'  => 'many_volumes#create'
+  get   'admin/:nid/:cid/:pid/edit_many' => 'many_volumes#edit', as: :many_volumes_edit
+  patch 'admin/:nid/:cid/:pid/edit_many' => 'many_volumes#update'
+
   # Story
-  get   'admin/:nid/:cid/:pid'                  => 'stories#list', as: :stories_list
+  get   'admin/:nid/:cid/:pid/:vid'             => 'stories#list', as: :stories_list
   get   'admin/:nid/:cid/:pid/:vid/add'         => 'stories#add', as: :stories_add
   post  'admin/:nid/:cid/:pid/:vid/add'         => 'stories#create'
   get   'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#edit', as: :stories_edit

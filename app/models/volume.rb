@@ -11,5 +11,11 @@ class Volume < ActiveRecord::Base
   Scope.serial_by(self)
   Scope.active_by(self)
 
+  # override
+  def self.create(params)
+    volume = self.where(part_id: params[:part_id]).last
+    params[:serial] = ModelHelper.get_serial(volume)
+    super params
+  end
 end
 

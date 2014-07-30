@@ -7,9 +7,15 @@ class Part < ActiveRecord::Base
   validates :chapter_id, :title, presence: true
   validates :title, :comment, length: {maximum: 250}
 
+  VOLUME_LIMIT = 20
+
   Scope.active(self)
   Scope.serial_by(self)
   Scope.active_by(self)
+
+  def build_volumes
+    VOLUME_LIMIT.times {self.volumes.build}
+  end
 
   # override
   def self.create(params)
