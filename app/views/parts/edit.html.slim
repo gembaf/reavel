@@ -1,0 +1,11 @@
+
+= form_for @part, url: parts_edit_path do |f|
+  .col-lg-3
+    = render partial: "shared/sidemenu", locals: {p: params}
+    .buttons
+      = render partial: "shared/buttons/update"
+    br
+
+  .col-lg-9
+    = render partial: "shared/form/part", locals: {f: f, id: params[:cid]}
+

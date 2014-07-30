@@ -31,12 +31,27 @@ Rails.application.routes.draw do
   patch 'admin/:nid/:cid/:pid/edit'   => 'parts#update'
   get   'admin/:nid/:cid/:pid/active' => 'parts#active', as: :parts_active
 
+  # Many Parts
+  get   'admin/:nid/:cid'             => 'many_parts#list'
+  get   'admin/:nid/:cid/add_many'    => 'many_parts#add', as: :many_parts_add
+  post  'admin/:nid/:cid/add_many'    => 'many_parts#create'
+  get   'admin/:nid/:cid/edit_many'   => 'many_parts#edit', as: :many_parts_edit
+  patch 'admin/:nid/:cid/edit_many'   => 'many_parts#update'
+
+  # Volume
+  get   'admin/:nid/:cid/:pid'             => 'volumes#list', as: :volumes_list
+  get   'admin/:nid/:cid/:pid/add'         => 'volumes#add', as: :volumes_add
+  post  'admin/:nid/:cid/:pid/add'         => 'volumes#create'
+  get   'admin/:nid/:cid/:pid/:vid/edit'   => 'volumes#edit', as: :volumes_edit
+  patch 'admin/:nid/:cid/:pid/:vid/edit'   => 'volumes#update'
+  get   'admin/:nid/:cid/:pid/:vid/active' => 'volumes#active', as: :volumes_active
+
   # Story
-  get   'admin/:nid/:cid/:pid'             => 'stories#list', as: :stories_list
-  get   'admin/:nid/:cid/:pid/add'         => 'stories#add', as: :stories_add
-  post  'admin/:nid/:cid/:pid/add'         => 'stories#create'
-  get   'admin/:nid/:cid/:pid/:sid/edit'   => 'stories#edit', as: :stories_edit
-  patch 'admin/:nid/:cid/:pid/:sid/edit'   => 'stories#update'
-  get   'admin/:nid/:cid/:pid/:sid/active' => 'stories#active', as: :stories_active
+  get   'admin/:nid/:cid/:pid'                  => 'stories#list', as: :stories_list
+  get   'admin/:nid/:cid/:pid/:vid/add'         => 'stories#add', as: :stories_add
+  post  'admin/:nid/:cid/:pid/:vid/add'         => 'stories#create'
+  get   'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#edit', as: :stories_edit
+  patch 'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#update'
+  get   'admin/:nid/:cid/:pid/:vid/:sid/active' => 'stories#active', as: :stories_active
 end
 

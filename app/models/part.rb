@@ -11,5 +11,11 @@ class Part < ActiveRecord::Base
   Scope.serial_by(self)
   Scope.active_by(self)
 
+  # override
+  def self.create(params)
+    part = self.where(chapter_id: params[:chapter_id]).last
+    params[:serial] = ModelHelper.get_serial(part)
+    super params
+  end
 end
 

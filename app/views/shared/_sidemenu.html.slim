@@ -1,7 +1,7 @@
 .sidemenu
   h3 小説管理
   ul.admin-list
-    - titles = get_titles([p[:nid], p[:cid], p[:pid], p[:sid]])
+    - titles = get_titles([p[:nid], p[:cid], p[:pid], p[:vid], p[:sid]])
     - last_key = titles.keys.last
     - titles.each do |key, value|
       - if key == last_key
