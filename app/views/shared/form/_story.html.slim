@@ -1,0 +1,15 @@
+table.table-base.story.form
+  tr
+    th.title タイトル
+    td.title= f.text_field :title
+    th.select 小説選択
+    td.select= f.select :volume_id, Common.select_format(Volume), selected: id
+  tr
+    th.content ファイル
+    td.content= f.file_field :contents
+    th.scene シーン
+    td.scene= f.select :is_scene, [["あり", true], ["なし", false]], selected: is_scene
+  tr
+    th.comment コメント
+    td.comment colspan="3" = f.text_area :comment
+

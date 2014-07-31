@@ -1,0 +1,10 @@
+= form_for @story, url: stories_add_path(vid: params[:vid]) do |f|
+  .col-lg-3
+    = render partial: "shared/sidemenu", locals: {p: params}
+    .buttons
+      = render partial: "shared/buttons/create"
+    br
+
+  .col-lg-9
+    = render partial: "shared/form/story", locals: {f: f, id: params[:vid], is_scene: @story.is_scene}
+

@@ -7,11 +7,17 @@
   .table-bordered;
 
   td {
-    &.title, &.mode, &.edit, &.disable, &.select, &.serial { text-align: center; }
+    &.title, &.mode, &.edit, &.disable, &.select, &.serial, &.scene { text-align: center; }
     &.time, &.episode { text-align: right; }
     input[type="text"], select, textarea { width: 90%; }
     &.serial {
       input[type="text"] { text-align: right; }
+    }
+    &.scene {
+      h3 {
+        font-size: 15pt;
+        margin-top: 3px;
+      }
     }
   }
 
@@ -52,6 +58,16 @@
       &.title, &.select { width: 30%; }
     }
   }
+
+  //--  story
+  &.story {
+    td {
+      &.content, &.scene {
+        width: 30%;
+        text-align: center;
+      }
+    }
+  }
 }
 
 
@@ -69,8 +85,8 @@
     }
   }
 
-  //-- chapter, part, volume
-  &.chapter, &.part, &.volume {
+  //-- chapter, part, volume, story
+  &.chapter, &.part, &.volume, &.story {
     .list > .novel;
   }
 }
@@ -85,5 +101,4 @@
 @media (min-width: 1200px) {
   .table-base.form { width: 70%; }
 }
-
 

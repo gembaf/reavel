@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140729164833) do
+ActiveRecord::Schema.define(version: 20140731072709) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20140729164833) do
     t.integer  "volume_id",                      null: false
     t.string   "title",      default: "notitle"
     t.string   "comment",    default: ""
-    t.string   "content"
+    t.string   "contents"
     t.integer  "serial",     default: 0
     t.integer  "time",       default: 0
     t.boolean  "is_scene",   default: false

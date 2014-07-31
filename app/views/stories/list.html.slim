@@ -1,0 +1,31 @@
+
+= render partial: "shared/error", locals: {is_error: @is_error}
+
+.col-lg-3
+  = render partial: "shared/sidemenu", locals: {p: params}
+  .buttons
+    = render partial: "shared/buttons/add", locals: {path: stories_add_path}
+    | &nbsp;&nbsp;
+    /= render partial: "shared/buttons/add_many", locals: {path: many_stories_add_path}
+    /| &nbsp;&nbsp;
+    /= render partial: "shared/buttons/edit_many", locals: {path: many_stories_edit_path}
+  br
+
+.col-lg-9
+  table.table-base.story.list
+    tr
+      th.title タイトル
+      th.comment コメント
+      th.time 読了時間
+      th.scene シーン
+      th.edit 編集
+      th.disable
+    - @stories.each do |story|
+      = render partial: "shared/active_row", locals: {is_active: story.is_active}
+      td.title= story.title
+      td.comment= story.comment
+      td.time= format_time(story.time)
+      td.scene= render partial: "shared/scene", locals: {is_scene: story.is_scene}
+      td.edit= render partial: "shared/buttons/edit", locals: {path: stories_edit_path(sid: story.id)}
+      td.disable= render partial: "shared/buttons/active", locals: {path: stories_active_path(sid: story.id, is_active: !story.is_active), is_active: story.is_active}
+
