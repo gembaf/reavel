@@ -14,5 +14,16 @@ table.table-base.story.form
     td.comment colspan="3" = text_area :story, :comment
   tr
     th.contents_text 本文
-    td.contents_text colspan="3" = text_area :contents, :text, value: text
+    td.contents_text colspan="3"
+      ul.nav.nav-tabs
+        li.active
+          a href="#text" data-toggle="tab" テキスト
+        li
+          a#target-preview href="#preview" data-toggle="tab" プレビュー
+      br
+      .tab-content
+        .tab-pane.active#text
+          = text_area :contents, :text, value: text
+        .tab-pane#preview
+          p
 

@@ -20,7 +20,7 @@
       }
     }
     &.contents_text {
-      textarea { height: 500px; }
+      #text { text-align: center; }
     }
   }
 
@@ -68,7 +68,11 @@
         text-align: center;
       }
       &.contents_text {
-        text-align: center;
+        #text > textarea { height: 500px; }
+        #preview {
+          overflow: scroll;
+          height: 500px;
+        }
       }
     }
   }

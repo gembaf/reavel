@@ -13,3 +13,9 @@ $(document).ready ->
     $.each tr, (index, elem)->
       elem.value = index+1
 
+  $("#target-preview").click ->
+    converter = new Showdown.converter()
+    val = $("#text > textarea").val()
+    html = converter.makeHtml(val).replace(/\n\n/g, "<br />").replace(/\n/g, "<br />")
+    $("#preview").html(html)
+
