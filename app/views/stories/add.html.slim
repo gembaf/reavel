@@ -1,4 +1,4 @@
-= form_for @story, url: stories_add_path(vid: params[:vid]) do |f|
+= form_tag stories_add_path(vid: params[:vid]), multipart: true do
   .col-lg-3
     = render partial: "shared/sidemenu", locals: {p: params}
     .buttons
@@ -6,5 +6,5 @@
     br
 
   .col-lg-9
-    = render partial: "shared/form/story", locals: {f: f, id: params[:vid], is_scene: @story.is_scene}
+    = render partial: "shared/form/story", locals: {id: params[:vid], is_scene: @story.is_scene, text: nil}
 

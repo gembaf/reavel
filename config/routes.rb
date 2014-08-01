@@ -54,11 +54,11 @@ Rails.application.routes.draw do
   patch 'admin/:nid/:cid/:pid/edit_many' => 'many_volumes#update'
 
   # Story
-  get   'admin/:nid/:cid/:pid/:vid'             => 'stories#list', as: :stories_list
-  get   'admin/:nid/:cid/:pid/:vid/add'         => 'stories#add', as: :stories_add
-  post  'admin/:nid/:cid/:pid/:vid/add'         => 'stories#create'
-  get   'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#edit', as: :stories_edit
-  patch 'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#update'
-  get   'admin/:nid/:cid/:pid/:vid/:sid/active' => 'stories#active', as: :stories_active
+  get  'admin/:nid/:cid/:pid/:vid'             => 'stories#list', as: :stories_list
+  get  'admin/:nid/:cid/:pid/:vid/add'         => 'stories#add', as: :stories_add
+  post 'admin/:nid/:cid/:pid/:vid/add'         => 'stories#create'
+  get  'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#edit', as: :stories_edit
+  post 'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#update'
+  get  'admin/:nid/:cid/:pid/:vid/:sid/active' => 'stories#active', as: :stories_active
 end
 

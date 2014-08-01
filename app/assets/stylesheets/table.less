@@ -19,11 +19,12 @@
         margin-top: 3px;
       }
     }
+    &.contents_text {
+      textarea { height: 500px; }
+    }
   }
 
-  th {
-    text-align: center;
-  }
+  th { text-align: center; }
 }
 
 //--  fields_for
@@ -62,8 +63,11 @@
   //--  story
   &.story {
     td {
-      &.content, &.scene {
+      &.contents_file, &.scene {
         width: 30%;
+        text-align: center;
+      }
+      &.contents_text {
         text-align: center;
       }
     }
