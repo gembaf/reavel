@@ -11,6 +11,12 @@ class Volume < ActiveRecord::Base
   Scope.serial_by(self)
   Scope.active_by(self)
 
+  STORY_LIMIT = 20
+
+  def build_stories
+    STORY_LIMIT.times {self.stories.build}
+  end
+
   # override
   def self.create(params)
     volume = self.where(part_id: params[:part_id]).last

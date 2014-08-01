@@ -30,10 +30,18 @@
 //--  fields_for
 #fields_for {
   //--  chapter, part, volume
-  &.chapter, &.part, &.volume {
+  &.chapter, &.part, &.volume{
     td {
       &.comment { text-align: center }
       &.serial { width: 10%; }
+    }
+  }
+  &.story {
+    td {
+      &.comment { text-align: center }
+      &.contents { width: 20%; }
+      &.scene { width: 10%; }
+      &.serial { width: 5%; }
     }
   }
 }
@@ -107,6 +115,9 @@
 
 //-- 最後に書かないと上書きできない
 @media (min-width: 1200px) {
-  .table-base.form { width: 70%; }
+  .table-base.form {
+    width: 70%;
+    &.story { width: 100%; }
+  }
 }
 

@@ -16,5 +16,6 @@
 /tmp
 /public/uploads
 
-/novels
+/novels/*/*
+!/novels/contents/.keep
 

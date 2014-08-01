@@ -60,5 +60,12 @@ Rails.application.routes.draw do
   get  'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#edit', as: :stories_edit
   post 'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#update'
   get  'admin/:nid/:cid/:pid/:vid/:sid/active' => 'stories#active', as: :stories_active
+
+  # Many Stories
+  get   'admin/:nid/:cid/:pid/:vid'           => 'many_stories#list'
+  get   'admin/:nid/:cid/:pid/:vid/add_many'  => 'many_stories#add', as: :many_stories_add
+  post  'admin/:nid/:cid/:pid/:vid/add_many'  => 'many_stories#create'
+  get   'admin/:nid/:cid/:pid/:vid/edit_many' => 'many_stories#edit', as: :many_stories_edit
+  patch 'admin/:nid/:cid/:pid/:vid/edit_many' => 'many_stories#update'
 end
 
