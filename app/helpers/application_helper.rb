@@ -7,6 +7,10 @@ module ApplicationHelper
     "全 #{episode} 話"
   end
 
+  def format_title(title)
+    "・ #{title}"
+  end
+
   def get_titles(ids)
     names = %w(novels chapters parts volumes stories)
     models = [Novel, Chapter, Part, Volume, Story]
@@ -18,6 +22,10 @@ module ApplicationHelper
       titles[name] = model.where(id: id).first.title
     end
     titles
+  end
+
+  def index_by(models)
+    models.active.serial_by
   end
 end
 

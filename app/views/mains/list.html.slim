@@ -1,0 +1,17 @@
+center
+  table.table-base.novels_index
+    tr
+      th.title タイトル
+      th.comment コメント
+      th.time 読了時間
+      th.episode 話数
+    - @novels.each do |novel|
+      tr
+        td.title= link_to novel.title, mains_chapters_path(nid: novel.id)
+        td.comment= novel.comment
+        td.time= format_time(novel.time)
+        td.episode= format_episode(novel.episode)
+      tr
+        td.summary colspan="4"
+          = novel.summary.empty? ? "なし" : novel.summary
+

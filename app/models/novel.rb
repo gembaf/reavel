@@ -10,14 +10,17 @@ class Novel < ActiveRecord::Base
   Scope.updated_by(self)
   Scope.active_by(self)
 
+  MODE_LONG = 0
+  MODE_MIDDLE = 1
+  MODE_SHORT = 2
   MODE = ["部 > 章 > 編 > 話", "部 > 章 > 話", "部 > 話"]
   CHAPTER_LIMIT = 20
 
   def self.format_mode
     {
-      MODE[0] => 0,
-      MODE[1] => 1,
-      MODE[2] => 2
+      "部 > 章 > 編 > 話" => MODE_LONG,
+      "部 > 章 > 話"      => MODE_MIDDLE,
+      "部 > 話"           => MODE_SHORT
     }
   end
 

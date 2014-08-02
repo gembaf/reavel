@@ -1,0 +1,15 @@
+
+- if p[:cid].nil?
+  - index_by(novel.chapters).each do |chapter|
+    li class="level#{l}" = link_to format_title(chapter.title), mains_parts_path(cid: chapter.id)
+
+- else
+  - index_by(novel.chapters).each do |chapter|
+    - if chapter.id == p[:cid].to_i
+      li class="level#{l} selected"
+        = link_to format_title(chapter.title), mains_parts_path(cid: chapter.id)
+      = render partial: "shared/main/parts", locals: {p: p, chapter: chapter, l: l+1, mode: mode}
+    - else
+      li class="level#{l} nav-header"
+        = link_to format_title(chapter.title), mains_parts_path(cid: chapter.id)
+

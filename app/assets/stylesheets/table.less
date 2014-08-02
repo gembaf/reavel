@@ -113,11 +113,24 @@
 }
 
 
+//-- index
+.index, .novels_index {
+  th {
+    &.title { width: 40%; }
+    &.comment { width: 30%; }
+    &.time, &.episode, &.scene { width: 15%; }
+  }
+}
+
+
 //-- 最後に書かないと上書きできない
 @media (min-width: 1200px) {
   .table-base.form {
     width: 70%;
     &.story { width: 100%; }
   }
+
+  .table-base.index { width: 80%; }
+  .table-base.novels_index { width: 70%; }
 }
 

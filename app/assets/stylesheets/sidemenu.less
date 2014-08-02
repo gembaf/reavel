@@ -13,16 +13,35 @@
     //.nav-list;
 
     li {
-      a:hover {
-        background-color: @light-green;
+      a {
+        border: solid 1px;
+        border-color: WHITE;
+        &:hover {
+          background-color: @light-green;
+        }
       }
 
-      &.selected {
-        background-color: @light-green;
+      &.selected > a {
+        background-color: @light-yellow;
       }
     }
 
-    .admin-list {}
+    &.admin-list {}
+    &.main-list {
+      li {
+        &.nav-header > a {
+          background-color: @gray;
+          &:hover {
+            background-color: @light-green;
+          }
+        }
+
+        &.level1 {}
+        &.level2 { padding-left: 15px; }
+        &.level3 { padding-left: 30px; }
+        &.level4 { padding-left: 45px; }
+      }
+    }
   }
 }
 

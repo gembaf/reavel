@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  ##--  Main
+  get 'mains'                          => 'mains#list'
+  get 'mains/:nid'                     => 'mains#chapters_index', as: :mains_chapters
+  get 'mains/:nid/:cid'                => 'mains#parts_index', as: :mains_parts
+  get 'mains/:nid/:cid/:pid'           => 'mains#volumes_index', as: :mains_volumes
+  get 'mains/:nid/:cid/:pid/:vid'      => 'mains#stories_index', as: :mains_stories
+  get 'mains/:nid/:cid/:pid/:vid/:sid' => 'mains#show', as: :mains_show
+
   ##--  Admin
   # Novel
   get   'admin'             => 'novels#list', as: :novels_list
