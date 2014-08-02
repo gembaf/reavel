@@ -1,0 +1,20 @@
+
+.col-lg-3
+  = render partial: "shared/index", locals: {p: params, novel: @novel}
+
+.col-lg-9
+  .readarea
+    / Story
+    = markdown(@story.contents)
+    br
+    br
+    center
+      p
+        - prev_id, next_id = @story.ids
+        - if prev_id
+          = link_to "<< Prev", sid: prev_id
+        - if prev_id && next_id
+          | &nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;
+        - if next_id
+          = link_to "Next >>", sid: next_id
+

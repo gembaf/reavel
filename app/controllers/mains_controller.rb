@@ -1,5 +1,7 @@
 class MainsController < ApplicationController
   def show
+    @novel = Novel.where(id: params[:nid]).first
+    @story = Story.where(id: params[:sid]).first
   end
 
   def list

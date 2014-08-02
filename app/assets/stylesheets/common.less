@@ -7,7 +7,7 @@ body#my-style {
 }
 
 .container {
-  &.header, &.footer {}
+  &.header, &.footer { font-size: 16px; }
   &.main {
     width: auto;
     margin-left: 50px;
@@ -22,5 +22,16 @@ body#my-style {
   .button {
     display: inline;
   }
+}
+
+.readarea {
+  font-size: 27px;
+
+  hr {
+    height: 1px;
+    background-color: @black;
+  }
+
+  p { line-height: 160%; }
 }
 

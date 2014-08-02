@@ -11,6 +11,16 @@ module ApplicationHelper
     "・ #{title}"
   end
 
+  def markdown(contents)
+    text = File.read(contents)
+    text.gsub!(/\r\n\r\n|\n\n/, "\n<br />")
+    unless @markdown
+      renderer = Redcarpet::Render::HTML.new(hard_wrap: true)
+      @markdown = Redcarpet::Markdown.new(renderer)
+    end
+    @markdown.render(text).html_safe
+  end
+
   def get_titles(ids)
     names = %w(novels chapters parts volumes stories)
     models = [Novel, Chapter, Part, Volume, Story]

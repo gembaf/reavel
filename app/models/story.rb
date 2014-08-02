@@ -21,6 +21,18 @@ class Story < ActiveRecord::Base
     "#{Rails.root}/novels/contents/%05d.mkd" % id
   end
 
+  def ids
+    stories = Story.where(volume_id: self.volume_id).active.serial_by
+    prev_id = next_id = nil
+
+    stories.each_with_index do |story, i|
+      break if stories[i+1].nil?
+      prev_id = story.id if stories[i+1].id == self.id
+      next_id = stories[i+1].id if story.id == self.id
+    end
+    [prev_id, next_id]
+  end
+
   def set_contents_info(contents_params)
     contents = Story.file_path(self.id)
     text = contents_params[:text]
