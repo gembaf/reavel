@@ -1,0 +1,19 @@
+
+.col-lg-3
+  = render partial: "shared/index", locals: {p: params, novel: @novel}
+
+.col-lg-9
+  table.table-base.index
+    tr
+      th.title タイトル
+      th.comment コメント
+      th.time 読了時間
+      th.episode 話数
+
+    - @chapters.each do |chapter|
+      tr
+        td.title= link_to chapter.title, mains_parts_path(cid: chapter.id)
+        td.comment= chapter.comment
+        td.time= format_time(chapter.time)
+        td.episode= format_episode(chapter.episode)
+

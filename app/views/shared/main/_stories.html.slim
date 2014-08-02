@@ -1,9 +1,7 @@
 
 - index_by(volume.stories).each do |story|
-  - if story.id == p[:sid].to_i
-    li class="level#{l} selected"
-      = link_to format_title(story.title), mains_show_path(sid: story.id)
-  - else
-    li class="level#{l}"
-      = link_to format_title(story.title), mains_show_path(sid: story.id)
+  - classes = "level#{l} "
+  - classes += "selected" if story.id == p[:sid].to_i
+  li class="#{classes}"
+    = link_to format_title(story.title), mains_show_path(sid: story.id)
 

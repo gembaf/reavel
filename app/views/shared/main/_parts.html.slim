@@ -1,15 +1,14 @@
 
-- if p[:pid].nil?
-  - index_by(chapter.parts).each do |part|
-    li class="level#{l}" = link_to format_title(part.title), mains_volumes_path(pid: part.id)
+- index_by(chapter.parts).each do |part|
+  - classes = "level#{l} "
+  - if part.id == p[:pid].to_i
+    - classes += "selected"
+  - elsif p[:pid].present?
+    - classes += "nav-header"
 
-- else
-  - index_by(chapter.parts).each do |part|
-    - if part.id == p[:pid].to_i
-      li class="level#{l} selected"
-        = link_to format_title(part.title), mains_volumes_path(pid: part.id)
-      = render partial: "shared/main/volumes", locals: {p: p, part: part, l: l+1, mode: mode}
-    - else
-      li class="level#{l} nav-header"
-        = link_to format_title(part.title), mains_volumes_path(pid: part.id)
+  li class="#{classes}"
+    = link_to format_title(part.title), mains_volumes_path(pid: part.id)
+
+  - if part.id == p[:pid].to_i
+    = render partial: "shared/main/volumes", locals: {p: p, part: part, l: l+1}
 

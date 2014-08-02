@@ -13,16 +13,16 @@
     //.nav-list;
 
     li {
+      &.selected > a {
+        background-color: @light-yellow;
+      }
+
       a {
         border: solid 1px;
         border-color: WHITE;
         &:hover {
           background-color: @light-green;
         }
-      }
-
-      &.selected > a {
-        background-color: @light-yellow;
       }
     }
 

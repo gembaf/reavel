@@ -1,15 +1,14 @@
 
-- if p[:vid].nil?
-  - index_by(part.volumes).each do |volume|
-    li class="level#{l}" = link_to format_title(volume.title), mains_stories_path(vid: volume.id)
+- index_by(part.volumes).each do |volume|
+  - classes = "level#{l} "
+  - if volume.id == p[:vid].to_i
+    - classes += "selected"
+  - elsif p[:vid].present?
+    - classes += "nav-header"
 
-- else
-  - index_by(part.volumes).each do |volume|
-    - if volume.id == p[:vid].to_i
-      li class="level#{l} selected"
-        = link_to format_title(volume.title), mains_stories_path(vid: volume.id)
-      = render partial: "shared/main/stories", locals: {p: p, volume: volume, l: l+1, mode: mode}
-    - else
-      li class="level#{l} nav-header"
-        = link_to format_title(volume.title), mains_stories_path(vid: volume.id)
+  li class="#{classes}"
+    = link_to format_title(volume.title), mains_stories_path(vid: volume.id)
+
+  - if volume.id == p[:vid].to_i
+    = render partial: "shared/main/stories", locals: {p: p, volume: volume, l: l+1}
 
