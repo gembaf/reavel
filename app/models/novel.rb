@@ -1,5 +1,6 @@
 class Novel < ActiveRecord::Base
   has_many :chapters, dependent: :destroy
+  has_many :images, dependent: :delete_all
 
   accepts_nested_attributes_for :chapters
 
@@ -13,7 +14,7 @@ class Novel < ActiveRecord::Base
   MODE_LONG = 0
   MODE_MIDDLE = 1
   MODE_SHORT = 2
-  MODE = ["部 > 章 > 編 > 話", "部 > 章 > 話", "部 > 話"]
+
   CHAPTER_LIMIT = 20
 
   def self.format_mode

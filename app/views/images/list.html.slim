@@ -1,0 +1,26 @@
+
+= render partial: "shared/error", locals: {is_error: @is_error}
+
+.col-lg-3
+  = render partial: "shared/sidemenu", locals: {p: params}
+  .buttons
+    = render partial: "shared/buttons/image_add"
+  br
+
+.col-lg-9
+  table.table-base.image.list
+    - @images.each_slice(3).each do |each_image|
+      tr
+        - each_image.each do |image|
+          th.title= image.title
+      tr
+        - each_image.each do |image|
+          td.contents
+            img src=image.src_path
+      tr
+        - each_image.each do |image|
+          td.edit= render partial: "shared/buttons/edit", locals: {path: images_edit_path(iid: image.id)}
+      tr
+        - each_image.each do |image|
+          td.disable= render partial: "shared/buttons/active", locals: {path: images_active_path(iid: image.id, is_active: !image.is_active), is_active: image.is_active}
+

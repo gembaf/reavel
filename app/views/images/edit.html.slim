@@ -1,0 +1,11 @@
+
+= form_for @image, url: images_edit_path do |f|
+  .col-lg-3
+    = render partial: "shared/sidemenu", locals: {p: params}
+    .buttons
+      = render partial: "shared/buttons/update"
+    br
+
+  .col-lg-9
+    = render partial: "shared/form/image", locals: {f: f, id: params[:nid]}
+

@@ -14,8 +14,8 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
-/public/uploads
 
-/novels/*/*
-!/novels/contents/.keep
+/novels
+/public/novels/*/*
+!/public/novels/*/.keep
 

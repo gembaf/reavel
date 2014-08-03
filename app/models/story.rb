@@ -18,7 +18,7 @@ class Story < ActiveRecord::Base
   end
 
   def self.file_path(id)
-    "#{Rails.root}/novels/contents/%05d.mkd" % id
+    "#{Rails.root}/public/novels/contents/%05d.mkd" % id
   end
 
   def ids

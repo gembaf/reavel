@@ -75,5 +75,13 @@ Rails.application.routes.draw do
   post  'admin/:nid/:cid/:pid/:vid/add_many'  => 'many_stories#create'
   get   'admin/:nid/:cid/:pid/:vid/edit_many' => 'many_stories#edit', as: :many_stories_edit
   patch 'admin/:nid/:cid/:pid/:vid/edit_many' => 'many_stories#update'
+
+  # Images
+  get   'images/:nid'             => 'images#list', as: :images_list
+  get   'images/:nid/add'         => 'images#add', as: :images_add
+  post  'images/:nid/add'         => 'images#create'
+  get   'images/:nid/:iid/edit'   => 'images#edit', as: :images_edit
+  patch 'images/:nid/:iid/edit'   => 'images#update'
+  get   'images/:nid/:iid/active' => 'images#active', as: :images_active
 end
 
