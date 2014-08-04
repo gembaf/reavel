@@ -1,4 +1,4 @@
-= form_for @chapter, url: chapters_add_path(cid: params[:cid]) do |f|
+= form_for @chapter, url: chapters_add_path do |f|
   .col-lg-3
     = render partial: "shared/sidemenu", locals: {p: params}
     .buttons
@@ -6,5 +6,5 @@
     br
 
   .col-lg-9
-    = render partial: "shared/form/chapter", locals: {f: f, id: params[:nid]}
+    = render partial: "shared/form/chapter_part_volume", locals: {f: f}
 

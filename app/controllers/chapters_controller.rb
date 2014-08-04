@@ -9,7 +9,7 @@ class ChaptersController < ApplicationController
   end
 
   def create
-    result = Chapter.create(chapter_params)
+    result = Chapter.create(chapter_params.merge(novel_id: params[:nid]))
     is_success = Common.create_success?(result)
     redirect_to Common.list_path(is_success)
   end

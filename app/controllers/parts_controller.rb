@@ -9,7 +9,7 @@ class PartsController < ApplicationController
   end
 
   def create
-    result = Part.create(part_params)
+    result = Part.create(part_params.merge(chapter_id: params[:cid]))
     is_success = Common.create_success?(result)
     redirect_to Common.list_path(is_success)
   end

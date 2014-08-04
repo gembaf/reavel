@@ -1,20 +1,20 @@
 table.table-base.story.form
   tr
     th.title タイトル
-    td.title= text_field :story, :title
-    th.select 小説選択
-    td.select= select :story, :volume_id, Common.select_format(Volume), selected: id
-  tr
     th.contents_file ファイル
-    td.contents_file= file_field :contents, :file
     th.scene シーン
-    td.scene= select :story, :is_scene, Story.scene_format, selected: is_scene
+  tr
+    td.title= text_field :story, :title
+    td.contents_file= file_field :contents, :file
+    td.scene= select :story, :is_scene, Story.scene_format
+
+table.table-base.story.form
   tr
     th.comment コメント
-    td.comment colspan="3" = text_area :story, :comment
+    td.comment= text_area :story, :comment
   tr
     th.contents_text 本文
-    td.contents_text colspan="3"
+    td.contents_text
       ul.nav.nav-tabs
         li.active
           a href="#text" data-toggle="tab" テキスト

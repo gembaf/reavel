@@ -9,7 +9,7 @@ class VolumesController < ApplicationController
   end
 
   def create
-    result = Volume.create(volume_params)
+    result = Volume.create(volume_params.merge(part_id: params[:pid]))
     is_success = Common.create_success?(result)
     redirect_to Common.list_path(is_success)
   end

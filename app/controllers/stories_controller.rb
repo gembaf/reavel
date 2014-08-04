@@ -9,7 +9,7 @@ class StoriesController < ApplicationController
   end
 
   def create
-    result = Story.create(story_params)
+    result = Story.create(story_params.merge(volume_id: params[:vid]))
     is_success = Common.create_success?(result)
     result.set_contents_info(contents_params) if is_success
     redirect_to Common.list_path(is_success)
