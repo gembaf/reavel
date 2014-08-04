@@ -38,19 +38,49 @@ class Story < ActiveRecord::Base
     text = contents_params[:text]
     text = contents_params[:file].read unless contents_params[:file].blank?
     File.open(contents, 'w') { |f| f.puts text.force_encoding("UTF-8") }
-    self.update_attributes(contents: contents, time: get_time(text))
+    time = get_time(text)
+    self.update_parents_time(time)
+    self.update_attributes(contents: contents, time: time)
+  end
+
+  def toggle_active(params)
+    ModelHelper.toggle_active(parents(self), self.time, 1, params[:is_active])
+    self.update_attributes(params)
+  end
+
+  def update_parents_time(time)
+    parents(self).each do |model|
+      model.time += time - self.time
+      model.save
+    end
+  end
+
+  def update_parents_episode
+    parents(self).each do |model|
+      model.episode += 1
+      model.save
+    end
   end
 
   # override
   def self.create(params)
     story = self.where(volume_id: params[:volume_id]).last
     params[:serial] = ModelHelper.get_serial(story)
-    super params
+    super(params).tap {|s| s.update_parents_episode}
   end
 
   private
   def get_time(text)
     text.gsub(/<.*?>/, "").gsub(/\r\n|\n/, "").size / READ_CHARA_PER_SEC
   end
+
+  def parents(story)
+    volume = story.volume
+    part = volume.part
+    chapter = part.chapter
+    novel = chapter.novel
+    [volume, part, chapter, novel]
+  end
+
 end
 

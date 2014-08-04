@@ -26,7 +26,7 @@ class ChaptersController < ApplicationController
 
   def active
     chapter = Chapter.where(id: params[:cid]).first
-    is_success = chapter.update_attributes(is_active: params[:is_active], serial: 0)
+    is_success = chapter.toggle_active(is_active: params[:is_active], serial: 0)
     redirect_to Common.list_path(is_success)
   end
 

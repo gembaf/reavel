@@ -17,11 +17,17 @@ class Chapter < ActiveRecord::Base
     PART_LIMIT.times {self.parts.build}
   end
 
+  def toggle_active(params)
+    ModelHelper.toggle_active([self.novel], self.time, self.episode, params[:is_active])
+    self.update_attributes(params)
+  end
+
   # override
   def self.create(params)
     chapter = self.where(novel_id: params[:novel_id]).last
     params[:serial] = ModelHelper.get_serial(chapter)
     super params
   end
+
 end
 

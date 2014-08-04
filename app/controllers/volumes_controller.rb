@@ -26,7 +26,7 @@ class VolumesController < ApplicationController
 
   def active
     volume = Volume.where(id: params[:vid]).first
-    is_success = volume.update_attributes(is_active: params[:is_active], serial: 0)
+    is_success = volume.toggle_active(is_active: params[:is_active], serial: 0)
     redirect_to Common.list_path(is_success)
   end
 

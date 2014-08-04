@@ -28,7 +28,7 @@ class StoriesController < ApplicationController
 
   def active
     story = Story.where(id: params[:sid]).first
-    is_success = story.update_attributes(is_active: params[:is_active], serial: 0)
+    is_success = story.toggle_active(is_active: params[:is_active], serial: 0)
     redirect_to Common.list_path(is_success)
   end
 
