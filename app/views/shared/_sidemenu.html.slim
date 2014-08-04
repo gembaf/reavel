@@ -1,7 +1,10 @@
 .sidemenu
-  h3 小説管理
+  h3
+    | 小説管理&nbsp;
+    small
+      = link_to "Home", novels_list_path
   ul.admin-list
-    - titles = get_titles([p[:nid], p[:cid], p[:pid], p[:vid], p[:sid]])
+    - titles = get_titles([p[:nid], p[:cid], p[:pid], p[:vid]])
     - last_key = titles.keys.last
     - titles.each do |key, value|
       - if key == last_key

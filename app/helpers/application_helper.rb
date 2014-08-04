@@ -22,8 +22,8 @@ module ApplicationHelper
   end
 
   def get_titles(ids)
-    names = %w(novels chapters parts volumes stories)
-    models = [Novel, Chapter, Part, Volume, Story]
+    names = %w(chapters parts volumes stories)
+    models = [Novel, Chapter, Part, Volume]
     titles = {}
 
     elem = ids.zip(names).zip(models).map {|e| e.flatten}
