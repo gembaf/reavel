@@ -19,16 +19,18 @@
     tr
       th.title タイトル
       th.comment コメント
-      th.time 読了時間
-      th.episode 話数
       th.edit 編集
       th.disable
     - @chapters.each do |chapter|
       = render partial: "shared/active_row", locals: {is_active: chapter.is_active}
-      td.title= link_to chapter.title, parts_list_path(cid: chapter.id)
+      td.title
+        - if chapter.is_active
+          = link_to chapter.title, parts_list_path(cid: chapter.id)
+        - else
+          = chapter.title
       td.comment= chapter.comment
-      td.time= format_time(chapter.time)
-      td.episode= format_episode(chapter.episode)
-      td.edit= render partial: "shared/buttons/edit", locals: {path: chapters_edit_path(cid: chapter.id)}
+      td.edit
+        - if chapter.is_active
+          = render partial: "shared/buttons/edit", locals: {path: chapters_edit_path(cid: chapter.id)}
       td.disable= render partial: "shared/buttons/active", locals: {path: chapters_active_path(cid: chapter.id, is_active: !chapter.is_active), is_active: chapter.is_active}
 

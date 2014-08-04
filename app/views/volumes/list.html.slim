@@ -16,16 +16,18 @@
     tr
       th.title タイトル
       th.comment コメント
-      th.time 読了時間
-      th.episode 話数
       th.edit 編集
       th.disable
     - @volumes.each do |volume|
       = render partial: "shared/active_row", locals: {is_active: volume.is_active}
-      td.title= link_to volume.title, stories_list_path(vid: volume.id)
+      td.title
+        - if volume.is_active
+          = link_to volume.title, stories_list_path(vid: volume.id)
+        - else
+          = volume.title
       td.comment= volume.comment
-      td.time= format_time(volume.time)
-      td.episode= format_episode(volume.episode)
-      td.edit= render partial: "shared/buttons/edit", locals: {path: volumes_edit_path(vid: volume.id)}
+      td.edit
+        - if volume.is_active
+          = render partial: "shared/buttons/edit", locals: {path: volumes_edit_path(vid: volume.id)}
       td.disable= render partial: "shared/buttons/active", locals: {path: volumes_active_path(vid: volume.id, is_active: !volume.is_active), is_active: volume.is_active}
 
