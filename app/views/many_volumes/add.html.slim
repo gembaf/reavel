@@ -9,17 +9,16 @@
     br
 
   .col-lg-9
-    table.table-base.volume.form#fields_for
-      tr
-        th.serial
-        th.title タイトル
-        th.comment コメント
-      - i = 0
-      = f.fields_for :volumes do |f_volumes|
-        tr.hidden
-          td.serial= i += 1
-          td.title= f_volumes.text_field :title
-          td.comment= f_volumes.text_area :comment
-
-
+    .many_volumes.add
+      table.table-base
+        tr
+          th.serial
+          th.title タイトル
+          th.comment コメント
+        - i = 0
+        = f.fields_for :volumes do |f_volumes|
+          tr.hidden
+            td.serial= i += 1
+            td.title= f_volumes.text_field :title
+            td.comment= f_volumes.text_area :comment
 

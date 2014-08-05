@@ -9,17 +9,16 @@
     br
 
   .col-lg-9
-    table.table-base.part.form#fields_for
-      tr
-        th.serial
-        th.title タイトル
-        th.comment コメント
-      - i = 0
-      = f.fields_for :parts do |f_parts|
-        tr.hidden
-          td.serial= i += 1
-          td.title= f_parts.text_field :title
-          td.comment= f_parts.text_area :comment
-
-
+    .many_parts.add
+      table.table-base
+        tr
+          th.serial
+          th.title タイトル
+          th.comment コメント
+        - i = 0
+        = f.fields_for :parts do |f_parts|
+          tr.hidden
+            td.serial= i += 1
+            td.title= f_parts.text_field :title
+            td.comment= f_parts.text_area :comment
 

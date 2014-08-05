@@ -1,6 +1,6 @@
 
 .sidemenu
   h3= novel.title
-  ul.main-list
+  ul
     = render partial: "shared/main/chapters", locals: {p: p, novel: novel, l: 1, mode: novel.mode}
 

@@ -3,8 +3,7 @@
   = render partial: "shared/index", locals: {p: params, novel: @novel}
 
 .col-lg-9
-  .readarea
-    / Story
+  .mains.show
     = markdown(@story.contents)
     br
     br

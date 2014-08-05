@@ -1,0 +1,30 @@
+
+@import "mixins/table";
+
+.many_stories {
+  //--  all
+  .table-base-style;
+
+  //--  add
+  &.add {
+    .table-form-style;
+
+    th {
+      &.serial { width: 5%; }
+      &.scene { width: 15%; }
+      &.title, &.contents_file { width: 30%; }
+      &.comment { width: 20%; }
+    }
+  }
+
+  //--  edit
+  &.edit {
+    .many_stories > .add;
+    td {
+      &.serial {
+        input[type="text"] { text-align: right; }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,22 @@
+
+.table-base-style {
+  th { text-align: center; }
+  td {
+    &.title, &.mode, &.edit, &.disable, &.select, &.scene, &.serial { text-align: center; }
+    &.time, &.episode { text-align: right; }
+  }
+}
+
+.table-list-style {
+  th {
+    &.edit, &.disable { width: 10%; }
+  }
+}
+
+.table-form-style {
+  td {
+    input[type="text"], select, textarea { width: 90%; }
+    &.comment { text-align: center; }
+  }
+}
+

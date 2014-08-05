@@ -1,0 +1,34 @@
+
+@import "mixins/table";
+
+.novels {
+  //--  all
+  .table-base-style;
+
+  //--  list
+  &.list {
+    .table-list-style;
+
+    th {
+      &.title, &.comment { width: 30%; }
+      &.mode { width: 20%; }
+    }
+    td {
+      &.summary { font-size: 14px; }
+    }
+  }
+
+  //--  form
+  &.form {
+    .table-form-style;
+
+    td {
+      &.title, &.mode { width: 35%; }
+      &.summary {
+        text-align: center;
+        textarea { height: 100px; }
+      }
+    }
+  }
+}
+

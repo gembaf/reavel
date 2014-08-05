@@ -1,0 +1,52 @@
+
+@import "mixins/table";
+@import "mixins/variable";
+
+.mains {
+  //--  all
+  .table-base-style;
+
+  &.show {
+    font-size: 27px;
+    hr {
+      height: 1px;
+      background-color: @black;
+    }
+    p { line-height: 160%; }
+  }
+
+  &.novel {
+    th {
+      &.time, &.episode { width: 15%; }
+      &.mode { width: 20%; }
+      &.title { width: 30%; }
+      &.comment { width: 20%; }
+    }
+    td {
+      &.summary { font-size: 14px; }
+    }
+  }
+
+  &.chapter, &.part, &.volume {
+    th {
+      &.time, &.episode { width: 15%; }
+      &.title { width: 40%; }
+      &.comment { width: 30%; }
+    }
+  }
+
+  &.story {
+    th {
+      &.time, &.scene { width: 15%; }
+      &.title { width: 40%; }
+      &.comment { width: 30%; }
+    }
+    td {
+      h3 {
+        font-size: 16pt;
+        margin-top: 3px;
+      }
+    }
+  }
+}
+

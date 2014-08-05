@@ -12,20 +12,21 @@
   br
 
 .col-lg-9
-  table.table-base.story.list
-    tr
-      th.title タイトル
-      th.comment コメント
-      th.scene シーン
-      th.edit 編集
-      th.disable
-    - @stories.each do |story|
-      = render partial: "shared/active_row", locals: {is_active: story.is_active}
-      td.title= story.title
-      td.comment= story.comment
-      td.scene= render partial: "shared/scene", locals: {is_scene: story.is_scene}
-      td.edit
-        - if story.is_active
-          = render partial: "shared/buttons/edit", locals: {path: stories_edit_path(sid: story.id)}
-      td.disable= render partial: "shared/buttons/active", locals: {path: stories_active_path(sid: story.id, is_active: !story.is_active), is_active: story.is_active}
+  .stories.list
+    table.table-base
+      tr
+        th.title タイトル
+        th.comment コメント
+        th.scene シーン
+        th.edit 編集
+        th.disable
+      - @stories.each do |story|
+        = render partial: "shared/active_row", locals: {is_active: story.is_active}
+        td.title= story.title
+        td.comment= story.comment
+        td.scene= render partial: "shared/scene", locals: {is_scene: story.is_scene}
+        td.edit
+          - if story.is_active
+            = render partial: "shared/buttons/edit", locals: {path: stories_edit_path(sid: story.id)}
+        td.disable= render partial: "shared/buttons/active", locals: {path: stories_active_path(sid: story.id, is_active: !story.is_active), is_active: story.is_active}
 

@@ -1,37 +1,39 @@
 
-@import "variable";
+@import "mixins/variable";
 
-body#my-style {
+body {
   background-color: @gray;
   padding-top: 70px;
 }
 
 .container {
-  &.header, &.footer { font-size: 16px; }
+  font-size: 16px;
+
+  &.header, &.footer {}
   &.main {
     width: auto;
     margin-left: 50px;
     margin-right: 70px;
-    font-size: 16px;
   }
 }
 
 .buttons {
   text-align: center;
-
-  .button {
-    display: inline;
-  }
+  .button { display: inline; }
 }
 
-.readarea {
-  font-size: 27px;
-
-  hr {
-    height: 1px;
-    background-color: @black;
+@media (min-width: 1200px) {
+  .form, .add, .edit {
+    .table-base { width: 70%; }
+    &.many_stories {
+      .table-base { width: 100%; }
+    }
   }
-
-  p { line-height: 160%; }
+  .mains {
+    .table-base { width: 80%; }
+    &.novel {
+      .table-base { width: 70%; }
+    }
+  }
 }
 

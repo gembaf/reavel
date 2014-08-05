@@ -3,17 +3,18 @@
   = render partial: "shared/index", locals: {p: params, novel: @novel}
 
 .col-lg-9
-  table.table-base.index
-    tr
-      th.title タイトル
-      th.comment コメント
-      th.time 読了時間
-      th.scene シーン
-
-    - @stories.each do |story|
+  .mains.story
+    table.table-base
       tr
-        td.title= link_to story.title, mains_show_path(sid: story.id)
-        td.comment= story.comment
-        td.time= format_time(story.time)
-        td.scene= render partial: "shared/scene", locals: {is_scene: story.is_scene}
+        th.title タイトル
+        th.comment コメント
+        th.time 読了時間
+        th.scene シーン
+
+      - @stories.each do |story|
+        tr
+          td.title= link_to story.title, mains_show_path(sid: story.id)
+          td.comment= story.comment
+          td.time= format_time(story.time)
+          td.scene= render partial: "shared/scene", locals: {is_scene: story.is_scene}
 

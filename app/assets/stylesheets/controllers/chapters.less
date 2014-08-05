@@ -1,0 +1,27 @@
+
+@import "mixins/table";
+
+.chapters {
+  //--  all
+  .table-base-style;
+
+  //--  list
+  &.list {
+    .table-list-style;
+
+    th {
+      &.title, &.comment { width: 40%; }
+    }
+  }
+
+  //--  form
+  &.form {
+    .table-form-style;
+
+    td {
+      &.title { width: 40%; }
+      &.comment { width: 60%; }
+    }
+  }
+}
+

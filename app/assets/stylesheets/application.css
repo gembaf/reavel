@@ -10,7 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require twitter-bootstrap-static/bootstrap
+ *= require bootstrap_and_overrides
+ *= require common
+ *= require navbar
+ *= require sidemenu
+ *= require_tree ./controllers
  *= require_self
  */

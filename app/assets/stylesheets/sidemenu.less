@@ -1,47 +1,27 @@
 
-@import "twitter/bootstrap/bootstrap";
-@import "variable";
+@import "mixins/variable";
 
 .sidemenu {
-  .well;
-  //.sidebar-nav;
+  background-color: @white;
 
-  background-color: WHITE;
-
-  ul {
-    .nav;
-    //.nav-list;
-
-    li {
-      &.selected > a {
-        background-color: @light-yellow;
-      }
-
-      a {
-        border: solid 1px;
-        border-color: WHITE;
-        &:hover {
-          background-color: @light-green;
-        }
-      }
+  ul > li {
+    &.selected > a {
+      background-color: @light-yellow;
+    }
+    &.nav-header > a {
+      background-color: @gray;
     }
 
-    &.admin-list {}
-    &.main-list {
-      li {
-        &.nav-header > a {
-          background-color: @gray;
-          &:hover {
-            background-color: @light-green;
-          }
-        }
-
-        &.level1 {}
-        &.level2 { padding-left: 15px; }
-        &.level3 { padding-left: 30px; }
-        &.level4 { padding-left: 45px; }
-      }
+    a {
+      border: solid 1px;
+      border-color: @white;
+      &:hover { background-color: @light-green; }
     }
+
+    &.level1 {}
+    &.level2 { padding-left: 15px; }
+    &.level3 { padding-left: 30px; }
+    &.level4 { padding-left: 45px; }
   }
 }
 

@@ -12,22 +12,23 @@
   br
 
 .col-lg-9
-  table.table-base.part.list
-    tr
-      th.title タイトル
-      th.comment コメント
-      th.edit 編集
-      th.disable
-    - @parts.each do |part|
-      = render partial: "shared/active_row", locals: {is_active: part.is_active}
-      td.title
-        - if part.is_active
-          = link_to part.title, volumes_list_path(pid: part.id)
-        - else
-          = part.title
-      td.comment= part.comment
-      td.edit
-        - if part.is_active
-          = render partial: "shared/buttons/edit", locals: {path: parts_edit_path(pid: part.id)}
-      td.disable= render partial: "shared/buttons/active", locals: {path: parts_active_path(pid: part.id, is_active: !part.is_active), is_active: part.is_active}
+  .parts.list
+    table.table-base
+      tr
+        th.title タイトル
+        th.comment コメント
+        th.edit 編集
+        th.disable
+      - @parts.each do |part|
+        = render partial: "shared/active_row", locals: {is_active: part.is_active}
+        td.title
+          - if part.is_active
+            = link_to part.title, volumes_list_path(pid: part.id)
+          - else
+            = part.title
+        td.comment= part.comment
+        td.edit
+          - if part.is_active
+            = render partial: "shared/buttons/edit", locals: {path: parts_edit_path(pid: part.id)}
+        td.disable= render partial: "shared/buttons/active", locals: {path: parts_active_path(pid: part.id, is_active: !part.is_active), is_active: part.is_active}
 

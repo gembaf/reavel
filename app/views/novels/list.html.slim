@@ -8,29 +8,30 @@
   br
 
 .col-lg-9
-  table.table-base.novel.list
-    tr
-      th.title タイトル
-      th.comment コメント
-      th.mode モード
-      th.edit 編集
-      th.disable
-    - @novels.each do |novel|
-      = render partial: "shared/active_row", locals: {is_active: novel.is_active}
-      td.title
-        - if novel.is_active
-          = link_to novel.title, chapters_list_path(nid: novel.id)
-        - else
-          = novel.title
-      td.comment= novel.comment
-      td.mode= Novel.format_mode.invert[novel.mode]
-      td.edit rowspan="2"
-        - if novel.is_active
-          = render partial: "shared/buttons/edit", locals: {path: novels_edit_path(nid: novel.id)}
-      td.disable rowspan="2"
-        = render partial: "shared/buttons/active", locals: {path: novels_active_path(nid: novel.id, is_active: !novel.is_active), is_active: novel.is_active}
+  .novels.list
+    table.table-base
+      tr
+        th.title タイトル
+        th.comment コメント
+        th.mode モード
+        th.edit 編集
+        th.disable
+      - @novels.each do |novel|
+        = render partial: "shared/active_row", locals: {is_active: novel.is_active}
+        td.title
+          - if novel.is_active
+            = link_to novel.title, chapters_list_path(nid: novel.id)
+          - else
+            = novel.title
+        td.comment= novel.comment
+        td.mode= Novel.format_mode.invert[novel.mode]
+        td.edit rowspan="2"
+          - if novel.is_active
+            = render partial: "shared/buttons/edit", locals: {path: novels_edit_path(nid: novel.id)}
+        td.disable rowspan="2"
+          = render partial: "shared/buttons/active", locals: {path: novels_active_path(nid: novel.id, is_active: !novel.is_active), is_active: novel.is_active}
 
-      = render partial: "shared/active_row", locals: {is_active: novel.is_active}
-      td.summary colspan="3"
-        = novel.summary.empty? ? "なし" : novel.summary
+        = render partial: "shared/active_row", locals: {is_active: novel.is_active}
+        td.summary colspan="3"
+          = novel.summary.empty? ? "なし" : novel.summary
 
