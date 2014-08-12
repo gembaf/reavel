@@ -1,4 +1,7 @@
 
+@pink_on = ->
+  $('body').attr('id', 'pink')
+
 $(document).ready ->
   $("button#add_row").click ->
     $("table tr.hidden").first().toggleClass()
