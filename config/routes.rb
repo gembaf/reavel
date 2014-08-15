@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  root to: 'mains#list'
+
+  ##--  Login
+  get  'login'  => 'sessions#new'
+  post 'login'  => 'sessions#login'
+  get  'logout' => 'sessions#destroy'
+
   ##--  Main
   get 'mains'                          => 'mains#list'
   get 'mains/:nid'                     => 'mains#chapters_index', as: :mains_chapters
