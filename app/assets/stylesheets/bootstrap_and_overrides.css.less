@@ -34,7 +34,10 @@
   .table;
   .table-bordered;
   tbody > tr {   // ここに書かないとなんか上手くいかない
-    td, th { vertical-align: middle; }
+    td, th {
+      vertical-align: middle;
+      word-break: break-all;
+    }
 
     &.placeholder {
       background-color: @white;
