@@ -20,7 +20,7 @@ class Novel < ActiveRecord::Base
   def self.format_mode
     {
       "部 > 章 > 編 > 話" => MODE_LONG,
-      "部 > 章 > 話"      => MODE_MIDDLE,
+      "部 > 編 > 話"      => MODE_MIDDLE,
       "部 > 話"           => MODE_SHORT
     }
   end
