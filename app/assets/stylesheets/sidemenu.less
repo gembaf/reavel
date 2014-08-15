@@ -6,9 +6,20 @@
 
   ul > li {
     word-break: break-all;
-    &.selected > a {
-      background-color: @light-yellow;
+
+    &.level1 {}
+    &.level2 { padding-left: 15px; }
+    &.level3 { padding-left: 30px; }
+    &.level4 { padding-left: 45px; }
+
+    &.selected {
+      a { background-color: @light-yellow; }
+      &.level1 > a { background-color: #FFFF77; }
+      &.level2 > a { background-color: #FFFF99; }
+      &.level3 > a { background-color: #FFFFBB; }
+      &.level4 > a { background-color: #FFFFDD; }
     }
+
     &.nav-header > a {
       background-color: @gray;
     }
@@ -16,13 +27,9 @@
     a {
       border: solid 1px;
       border-color: @white;
-      &:hover { background-color: @light-green; }
+      border-radius: 10px;
+      &:hover { background-color: @light-green !important; }
     }
-
-    &.level1 {}
-    &.level2 { padding-left: 15px; }
-    &.level3 { padding-left: 30px; }
-    &.level4 { padding-left: 45px; }
   }
 }
 
