@@ -1,5 +1,6 @@
 
 @import "mixins/table";
+@import "mixins/variable";
 
 .stories {
   //--  all
@@ -30,6 +31,8 @@
       &.scene { width: 10%; }
     }
     td {
+      .nav-tabs > li.active > a { color: @black; }
+
       &.comment { width: 80%; }
       &.contents_text {
         #text {
