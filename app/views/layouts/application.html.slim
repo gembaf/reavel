@@ -25,10 +25,16 @@ html lang="en"
         a.navbar-brand href="#" Reavel
         .navbar-collapse.collapse.navbar-responsive-collapse
           ul.nav.navbar-nav
-            li= link_to "管理", novels_list_path
-            li= link_to "小説一覧", mains_path
+            li= link_to novels_list_path do
+              span.glyphicon.glyphicon-inbox
+              | &nbsp;&nbsp;管理
+            li= link_to mains_path do
+              span.glyphicon.glyphicon-book
+              | &nbsp;&nbsp;小説一覧
           ul.nav.navbar-nav.navbar-right
-            li= link_to "ログアウト", logout_path
+            li= link_to logout_path do
+              span.glyphicon.glyphicon-log-out
+              | &nbsp;&nbsp;ログアウト
 
     .container.main
       .row
