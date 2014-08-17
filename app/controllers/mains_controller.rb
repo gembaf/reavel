@@ -33,15 +33,12 @@ class MainsController < ApplicationController
 
   private
   def skip_path(part)
-    return nil if part.nil?
-
-    volume = part.volumes.first
-    return nil if volume.nil?
-
-    if @novel.mode == Novel::MODE_MIDDLE
+    if @novel.mode == Novel::MODE_LONG
+      return nil
+    elsif @novel.mode == Novel::MODE_MIDDLE
       return mains_volumes_path(cid: params[:cid], pid: part.id)
-    elsif @novel.mode == Novel::MODE_SHORT
-      return mains_stories_path(pid: part.id, vid: volume.id)
+    else    # mode == MODE_SHORT
+      return mains_stories_path(pid: part.id, vid: part.volumes.first.id)
     end
   end
 end
