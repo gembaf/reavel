@@ -37,6 +37,7 @@ class Story < ActiveRecord::Base
     contents = Story.file_path(self.id)
     text = contents_params[:text]
     text = contents_params[:file].read unless contents_params[:file].blank?
+    text = encode_utf8(text).gsub(/<(br|BR)(.*?)>/, "")
     File.open(contents, 'w') { |f| f.puts text }
     time = get_time(File.read(contents))
     self.update_parents_time(time)
