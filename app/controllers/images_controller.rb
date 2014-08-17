@@ -42,7 +42,7 @@ class ImagesController < ApplicationController
   end
 
   def get_images
-    Image.where(novel_id: params[:nid]).active_by.updated_by
+    Image.where(novel_id: params[:nid]).active_by
   end
 end
 
