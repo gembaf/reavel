@@ -24,6 +24,9 @@
               | <td class="contents">
             - else
               | <td class="contents alert-warning">
+            input.select type="text" readonly="readonly" value=image.src_path
+            br
+            br
             img src=image.src_path
         tr
           - each_image.each do |image|

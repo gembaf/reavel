@@ -22,3 +22,6 @@ $(document).ready ->
     html = converter.makeHtml(val).replace(/\n\n/g, "<br />").replace(/\n/g, "<br />")
     $("#preview").html(html)
 
+  $("input.select").click ->
+    $(this).select()
+
