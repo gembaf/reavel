@@ -37,8 +37,8 @@ class Story < ActiveRecord::Base
     contents = Story.file_path(self.id)
     text = contents_params[:text]
     text = contents_params[:file].read unless contents_params[:file].blank?
-    File.open(contents, 'w') { |f| f.puts text.force_encoding("UTF-8") }
-    time = get_time(text)
+    File.open(contents, 'w') { |f| f.puts text }
+    time = get_time(File.read(contents))
     self.update_parents_time(time)
     self.update_attributes(contents: contents, time: time)
   end
@@ -82,5 +82,11 @@ class Story < ActiveRecord::Base
     [volume, part, chapter, novel]
   end
 
+  def encode_utf8(text)
+    tmp_file = "#{Rails.root}/tmp/_tmp.mkd"
+    File.open(tmp_file, "w") {|f| f.puts text.force_encoding("UTF-8")}
+    `nkf --overwrite -w #{tmp_file}`
+    File.read(tmp_file)
+  end
 end
 
