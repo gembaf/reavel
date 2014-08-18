@@ -11,7 +11,7 @@ class Volume < ActiveRecord::Base
   Scope.serial_by(self)
   Scope.active_by(self)
 
-  STORY_LIMIT = 20
+  STORY_LIMIT = 15
 
   def build_stories
     STORY_LIMIT.times {self.stories.build}

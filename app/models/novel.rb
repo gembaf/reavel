@@ -15,7 +15,7 @@ class Novel < ActiveRecord::Base
   MODE_MIDDLE = 1
   MODE_SHORT = 2
 
-  CHAPTER_LIMIT = 20
+  CHAPTER_LIMIT = 10
 
   def self.format_mode
     {

@@ -7,7 +7,7 @@ class Chapter < ActiveRecord::Base
   validates :novel_id, :title, presence: true
   validates :title, :comment, length: {maximum: 250}
 
-  PART_LIMIT = 20
+  PART_LIMIT = 10
 
   Scope.active(self)
   Scope.serial_by(self)

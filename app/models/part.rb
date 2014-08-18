@@ -7,7 +7,7 @@ class Part < ActiveRecord::Base
   validates :chapter_id, :title, presence: true
   validates :title, :comment, length: {maximum: 250}
 
-  VOLUME_LIMIT = 20
+  VOLUME_LIMIT = 10
 
   Scope.active(self)
   Scope.serial_by(self)
