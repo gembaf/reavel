@@ -80,4 +80,6 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  Slim::Engine.set_default_options pretty: true, sort_attrs: false
 end
