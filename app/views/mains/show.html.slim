@@ -10,6 +10,7 @@
   .mains.show
     - prev_id, next_id = @story.ids
     = render partial: "shared/main/ids", locals: {prev_id: prev_id, next_id: next_id}
+    h1 style="text-align:center;" = @story.title
     br
     br
     = markdown(@story.contents)
