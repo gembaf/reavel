@@ -22,6 +22,26 @@ class Volume < ActiveRecord::Base
     self.update_attributes(params)
   end
 
+  def next
+    part = self.part
+    volume = Volume.where(part_id: part.id, serial: self.serial+1).first
+
+    return volume if volume.present?
+
+    return nil if (next_part = part.next).nil?
+    next_part.volumes.active.serial_by.first
+  end
+
+  def prev
+    part = self.part
+    volume = Volume.where(part_id: part.id, serial: self.serial-1).first
+
+    return volume if volume.present?
+
+    return nil if (prev_part = part.prev).nil?
+    prev_part.volumes.active.serial_by.last
+  end
+
   # override
   def self.create(params)
     volume = self.where(part_id: params[:part_id]).last

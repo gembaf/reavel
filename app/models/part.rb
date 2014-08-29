@@ -22,6 +22,26 @@ class Part < ActiveRecord::Base
     self.update_attributes(params)
   end
 
+  def next
+    chapter = self.chapter
+    part = Part.where(chapter_id: chapter.id, serial: self.serial+1).first
+
+    return part if part.present?
+
+    return nil if (next_chapter = chapter.next).nil?
+    next_chapter.parts.active.serial_by.first
+  end
+
+  def prev
+    chapter = self.chapter
+    part = Part.where(chapter_id: chapter.id, serial: self.serial-1).first
+
+    return part if part.present?
+
+    return nil if (prev_chapter = chapter.prev).nil?
+    prev_chapter.parts.active.serial_by.last
+  end
+
   # override
   def self.create(params)
     part = self.where(chapter_id: params[:chapter_id]).last

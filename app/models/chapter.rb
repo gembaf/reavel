@@ -22,6 +22,16 @@ class Chapter < ActiveRecord::Base
     self.update_attributes(params)
   end
 
+  def next
+    novel = self.novel
+    Chapter.where(novel_id: novel.id, serial: self.serial+1).first
+  end
+
+  def prev
+    novel = self.novel
+    Chapter.where(novel_id: novel.id, serial: self.serial-1).first
+  end
+
   # override
   def self.create(params)
     chapter = self.where(novel_id: params[:novel_id]).last

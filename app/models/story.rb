@@ -21,15 +21,35 @@ class Story < ActiveRecord::Base
     "#{Rails.root}/public/novels/contents/%05d.mkd" % id
   end
 
-  def ids
-    stories = Story.where(volume_id: self.volume_id).active.serial_by
-    prev_id = next_id = nil
+  def next
+    volume = self.volume
+    story = Story.where(volume_id: volume.id, serial: self.serial+1).first
 
-    stories.each_with_index do |story, i|
-      break if stories[i+1].nil?
-      prev_id = story.id if stories[i+1].id == self.id
-      next_id = stories[i+1].id if story.id == self.id
+    return story if story.present?
+
+    return nil if (next_volume = volume.next).nil?
+    next_volume.stories.active.serial_by.first
+  end
+
+  def prev
+    volume = self.volume
+    story = Story.where(volume_id: volume.id, serial: self.serial-1).first
+
+    return story if story.present?
+
+    return nil if (prev_volume = volume.prev).nil?
+    prev_volume.stories.active.serial_by.last
+  end
+
+  def ids
+    next_id = prev_id = nil
+    if (next_story = self.next).present?
+      next_id = next_story.id
     end
+    if (prev_story = self.prev).present?
+      prev_id = prev_story.id
+    end
+
     [prev_id, next_id]
   end
 

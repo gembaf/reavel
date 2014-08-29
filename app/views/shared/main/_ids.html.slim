@@ -1,9 +1,10 @@
 
 p.ids.alert.alert-info
   - if prev_id
-    = link_to "<< Prev", sid: prev_id
+    = link_to "<< Prev", all_ids(prev_id)
+    /= link_to "<< Prev", sid: prev_id
   - if prev_id && next_id
     | &nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;
   - if next_id
-    = link_to "Next >>", sid: next_id
+    = link_to "Next >>", all_ids(next_id)
 

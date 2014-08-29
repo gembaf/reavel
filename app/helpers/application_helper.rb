@@ -37,5 +37,13 @@ module ApplicationHelper
   def index_by(models)
     models.active.serial_by
   end
+
+  def all_ids(sid)
+    story = Story.where(id: sid).first
+    volume = story.volume
+    part = volume.part
+    chapter = part.chapter
+    {cid: chapter.id, pid: part.id, vid: volume.id, sid: sid}
+  end
 end
 
