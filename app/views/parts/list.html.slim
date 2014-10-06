@@ -1,18 +1,22 @@
 
+= render partial: "shared/modal/target"
+
 = render partial: "shared/error", locals: {is_error: @is_error}
 
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
-    = render partial: "shared/buttons/add", locals: {path: parts_add_path}
+    = link_to parts_add_path, data: {remote: true} do
+      = render partial: "shared/buttons/add"
     | &nbsp;&nbsp;
     = render partial: "shared/buttons/add_many", locals: {path: many_parts_add_path}
     | &nbsp;&nbsp;
     = render partial: "shared/buttons/edit_many", locals: {path: many_parts_edit_path}
-  br
+    br
+    br
 
 .col-lg-9
-  .parts.list
+  .chapters.list
     table.table-base
       tr
         th.title タイトル
@@ -29,6 +33,7 @@
         td.comment= part.comment
         td.edit
           - if part.is_active
-            = render partial: "shared/buttons/edit", locals: {path: parts_edit_path(pid: part.id)}
+            = link_to parts_edit_path(pid: part.id), data: {remote: true} do
+              = render partial: "shared/buttons/edit"
         td.disable= render partial: "shared/buttons/active", locals: {path: parts_active_path(pid: part.id, is_active: !part.is_active), is_active: part.is_active}
 

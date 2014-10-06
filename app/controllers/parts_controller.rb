@@ -1,42 +1,43 @@
 class PartsController < ApplicationController
+  before_action :get_part, only: [:edit, :update, :active]
+
   def list
-    @parts = get_parts
+    @parts = Part.where(chapter_id: params[:cid]).active_by.serial_by
     @is_error = Common.error?(params[:error])
   end
 
   def add
     @part = Part.new
+    render "add_edit"
   end
 
   def create
-    result = Part.create(part_params.merge(chapter_id: params[:cid]))
-    is_success = Common.create_success?(result)
-    redirect_to Common.list_path(is_success)
+    @part = Part.new(part_params.merge(chapter_id: params[:cid]))
+    render :add and return unless @part.save
+    render "shared/reload"
   end
 
   def edit
-    @part = Part.where(id: params[:pid]).first
+    render "add_edit"
   end
 
   def update
-    part = Part.where(id: params[:pid]).first
-    is_success = part.update_attributes(part_params)
-    redirect_to Common.list_path(is_success)
+    render :edit and return unless @part.update(part_params)
+    render "shared/reload"
   end
 
   def active
-    part = Part.where(id: params[:pid]).first
-    is_success = part.toggle_active(is_active: params[:is_active], serial: 0)
+    is_success = @part.toggle_active(is_active: params[:is_active], serial: 0)
     redirect_to Common.list_path(is_success)
   end
 
   private
   def part_params
-    params.require(:part).permit(:chapter_id, :title, :comment)
+    params.require(:part).permit(:novel_id, :title, :comment)
   end
 
-  def get_parts
-    Part.where(chapter_id: params[:cid]).active_by.serial_by
+  def get_part
+    @part = Part.where(id: params[:pid]).first
   end
 end
 
