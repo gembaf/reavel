@@ -1,10 +1,13 @@
 
+= render partial: "shared/modal/target"
+
 = render partial: "shared/error", locals: {is_error: @is_error}
 
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
-    = render partial: "shared/buttons/add", locals: {path: chapters_add_path}
+    = link_to chapters_add_path, data: {remote: true} do
+      = render partial: "shared/buttons/add"
     | &nbsp;&nbsp;
     = render partial: "shared/buttons/add_many", locals: {path: many_chapters_add_path}
     | &nbsp;&nbsp;
@@ -32,6 +35,7 @@
         td.comment= chapter.comment
         td.edit
           - if chapter.is_active
-            = render partial: "shared/buttons/edit", locals: {path: chapters_edit_path(cid: chapter.id)}
+            = link_to chapters_edit_path(cid: chapter.id), data: {remote: true} do
+              = render partial: "shared/buttons/edit"
         td.disable= render partial: "shared/buttons/active", locals: {path: chapters_active_path(cid: chapter.id, is_active: !chapter.is_active), is_active: chapter.is_active}
 

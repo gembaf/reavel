@@ -1,32 +1,33 @@
 class ChaptersController < ApplicationController
+  before_action :get_chapter, only: [:edit, :update, :active]
+
   def list
-    @chapters = get_chapters
+    @chapters = Chapter.where(novel_id: params[:nid]).active_by.serial_by
     @is_error = Common.error?(params[:error])
   end
 
   def add
     @chapter = Chapter.new
+    render "add_edit"
   end
 
   def create
-    result = Chapter.create(chapter_params.merge(novel_id: params[:nid]))
-    is_success = Common.create_success?(result)
-    redirect_to Common.list_path(is_success)
+    @chapter = Chapter.new(chapter_params.merge(novel_id: params[:nid]))
+    render :add and return unless @chapter.save
+    render "shared/reload"
   end
 
   def edit
-    @chapter = Chapter.where(id: params[:cid]).first
+    render "add_edit"
   end
 
   def update
-    chapter = Chapter.where(id: params[:cid]).first
-    is_success = chapter.update_attributes(chapter_params)
-    redirect_to Common.list_path(is_success)
+    render :edit and return unless @chapter.update(chapter_params)
+    render "shared/reload"
   end
 
   def active
-    chapter = Chapter.where(id: params[:cid]).first
-    is_success = chapter.toggle_active(is_active: params[:is_active], serial: 0)
+    is_success = @chapter.toggle_active(is_active: params[:is_active], serial: 0)
     redirect_to Common.list_path(is_success)
   end
 
@@ -35,8 +36,8 @@ class ChaptersController < ApplicationController
     params.require(:chapter).permit(:novel_id, :title, :comment)
   end
 
-  def get_chapters
-    Chapter.where(novel_id: params[:nid]).active_by.serial_by
+  def get_chapter
+    @chapter = Chapter.where(id: params[:cid]).first
   end
 end
 
