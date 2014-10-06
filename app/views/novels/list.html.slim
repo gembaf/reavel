@@ -1,10 +1,13 @@
 
+= render partial: "shared/modal/target"
+
 = render partial: "shared/error", locals: {is_error: @is_error}
 
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
-    = render partial: "shared/buttons/add", locals: {path: novels_add_path}
+    = link_to novels_add_path, data: {remote: true} do
+      = render partial: "shared/buttons/add"
   br
 
 .col-lg-9
@@ -27,7 +30,8 @@
         td.mode= Novel.format_mode.invert[novel.mode]
         td.edit rowspan="2"
           - if novel.is_active
-            = render partial: "shared/buttons/edit", locals: {path: novels_edit_path(nid: novel.id)}
+            = link_to novels_edit_path(nid: novel.id), data: {remote: true} do
+              = render partial: "shared/buttons/edit"
         td.disable rowspan="2"
           = render partial: "shared/buttons/active", locals: {path: novels_active_path(nid: novel.id, is_active: !novel.is_active), is_active: novel.is_active}
 

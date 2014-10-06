@@ -33,10 +33,17 @@
 .table-base {
   .table;
   .table-bordered;
-  tbody > tr {   // ここに書かないとなんか上手くいかない
+  tbody > tr {
     td, th {
       vertical-align: middle;
       word-break: break-all;
+    }
+
+    td {
+      input[type="text"], input[type="password"], select, textarea {
+        .form-control;
+        color: black;
+      }
     }
 
     &.placeholder {
@@ -44,6 +51,11 @@
       height: 80px;
     }
   }
+}
+
+//--  modal
+.modal-body {
+  table { margin-bottom: 0px; }
 }
 
 //--  sidemenu

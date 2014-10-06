@@ -1,0 +1,31 @@
+- if novel.id.nil?
+  - title = "Novel登録"
+  - render_submit = render partial: "shared/buttons/create"
+  - path = novels_add_path
+- else
+  - title = "Novel編集"
+  - render_submit = render partial: "shared/buttons/update"
+  - path = novels_edit_path
+
+.modal-dialog.modal-content
+  = form_for novel, url: path, data: {remote: true} do |f|
+    .modal-header
+      h3= title
+    .modal-body.novels.form
+      table.table-base
+        tr
+          th.title タイトル
+          td.title= f.text_field :title
+        tr
+          th.mode モード
+          td.mode= f.select :mode, Novel.format_mode
+        tr
+          th.comment コメント
+          td.comment= f.text_area :comment
+        tr
+          th.summary あらすじ
+          td.summary= f.text_area :summary
+    .modal-footer
+      = render_submit
+      = render partial: "shared/buttons/cancel"
+
