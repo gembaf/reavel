@@ -23,6 +23,7 @@ class NovelsController < ApplicationController
 
   def update
     render :edit and return unless @novel.update(novel_params)
+    render "shared/reload"
   end
 
   def active

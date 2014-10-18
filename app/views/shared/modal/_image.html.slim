@@ -1,0 +1,25 @@
+- if image.id.nil?
+  - title = "画像登録"
+  - render_submit = render partial: "shared/buttons/create"
+  - path = images_add_path
+- else
+  - title = "画像編集"
+  - render_submit = render partial: "shared/buttons/update"
+  - path = images_edit_path
+
+.modal-dialog.modal-content
+  = form_for image, url: path, data: {remote: true} do |f|
+    .modal-header
+      h3= title
+    .modal-body
+      table.table-base.images.form
+        tr
+          th.title タイトル
+          th.contents ファイル
+        tr
+          td.title= f.text_field :title
+          td.contents= f.file_field :contents
+    .modal-footer
+      = render_submit
+      = render partial: "shared/buttons/cancel"
+
