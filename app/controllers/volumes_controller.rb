@@ -3,7 +3,6 @@ class VolumesController < ApplicationController
 
   def list
     @volumes = Volume.where(part_id: params[:pid]).active_by.serial_by
-    @is_error = Common.error?(params[:error])
   end
 
   def add
@@ -27,8 +26,8 @@ class VolumesController < ApplicationController
   end
 
   def active
-    is_success = @volume.toggle_active(is_active: params[:is_active], serial: 0)
-    redirect_to Common.list_path(is_success)
+    @volume.toggle_active(is_active: !@volume.is_active, serial: 0)
+    redirect_to volumes_list_path
   end
 
   private

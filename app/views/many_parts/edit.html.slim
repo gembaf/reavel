@@ -7,19 +7,18 @@
     br
 
   .col-lg-9
-    .many_chapters.edit
-      table.table-base
-        thead
-          tr
-            th.serial
-            th.title タイトル
-            th.comment コメント
-        tbody#sortable
-          - @chapter.parts.serial_by.each_with_index do |part, i|
-            - next unless part.is_active
-            = f.fields_for :parts, part do |f_parts|
-              tr
-                td.serial= f_parts.text_field :serial
-                td.title= f_parts.text_field :title
-                td.comment= f_parts.text_area :comment
+    table.table-base.many_chapters.edit.form
+      thead
+        tr
+          th.serial
+          th.title タイトル
+          th.comment コメント
+      tbody#sortable
+        - @chapter.parts.serial_by.each_with_index do |part, i|
+          - next unless part.is_active
+          = f.fields_for :parts, part do |f_parts|
+            tr
+              td.serial= f_parts.text_field :serial
+              td.title= f_parts.text_field :title
+              td.comment= f_parts.text_area :comment
 

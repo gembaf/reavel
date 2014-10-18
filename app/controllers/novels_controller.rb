@@ -3,7 +3,6 @@ class NovelsController < ApplicationController
 
   def list
     @novels = Novel.active_by.updated_by
-    @is_error = Common.error?(params[:error])
   end
 
   def add
@@ -27,8 +26,8 @@ class NovelsController < ApplicationController
   end
 
   def active
-    is_success = @novel.update_attributes(is_active: params[:is_active])
-    redirect_to Common.list_path(is_success)
+    @novel.update(is_active: !@novel.is_active)
+    redirect_to novels_list_path
   end
 
   private

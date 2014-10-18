@@ -39,5 +39,6 @@
             = link_to images_edit_path(iid: image.id), data: {remote: true} do
               = render partial: "shared/buttons/edit"
             | &nbsp;&nbsp;
-            = render partial: "shared/buttons/active", locals: {path: images_active_path(iid: image.id, is_active: !image.is_active), is_active: image.is_active}
+            = link_to images_active_path(iid: image.id) do
+              = render partial: "shared/buttons/active", locals: {is_active: image.is_active}
 

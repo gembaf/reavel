@@ -25,15 +25,21 @@ body {
 }
 
 @media (min-width: 1200px) {
+  .list {
+    &.table-base { width: 80%; }
+  }
   .form {
+    &.stories, &.many_chapters {
+      &.table-base { width: 80%; }
+    }
     &.many_stories {
-      .table-base { width: 100%; }
+      &.table-base { width: 100%; }
     }
   }
   .mains {
-    .table-base { width: 80%; }
+    &.table-base { width: 80%; }
     &.novel {
-      .table-base { width: 70%; }
+      &.table-base { width: 70%; }
     }
   }
 }

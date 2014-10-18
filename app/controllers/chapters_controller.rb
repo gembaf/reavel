@@ -3,7 +3,6 @@ class ChaptersController < ApplicationController
 
   def list
     @chapters = Chapter.where(novel_id: params[:nid]).active_by.serial_by
-    @is_error = Common.error?(params[:error])
   end
 
   def add
@@ -27,8 +26,8 @@ class ChaptersController < ApplicationController
   end
 
   def active
-    is_success = @chapter.toggle_active(is_active: params[:is_active], serial: 0)
-    redirect_to Common.list_path(is_success)
+    @chapter.toggle_active(is_active: !@chapter.is_active, serial: 0)
+    redirect_to chapters_list_path
   end
 
   private

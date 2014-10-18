@@ -1,7 +1,8 @@
 class StoriesController < ApplicationController
+  before_action :get_story, only: [:edit, :update, :active]
+
   def list
-    @stories = get_stories
-    @is_error = Common.error?(params[:error])
+    @stories = Story.where(volume_id: params[:vid]).active_by.serial_by
   end
 
   def add
@@ -9,27 +10,23 @@ class StoriesController < ApplicationController
   end
 
   def create
-    result = Story.create(story_params.merge(volume_id: params[:vid]))
-    is_success = Common.create_success?(result)
-    result.set_contents_info(contents_params) if is_success
-    redirect_to Common.list_path(is_success)
+    @story = Story.create(story_params.merge(volume_id: params[:vid]))
+    @story.set_contents_info(contents_params)
+    redirect_to stories_list_path
   end
 
   def edit
-    @story = Story.where(id: params[:sid]).first
   end
 
   def update
-    story = Story.where(id: params[:sid]).first
-    is_success = story.update_attributes(story_params)
-    story.set_contents_info(contents_params) if is_success
-    redirect_to Common.list_path(is_success)
+    @story.update_attributes(story_params)
+    @story.set_contents_info(contents_params)
+    redirect_to stories_list_path
   end
 
   def active
-    story = Story.where(id: params[:sid]).first
-    is_success = story.toggle_active(is_active: params[:is_active], serial: 0)
-    redirect_to Common.list_path(is_success)
+    @story.toggle_active(is_active: !@story.is_active, serial: 0)
+    redirect_to stories_list_path
   end
 
   private
@@ -41,8 +38,8 @@ class StoriesController < ApplicationController
     params.require(:contents).permit(:file, :text)
   end
 
-  def get_stories
-    Story.where(volume_id: params[:vid]).active_by.serial_by
+  def get_story
+    @story = Story.where(id: params[:sid]).first
   end
 end
 

@@ -9,20 +9,19 @@
     br
 
   .col-lg-9
-    .many_stories.add
-      table.table-base
-        tr
-          th.serial
-          th.title タイトル
-          th.scene シーン
-          th.contents ファイル
-          th.comment コメント
-        - i = 0
-        = f.fields_for :stories do |f_stories|
-          tr.hidden
-            td.serial= i += 1
-            td.title= f_stories.text_field :title
-            td.scene= f_stories.select :is_scene, Story.scene_format
-            td.contents= f_stories.file_field :contents
-            td.comment= f_stories.text_area :comment
+    table.table-base.many_stories.add
+      tr
+        th.serial
+        th.title タイトル
+        th.scene シーン
+        th.contents ファイル
+        th.comment コメント
+      - i = 0
+      = f.fields_for :stories do |f_stories|
+        tr.hidden
+          td.serial= i += 1
+          td.title= f_stories.text_field :title
+          td.scene= f_stories.select :is_scene, Story.scene_format
+          td.contents= f_stories.file_field :contents
+          td.comment= f_stories.text_area :comment
 

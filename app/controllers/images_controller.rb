@@ -3,7 +3,6 @@ class ImagesController < ApplicationController
 
   def list
     @images = Image.where(novel_id: params[:nid]).active_by
-    @is_error = Common.error?(params[:error])
   end
 
   def add
@@ -14,9 +13,8 @@ class ImagesController < ApplicationController
   def create
     attr = image_params.merge(novel_id: params[:nid])
     contents = attr.delete(:contents)
-    result = Image.create(attr)
-    is_success = Common.create_success?(result)
-    result.set_contents_info(contents) if is_success
+    image = Image.create(attr)
+    image.set_contents_info(contents)
     redirect_to images_list_path
   end
 
@@ -25,16 +23,16 @@ class ImagesController < ApplicationController
   end
 
   def update
-    attr = image_params
+    attr = image_params.merge(novel_id: params[:nid])
     contents = attr.delete(:contents)
-    is_success = @image.update_attributes(attr)
-    @image.set_contents_info(contents) if is_success
+    @image.update_attributes(attr)
+    @image.set_contents_info(contents)
     render "shared/reload"
   end
 
   def active
-    is_success = @image.update_attributes(is_active: params[:is_active])
-    redirect_to Common.list_path(is_success)
+    @image.update(is_active: !@image.is_active)
+    redirect_to images_list_path
   end
 
   private

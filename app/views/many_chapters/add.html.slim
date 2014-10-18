@@ -9,16 +9,15 @@
     br
 
   .col-lg-9
-    .many_chapters.add
-      table.table-base
-        tr
-          th.serial
-          th.title タイトル
-          th.comment コメント
-        - i = 0
-        = f.fields_for :chapters do |f_chapters|
-          tr.hidden
-            td.serial= i += 1
-            td.title= f_chapters.text_field :title
-            td.comment= f_chapters.text_area :comment
+    table.table-base.many_chapters.add.form
+      tr
+        th.serial
+        th.title タイトル
+        th.comment コメント
+      - i = 0
+      = f.fields_for :chapters do |f_chapters|
+        tr.hidden
+          td.serial= i += 1
+          td.title= f_chapters.text_field :title
+          td.comment= f_chapters.text_area :comment
 

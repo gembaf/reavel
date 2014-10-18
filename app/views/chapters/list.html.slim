@@ -1,41 +1,41 @@
 
 = render partial: "shared/modal/target"
 
-= render partial: "shared/error", locals: {is_error: @is_error}
-
 .col-lg-3
   = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
     = link_to chapters_add_path, data: {remote: true} do
       = render partial: "shared/buttons/add"
     | &nbsp;&nbsp;
-    = render partial: "shared/buttons/add_many", locals: {path: many_chapters_add_path}
+    = link_to many_chapters_add_path do
+      = render partial: "shared/buttons/add_many"
     | &nbsp;&nbsp;
-    = render partial: "shared/buttons/edit_many", locals: {path: many_chapters_edit_path}
+    = link_to many_chapters_edit_path do
+      = render partial: "shared/buttons/edit_many"
     br
     br
     = link_to "画像一覧へ", images_list_path
   br
 
 .col-lg-9
-  .chapters.list
-    table.table-base
-      tr
-        th.title タイトル
-        th.comment コメント
-        th.edit 編集
-        th.disable
-      - @chapters.each do |chapter|
-        = render partial: "shared/active_row", locals: {is_active: chapter.is_active}
-        td.title
-          - if chapter.is_active
-            = link_to chapter.title, parts_list_path(cid: chapter.id)
-          - else
-            = chapter.title
-        td.comment= chapter.comment
-        td.edit
-          - if chapter.is_active
-            = link_to chapters_edit_path(cid: chapter.id), data: {remote: true} do
-              = render partial: "shared/buttons/edit"
-        td.disable= render partial: "shared/buttons/active", locals: {path: chapters_active_path(cid: chapter.id, is_active: !chapter.is_active), is_active: chapter.is_active}
+  table.table-base.chapters.list
+    tr
+      th.title タイトル
+      th.comment コメント
+      th.edit 編集
+      th.disable
+    - @chapters.each do |chapter|
+      = render partial: "shared/active_row", locals: {is_active: chapter.is_active}
+      td.title
+        - if chapter.is_active
+          = link_to chapter.title, parts_list_path(cid: chapter.id)
+        - else
+          = chapter.title
+      td.comment= chapter.comment
+      td.edit
+        - if chapter.is_active
+          = link_to chapters_edit_path(cid: chapter.id), data: {remote: true} do
+            = render partial: "shared/buttons/edit"
+      td.disable= link_to chapters_active_path(cid: chapter.id)
+        = render partial: "shared/buttons/active", locals: {is_active: chapter.is_active}
 

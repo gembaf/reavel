@@ -7,5 +7,5 @@
     br
 
   .col-lg-9
-    = render partial: "shared/form/story", locals: {id: params[:vid], is_scene: @story.is_scene, text: File.read(@story.contents)}
+    = render partial: "shared/form/story", locals: {text: File.read(@story.contents)}
 
