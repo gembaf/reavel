@@ -14,7 +14,6 @@
  *= require bootstrap_and_overrides
  *= require common
  *= require navbar
- *= require sidemenu
  *= require_tree ./controllers
  *= require_self
  */

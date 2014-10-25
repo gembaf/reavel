@@ -61,7 +61,21 @@
 //--  sidemenu
 .sidemenu {
   .well;
-  ul { .nav; }
+  word-break: break-all;
+  background-color: @white;
+  .panel-body {
+    padding: 15px 0px 0px 0px;
+    ul {
+      padding-left: 20px;
+      li {
+        padding: 5px 10px 5px 10px;
+        margin: 0px 10px 0px 10px;
+        border-radius: 5px;
+        &.selected { background-color: @light-green; }
+      }
+    }
+  }
+
 }
 
 //--  navbar
