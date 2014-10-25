@@ -7,11 +7,11 @@
       .panel-heading
         h4.panel-title.row
           .col-sm-10
-            a.accordion-toggle data-toggle="collapse" data-parent="#accordion#{l}" href="##{id}"
+            = link_to mains_volumes_path(pid: part.id) do
               = part.title
           .col-sm-2
-            = link_to mains_volumes_path(pid: part.id) do
-              | hoge
+            a.accordion-toggle data-toggle="collapse" data-parent="#accordion#{l}" href="##{id}"
+              = render partial: "shared/buttons/vertical"
       - classes="panel-collapse collapse"
       - classes += " in" if current[:part] && current[:part].id == part.id
       div class="#{classes}" id="#{id}"

@@ -7,11 +7,11 @@
       .panel-heading
         h4.panel-title.row
           .col-sm-10
-            a.accordion-toggle data-toggle="collapse" data-parent="#accordion_top" href="##{id}"
+            = link_to mains_parts_path(cid: chapter.id) do
               = chapter.title
           .col-sm-2
-            = link_to mains_parts_path(cid: chapter.id) do
-              | hoge
+            a.accordion-toggle data-toggle="collapse" data-parent="#accordion_top" href="##{id}"
+              = render partial: "shared/buttons/vertical"
       - classes="panel-collapse collapse"
       - classes += " in" if current[:chapter] && current[:chapter].id == chapter.id
       div class="#{classes}" id="#{id}"
@@ -25,18 +25,4 @@
               - else    # mode == Novel::MODE_SHORT
                 - unless (volume = index_by(part.volumes).first).nil?
                   = render partial: "shared/main/stories", locals: {current: current, stories: volume.stories}
-
-
-
-  /= link_to format_title(chapter.title), mains_parts_path(cid: chapter.id)
-
-  /- if mode == Novel::MODE_LONG
-  /  = render partial: "shared/main/parts", locals: {p: p, chapter: chapter, l: l+1}
-  /- else
-  /  - unless (part = index_by(chapter.parts).first).nil?
-  /    - if mode == Novel::MODE_MIDDLE
-  /      = render partial: "shared/main/volumes", locals: {p: p, part: part, l: l+1}
-  /    - else    # mode == Novel::MODE_SHORT
-  /      - unless (volume = index_by(part.volumes).first).nil?
-  /        = render partial: "shared/main/stories", locals: {p: p, volume: volume, l: l+1}
 
