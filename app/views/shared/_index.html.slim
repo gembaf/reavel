@@ -1,10 +1,10 @@
 
 .sidemenu
   h3
-    = novel.title
+    = current[:novel].title
     small
       | &nbsp;
-      = link_to "Home", mains_chapters_path
-  ul
-    = render partial: "shared/main/chapters", locals: {p: p, novel: novel, l: 1, mode: novel.mode}
+      = link_to "Top", mains_chapters_path(nid: current[:novel].id)
+  br
+  = render partial: "shared/main/chapters", locals: {current: current, chapters: current[:novel].chapters, mode: current[:novel].mode}
 

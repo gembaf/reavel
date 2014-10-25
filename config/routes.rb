@@ -7,12 +7,12 @@ Rails.application.routes.draw do
   get  'logout' => 'sessions#destroy'
 
   ##--  Main
-  get 'mains'                          => 'mains#list'
-  get 'mains/:nid'                     => 'mains#chapters_index', as: :mains_chapters
-  get 'mains/:nid/:cid'                => 'mains#parts_index', as: :mains_parts
-  get 'mains/:nid/:cid/:pid'           => 'mains#volumes_index', as: :mains_volumes
-  get 'mains/:nid/:cid/:pid/:vid'      => 'mains#stories_index', as: :mains_stories
-  get 'mains/:nid/:cid/:pid/:vid/:sid' => 'mains#show', as: :mains_show
+  get 'mains'               => 'mains#list'
+  get 'mains/novels/:nid'   => 'mains#chapters', as: :mains_chapters
+  get 'mains/chapters/:cid' => 'mains#parts', as: :mains_parts
+  get 'mains/parts/:pid'    => 'mains#volumes', as: :mains_volumes
+  get 'mains/volumes/:vid'  => 'mains#stories', as: :mains_stories
+  get 'mains/stories/:sid'  => 'mains#show', as: :mains_show
 
   ##--  Admin
   # Novel

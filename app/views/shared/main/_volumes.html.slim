@@ -1,14 +1,20 @@
 
-- index_by(part.volumes).each do |volume|
-  - classes = "level#{l} "
-  - if volume.id == p[:vid].to_i
-    - classes += "selected"
-  - elsif p[:vid].present?
-    - classes += "nav-header"
-
-  li class="#{classes}"
-    = link_to format_title(volume.title), mains_stories_path(vid: volume.id)
-
-  - if volume.id == p[:vid].to_i
-    = render partial: "shared/main/stories", locals: {p: p, volume: volume, l: l+1}
+.panel-group id="accordion#{l}"
+  - index_by(volumes).each.with_index do |volume, i|
+    - level = "#{l}-#{i}"
+    - id = "collapse#{level}"
+    .panel.panel-default
+      .panel-heading
+        h4.panel-title.row
+          .col-sm-10
+            a.accordion-toggle data-toggle="collapse" data-parent="#accordion#{l}" href="##{id}"
+              = volume.title
+          .col-sm-2
+            = link_to mains_stories_path(vid: volume.id) do
+              | hoge
+      - classes="panel-collapse collapse"
+      - classes += " in" if current[:volume] && current[:volume].id == volume.id
+      div class="#{classes}" id="#{id}"
+        .panel-body
+          = render partial: "shared/main/stories", locals: {current: current, stories: volume.stories}
 
