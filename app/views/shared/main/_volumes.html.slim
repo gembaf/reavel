@@ -4,7 +4,7 @@
     - level = "#{l}-#{i}"
     - id = "collapse#{level}"
     .panel.panel-default
-      .panel-heading
+      div class="rank#{r} panel-heading"
         h4.panel-title.row
           .col-sm-10
             = link_to mains_stories_path(vid: volume.id) do
@@ -16,5 +16,5 @@
       - classes += " in" if current[:volume] && current[:volume].id == volume.id
       div class="#{classes}" id="#{id}"
         .panel-body
-          = render partial: "shared/main/stories", locals: {current: current, stories: volume.stories}
+          = render partial: "shared/main/stories", locals: {current: current, stories: volume.stories, r: r+1}
 

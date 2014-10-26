@@ -6,5 +6,5 @@
       | &nbsp;
       = link_to "Top", mains_chapters_path(nid: current[:novel].id)
   br
-  = render partial: "shared/main/chapters", locals: {current: current, chapters: current[:novel].chapters, mode: current[:novel].mode}
+  = render partial: "shared/main/chapters", locals: {current: current, chapters: current[:novel].chapters, mode: current[:novel].mode, r: 1}
 

@@ -4,7 +4,7 @@
     - level = "#{i}"
     - id = "collapse#{level}"
     .panel.panel-default
-      .panel-heading
+      div class="rank#{r} panel-heading"
         h4.panel-title.row
           .col-sm-10
             = link_to mains_parts_path(cid: chapter.id) do
@@ -17,11 +17,11 @@
       div class="#{classes}" id="#{id}"
         .panel-body
           - if mode == Novel::MODE_LONG
-            = render partial: "shared/main/parts", locals: {current: current, parts: chapter.parts, l: level}
+            = render partial: "shared/main/parts", locals: {current: current, parts: chapter.parts, l: level, r: r+1}
           - else
             - unless (part = index_by(chapter.parts).first).nil?
               - if mode == Novel::MODE_MIDDLE
-                = render partial: "shared/main/volumes", locals: {current: current, volumes: part.volumes, l: level}
+                = render partial: "shared/main/volumes", locals: {current: current, volumes: part.volumes, l: level, r: r+1}
               - else    # mode == Novel::MODE_SHORT
                 - unless (volume = index_by(part.volumes).first).nil?
                   = render partial: "shared/main/stories", locals: {current: current, stories: volume.stories}

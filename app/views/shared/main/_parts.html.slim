@@ -4,7 +4,7 @@
     - level = "#{l}-#{i}"
     - id = "collapse#{level}"
     .panel.panel-default
-      .panel-heading
+      div class="rank#{r} panel-heading"
         h4.panel-title.row
           .col-sm-10
             = link_to mains_volumes_path(pid: part.id) do
@@ -16,5 +16,5 @@
       - classes += " in" if current[:part] && current[:part].id == part.id
       div class="#{classes}" id="#{id}"
         .panel-body
-          = render partial: "shared/main/volumes", locals: {current: current, volumes: part.volumes, l: level}
+          = render partial: "shared/main/volumes", locals: {current: current, volumes: part.volumes, l: level, r: r+1}
 
