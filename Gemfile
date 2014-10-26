@@ -44,7 +44,7 @@ gem 'less-rails'
 gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git', :branch => 'bootstrap3'
 gem 'rb-readline'
 gem 'redcarpet'
-gem 'carrierwave'
+gem 'quiet_assets'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
