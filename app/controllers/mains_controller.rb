@@ -6,55 +6,64 @@ class MainsController < ApplicationController
   #before_action :current_chapter, only: [:show, :stories, :volumes, :parts, :chapters]
 
   def list
-    @novels = Novel.active.updated_by
+    @novels = Novel.updated_by
   end
 
   def show
-    @story = @current[:story]
+    @story = current_story
   end
 
   def chapters
-    @chapters = Chapter.where(novel_id: params[:nid])
+    @chapters = @current[:novel].chapters
   end
 
   def parts
-    @parts = Part.where(chapter_id: params[:cid])
+    chapter = current_chapter
+    @parts = chapter.parts
     path = skip_path(@parts.first)
     redirect_to path if path
   end
 
   def volumes
-    @volumes = Volume.where(part_id: params[:pid])
+    part = current_part
+    @volumes = part.volumes
   end
 
   def stories
-    @stories = Story.where(volume_id: params[:vid])
+    volume = current_volume
+    @stories = volume.stories
   end
 
   private
   def current_novel
     @current = {}
-    session[:nid] = params[:nid] if params[:nid]
     @current[:novel] = Novel.where(id: session[:nid]).includes(chapters: {parts: {volumes: :stories}}).first if session[:nid]
   end
 
   def current_chapter
     @current[:chapter] = @current[:part].chapter if @current[:part]
     @current[:chapter] = Chapter.where(id: params[:cid]).first if params[:cid]
+    @current[:chapter]
   end
 
   def current_part
     @current[:part] = @current[:volume].part if @current[:volume]
     @current[:part] = Part.where(id: params[:pid]).first if params[:pid]
+    current_chapter
+    @current[:part]
   end
 
   def current_volume
     @current[:volume] = @current[:story].volume if @current[:story]
     @current[:volume] = Volume.where(id: params[:vid]).first if params[:vid]
+    current_part
+    @current[:volume]
   end
 
   def current_story
     @current[:story] = Story.where(id: params[:sid]).first if params[:sid]
+    current_volume
+    @current[:story]
   end
 
   def skip_path(part)

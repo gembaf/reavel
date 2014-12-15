@@ -8,11 +8,11 @@ Rails.application.routes.draw do
 
   ##--  Main
   get 'mains'               => 'mains#list'
-  get 'mains/novels/:nid'   => 'mains#chapters', as: :mains_chapters
-  get 'mains/chapters/:cid' => 'mains#parts', as: :mains_parts
-  get 'mains/parts/:pid'    => 'mains#volumes', as: :mains_volumes
-  get 'mains/volumes/:vid'  => 'mains#stories', as: :mains_stories
-  get 'mains/stories/:sid'  => 'mains#show', as: :mains_show
+  get 'mains/chapters/:nid' => 'mains#chapters', as: :mains_chapters
+  get 'mains/parts/:cid'    => 'mains#parts', as: :mains_parts
+  get 'mains/volumes/:pid'  => 'mains#volumes', as: :mains_volumes
+  get 'mains/stories/:vid'  => 'mains#stories', as: :mains_stories
+  get 'mains/story/:sid'    => 'mains#show', as: :mains_show
 
   ##--  Admin
   # Novel

@@ -7,7 +7,7 @@ class Novel < ActiveRecord::Base
   validates :title, :mode, presence: true
   validates :comment, :title, length: {maximum: 250}
 
-  Scope.active(self)
+  default_scope {where(is_active: true)}
   Scope.updated_by(self)
   Scope.active_by(self)
 
