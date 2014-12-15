@@ -1,9 +1,5 @@
 class MainsController < ApplicationController
   before_action :current_novel, only: [:show, :stories, :volumes, :parts, :chapters]
-  #before_action :current_story, only: [:show, :stories, :volumes, :parts, :chapters]
-  #before_action :current_volume, only: [:show, :stories, :volumes, :parts, :chapters]
-  #before_action :current_part, only: [:show, :stories, :volumes, :parts, :chapters]
-  #before_action :current_chapter, only: [:show, :stories, :volumes, :parts, :chapters]
 
   def list
     @novels = Novel.updated_by

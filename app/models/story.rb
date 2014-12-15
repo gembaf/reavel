@@ -23,33 +23,30 @@ class Story < ActiveRecord::Base
 
   def next
     volume = self.volume
-    story = Story.where(volume_id: volume.id, serial: self.serial+1).first
-
-    return story if story.present?
-
-    return nil if (next_volume = volume.next).nil?
+    if story = Story.where(volume_id: volume.id, serial: self.serial+1).first
+      return story
+    end
+    return nil unless next_volume = volume.next
     next_volume.stories.active.serial_by.first
   end
 
   def prev
     volume = self.volume
-    story = Story.where(volume_id: volume.id, serial: self.serial-1).first
-
-    return story if story.present?
-
-    return nil if (prev_volume = volume.prev).nil?
+    if story = Story.where(volume_id: volume.id, serial: self.serial-1).first
+      return story
+    end
+    return nil unless prev_volume = volume.prev
     prev_volume.stories.active.serial_by.last
   end
 
   def ids
     next_id = prev_id = nil
-    if (next_story = self.next).present?
+    if next_story = self.next
       next_id = next_story.id
     end
-    if (prev_story = self.prev).present?
+    if prev_story = self.prev
       prev_id = prev_story.id
     end
-
     [prev_id, next_id]
   end
 

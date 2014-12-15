@@ -24,21 +24,19 @@ class Volume < ActiveRecord::Base
 
   def next
     part = self.part
-    volume = Volume.where(part_id: part.id, serial: self.serial+1).first
-
-    return volume if volume.present?
-
-    return nil if (next_part = part.next).nil?
+    if volume = Volume.where(part_id: part.id, serial: self.serial+1).first
+      return volume
+    end
+    return nil unless next_part = part.next
     next_part.volumes.active.serial_by.first
   end
 
   def prev
     part = self.part
-    volume = Volume.where(part_id: part.id, serial: self.serial-1).first
-
-    return volume if volume.present?
-
-    return nil if (prev_part = part.prev).nil?
+    if volume = Volume.where(part_id: part.id, serial: self.serial-1).first
+      return volume
+    end
+    return nil unless prev_part = part.prev
     prev_part.volumes.active.serial_by.last
   end
 
