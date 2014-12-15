@@ -1,9 +1,9 @@
 class MainsController < ApplicationController
   before_action :current_novel, only: [:show, :stories, :volumes, :parts, :chapters]
-  before_action :current_story, only: [:show, :stories, :volumes, :parts, :chapters]
-  before_action :current_volume, only: [:show, :stories, :volumes, :parts, :chapters]
-  before_action :current_part, only: [:show, :stories, :volumes, :parts, :chapters]
-  before_action :current_chapter, only: [:show, :stories, :volumes, :parts, :chapters]
+  #before_action :current_story, only: [:show, :stories, :volumes, :parts, :chapters]
+  #before_action :current_volume, only: [:show, :stories, :volumes, :parts, :chapters]
+  #before_action :current_part, only: [:show, :stories, :volumes, :parts, :chapters]
+  #before_action :current_chapter, only: [:show, :stories, :volumes, :parts, :chapters]
 
   def list
     @novels = Novel.active.updated_by
@@ -14,28 +14,28 @@ class MainsController < ApplicationController
   end
 
   def chapters
-    @chapters = Chapter.where(novel_id: params[:nid]).active.serial_by
+    @chapters = Chapter.where(novel_id: params[:nid])
   end
 
   def parts
-    @parts = Part.where(chapter_id: params[:cid]).active.serial_by
+    @parts = Part.where(chapter_id: params[:cid])
     path = skip_path(@parts.first)
     redirect_to path if path
   end
 
   def volumes
-    @volumes = Volume.where(part_id: params[:pid]).active.serial_by
+    @volumes = Volume.where(part_id: params[:pid])
   end
 
   def stories
-    @stories = Story.where(volume_id: params[:vid]).active.serial_by
+    @stories = Story.where(volume_id: params[:vid])
   end
 
   private
   def current_novel
     @current = {}
     session[:nid] = params[:nid] if params[:nid]
-    @current[:novel] = Novel.where(id: session[:nid]).first if session[:nid]
+    @current[:novel] = Novel.where(id: session[:nid]).includes(chapters: {parts: {volumes: :stories}}).first if session[:nid]
   end
 
   def current_chapter

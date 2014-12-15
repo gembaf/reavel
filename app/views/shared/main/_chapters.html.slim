@@ -1,6 +1,6 @@
 
 .panel-group id="accordion_top"
-  - index_by(chapters).each.with_index do |chapter, i|
+  - chapters.each.with_index do |chapter, i|
     - level = "#{i}"
     - id = "collapse#{level}"
     .panel.panel-default
@@ -19,10 +19,10 @@
           - if mode == Novel::MODE_LONG
             = render partial: "shared/main/parts", locals: {current: current, parts: chapter.parts, l: level, r: r+1}
           - else
-            - unless (part = index_by(chapter.parts).first).nil?
+            - unless (part = chapter.parts.first).nil?
               - if mode == Novel::MODE_MIDDLE
                 = render partial: "shared/main/volumes", locals: {current: current, volumes: part.volumes, l: level, r: r+1}
               - else    # mode == Novel::MODE_SHORT
-                - unless (volume = index_by(part.volumes).first).nil?
+                - unless (volume = part.volumes.first).nil?
                   = render partial: "shared/main/stories", locals: {current: current, stories: volume.stories}
 

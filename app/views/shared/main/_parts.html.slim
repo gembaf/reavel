@@ -1,6 +1,6 @@
 
 .panel-group id="accordion#{l}"
-  - index_by(parts).each.with_index do |part, i|
+  - parts.each.with_index do |part, i|
     - level = "#{l}-#{i}"
     - id = "collapse#{level}"
     .panel.panel-default

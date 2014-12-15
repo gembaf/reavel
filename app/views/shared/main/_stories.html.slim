@@ -1,6 +1,6 @@
 
 ul
-  - index_by(stories).each do |story|
+  - stories.each do |story|
     - classes = "selected" if current[:story] && current[:story].id == story.id
     li class="#{classes}"
       = link_to story.title, mains_show_path(sid: story.id)

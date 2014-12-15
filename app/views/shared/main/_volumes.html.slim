@@ -1,6 +1,6 @@
 
 .panel-group id="accordion#{l}"
-  - index_by(volumes).each.with_index do |volume, i|
+  - volumes.each.with_index do |volume, i|
     - level = "#{l}-#{i}"
     - id = "collapse#{level}"
     .panel.panel-default
