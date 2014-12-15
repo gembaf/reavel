@@ -2,7 +2,7 @@ class StoriesController < ApplicationController
   before_action :get_story, only: [:edit, :update, :active]
 
   def list
-    @stories = Story.where(volume_id: params[:vid]).active_by.serial_by
+    @stories = Story.unscoped.where(volume_id: params[:vid]).active_by.serial_by
   end
 
   def add

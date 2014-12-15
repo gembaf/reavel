@@ -33,6 +33,7 @@ class MainsController < ApplicationController
   private
   def current_novel
     @current = {}
+    session[:nid] = params[:nid] if params[:nid]
     @current[:novel] = Novel.where(id: session[:nid]).includes(chapters: {parts: {volumes: :stories}}).first if session[:nid]
   end
 

@@ -7,7 +7,7 @@ class Volume < ActiveRecord::Base
   validates :part_id, :title, presence: true
   validates :title, :comment, length: {maximum: 250}
 
-  Scope.active(self)
+  default_scope -> {where(is_active: true).order("serial")}
   Scope.serial_by(self)
   Scope.active_by(self)
 
@@ -28,7 +28,7 @@ class Volume < ActiveRecord::Base
       return volume
     end
     return nil unless next_part = part.next
-    next_part.volumes.active.serial_by.first
+    next_part.volumes.first
   end
 
   def prev
@@ -37,7 +37,7 @@ class Volume < ActiveRecord::Base
       return volume
     end
     return nil unless prev_part = part.prev
-    prev_part.volumes.active.serial_by.last
+    prev_part.volumes.last
   end
 
   # override

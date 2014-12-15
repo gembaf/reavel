@@ -2,7 +2,7 @@ class VolumesController < ApplicationController
   before_action :get_volume, only: [:edit, :update, :active]
 
   def list
-    @volumes = Volume.where(part_id: params[:pid]).active_by.serial_by
+    @volumes = Volume.unscoped.where(part_id: params[:pid]).active_by.serial_by
   end
 
   def add

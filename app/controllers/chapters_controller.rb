@@ -2,7 +2,7 @@ class ChaptersController < ApplicationController
   before_action :get_chapter, only: [:edit, :update, :active]
 
   def list
-    @chapters = Chapter.where(novel_id: params[:nid]).active_by.serial_by
+    @chapters = Chapter.unscoped.where(novel_id: params[:nid]).active_by.serial_by
   end
 
   def add

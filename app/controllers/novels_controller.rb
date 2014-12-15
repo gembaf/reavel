@@ -2,7 +2,7 @@ class NovelsController < ApplicationController
   before_action :get_novel, only: [:edit, :update, :active]
 
   def list
-    @novels = Novel.active_by.updated_by
+    @novels = Novel.unscoped.active_by.updated_by
   end
 
   def add

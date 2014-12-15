@@ -9,7 +9,7 @@ class Part < ActiveRecord::Base
 
   VOLUME_LIMIT = 10
 
-  Scope.active(self)
+  default_scope -> {where(is_active: true).order("serial")}
   Scope.serial_by(self)
   Scope.active_by(self)
 
@@ -28,7 +28,7 @@ class Part < ActiveRecord::Base
       return part
     end
     return nil unless next_chapter = chapter.next
-    next_chapter.parts.active.serial_by.first
+    next_chapter.parts.first
   end
 
   def prev
@@ -37,7 +37,7 @@ class Part < ActiveRecord::Base
       return part
     end
     return nil unless prev_chapter = chapter.prev
-    prev_chapter.parts.active.serial_by.last
+    prev_chapter.parts.last
   end
 
   # override

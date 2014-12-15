@@ -9,7 +9,7 @@ class Chapter < ActiveRecord::Base
 
   PART_LIMIT = 10
 
-  Scope.active(self)
+  default_scope -> {where(is_active: true).order("serial")}
   Scope.serial_by(self)
   Scope.active_by(self)
 

@@ -2,7 +2,7 @@ class PartsController < ApplicationController
   before_action :get_part, only: [:edit, :update, :active]
 
   def list
-    @parts = Part.where(chapter_id: params[:cid]).active_by.serial_by
+    @parts = Part.unscoped.where(chapter_id: params[:cid]).active_by.serial_by
   end
 
   def add

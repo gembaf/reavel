@@ -4,7 +4,7 @@ class Story < ActiveRecord::Base
   validates :volume_id, :title, presence: true
   validates :title, :comment, length: {maximum: 250}
 
-  Scope.active(self)
+  default_scope -> {where(is_active: true).order("serial")}
   Scope.serial_by(self)
   Scope.active_by(self)
 
@@ -27,7 +27,7 @@ class Story < ActiveRecord::Base
       return story
     end
     return nil unless next_volume = volume.next
-    next_volume.stories.active.serial_by.first
+    next_volume.stories.first
   end
 
   def prev
@@ -36,7 +36,7 @@ class Story < ActiveRecord::Base
       return story
     end
     return nil unless prev_volume = volume.prev
-    prev_volume.stories.active.serial_by.last
+    prev_volume.stories.last
   end
 
   def ids
