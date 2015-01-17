@@ -52,7 +52,7 @@ class Story < ActiveRecord::Base
 
   def set_contents_info(contents_params)
     contents = Story.file_path(self.id)
-    text = contents_params[:text]
+    text = contents_params.has_key?(:text) ? contents_params[:text] : ""
     text = contents_params[:file].read unless contents_params[:file].blank?
     text = encode_utf8(text).gsub(/<(br|BR)(.*?)>/, "")
     File.open(contents, 'w') { |f| f.puts text }

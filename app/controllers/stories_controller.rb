@@ -5,11 +5,11 @@ class StoriesController < ApplicationController
     @stories = Story.unscoped.where(volume_id: params[:vid]).active_by.serial_by
   end
 
-  def add
+  def file_add
     @story = Story.new
   end
 
-  def create
+  def file_create
     @story = Story.create(story_params.merge(volume_id: params[:vid]))
     @story.set_contents_info(contents_params)
     redirect_to stories_list_path
@@ -35,7 +35,7 @@ class StoriesController < ApplicationController
   end
 
   def contents_params
-    params.require(:contents).permit(:file, :text)
+    params.has_key?(:contents) ? params[:contents] : {} #.require(:contents).permit(:file, :text)
   end
 
   def get_story
