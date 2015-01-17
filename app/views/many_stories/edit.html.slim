@@ -13,7 +13,6 @@
           th.serial
           th.title タイトル
           th.scene シーン
-          th.contents ファイル
           th.comment コメント
       tbody#sortable
         - @volume.stories.serial_by.each_with_index do |story, i|
@@ -23,6 +22,5 @@
               td.serial= f_stories.text_field :serial
               td.title= f_stories.text_field :title
               td.scene= f_stories.select :is_scene, Story.scene_format
-              td.contents= f_stories.file_field :contents
               td.comment= f_stories.text_area :comment
 

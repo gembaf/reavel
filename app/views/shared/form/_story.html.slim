@@ -1,11 +1,9 @@
 table.table-base.stories.form
   tr
     th.title タイトル
-    th.contents_file ファイル
     th.scene シーン
   tr
     td.title= text_field :story, :title
-    td.contents_file= file_field :contents, :file
     td.scene= select :story, :is_scene, Story.scene_format
 
 table.table-base.stories.form
