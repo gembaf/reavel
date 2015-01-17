@@ -61,6 +61,17 @@ class Story < ActiveRecord::Base
     self.update_attributes(contents: contents, time: time)
   end
 
+  def convert_narou_to_text(url)
+    sep = "hogefoobar"
+    `cd #{Rails.root}/tmp && wget #{url}`
+    text = File.read("#{Rails.root}/tmp/index.html").to_s.gsub(/\r\n|\n/, sep).sub(/(.*)<div id="novel_honbun" class="novel_view">/, "").sub(/<div class="novel_bn">(.*)/, "").split(sep)
+    text.map! do |t|
+      t.sub("<div id=\"novel_a\" class=\"novel_view\">", "**********\n\n").gsub("</div>", "").gsub("<br />", "")
+    end
+    File.open("#{Rails.root}/tmp/_tmp.txt", "w") {|f| f.puts text}
+    self.set_contents_info({text: File.read("#{Rails.root}/tmp/_tmp.txt")})
+  end
+
   def toggle_active(params)
     ModelHelper.toggle_active(parents(self), self.time, 1, params[:is_active])
     self.update_attributes(params)

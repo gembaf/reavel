@@ -72,6 +72,8 @@ Rails.application.routes.draw do
   get  'admin/:nid/:cid/:pid/:vid'             => 'stories#list', as: :stories_list
   get  'admin/:nid/:cid/:pid/:vid/file_add'    => 'stories#file_add', as: :stories_file_add
   post 'admin/:nid/:cid/:pid/:vid/file_add'    => 'stories#file_create'
+  get  'admin/:nid/:cid/:pid/:vid/url_add'    => 'stories#url_add', as: :stories_url_add
+  post 'admin/:nid/:cid/:pid/:vid/url_add'    => 'stories#url_create'
   get  'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#edit', as: :stories_edit
   post 'admin/:nid/:cid/:pid/:vid/:sid/edit'   => 'stories#update'
   get  'admin/:nid/:cid/:pid/:vid/:sid/active' => 'stories#active', as: :stories_active

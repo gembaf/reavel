@@ -6,8 +6,13 @@
   = render partial: "shared/sidemenu", locals: {p: params}
   .buttons
     = link_to stories_file_add_path, data: {remote: true} do
-      = render partial: "shared/buttons/add"
+      = render partial: "shared/buttons/add", locals: {text: "ファイルから登録"}
     | &nbsp;&nbsp;
+    = link_to stories_url_add_path, data: {remote: true} do
+      = render partial: "shared/buttons/add", locals: {text: "URLから登録"}
+    | &nbsp;&nbsp;
+    br
+    br
     = link_to many_stories_add_path do
       = render partial: "shared/buttons/add_many"
     | &nbsp;&nbsp;
