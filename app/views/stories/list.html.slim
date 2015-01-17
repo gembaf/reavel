@@ -17,13 +17,15 @@
 .col-lg-9
   table.table-base.stories.list
     tr
+      th.serial
       th.title タイトル
       th.comment コメント
       th.scene シーン
       th.edit 編集
       th.disable
-    - @stories.each do |story|
+    - @stories.each.with_index(1) do |story, i|
       = render partial: "shared/active_row", locals: {is_active: story.is_active}
+      td.serial= i
       td.title= story.title
       td.comment= story.comment
       td.scene= render partial: "shared/scene", locals: {is_scene: story.is_scene}
