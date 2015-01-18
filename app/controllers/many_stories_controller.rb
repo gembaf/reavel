@@ -1,12 +1,12 @@
 class ManyStoriesController < ApplicationController
-  def add
+  def file_add
     @volume = Volume.new
     @volume.build_stories
   end
 
-  def create
+  def file_create
     stories_params.each do |val|
-      break if Common.skip?(val)
+      break unless val[:contents]
       val[:volume_id] = params[:vid]
       contents_params = {file: val.delete(:contents)}
       story = Story.create(val)
@@ -25,7 +25,6 @@ class ManyStoriesController < ApplicationController
       val.delete(:id)
       contents_params = {file: val.delete(:contents)}
       story.update_attributes(val)
-      story.set_contents_info(contents_params) if contents_params[:file].present?
     end
     redirect_to stories_list_path
   end

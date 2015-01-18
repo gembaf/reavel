@@ -23,10 +23,6 @@ module Common
     end
   end
 
-  def skip?(val)
-    val[:title] == "notitle" && val[:comment].empty?
-  end
-
-  module_function :list_path, :create_success?, :many_create_success?, :error?, :select_format, :skip?
+  module_function :list_path, :create_success?, :many_create_success?, :error?, :select_format
 end
 
