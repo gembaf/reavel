@@ -1,0 +1,27 @@
+
+= form_for @volume, url: many_stories_url_add_path do |f|
+  .col-lg-3
+    = render partial: "shared/sidemenu", locals: {p: params}
+    .buttons
+      = render partial: "shared/buttons/create"
+      | &nbsp;&nbsp;
+      = render partial: "shared/buttons/add_row", locals: {message: "Story"}
+    br
+
+  .col-lg-9
+    table.table-base.many_stories.add
+      tr
+        th.serial
+        th.title タイトル
+        th.scene シーン
+        th.contents URL ( なろう )
+        th.comment コメント
+      - i = 0
+      = f.fields_for :stories do |f_stories|
+        tr.hidden
+          td.serial= i += 1
+          td.title= f_stories.text_field :title
+          td.scene= f_stories.select :is_scene, Story.scene_format
+          td.contents= f_stories.text_field :contents
+          td.comment= f_stories.text_area :comment
+

@@ -82,6 +82,8 @@ Rails.application.routes.draw do
   get   'admin/:nid/:cid/:pid/:vid'               => 'many_stories#list'
   get   'admin/:nid/:cid/:pid/:vid/file_add_many' => 'many_stories#file_add', as: :many_stories_file_add
   post  'admin/:nid/:cid/:pid/:vid/file_add_many' => 'many_stories#file_create'
+  get   'admin/:nid/:cid/:pid/:vid/url_add_many' => 'many_stories#url_add', as: :many_stories_url_add
+  post  'admin/:nid/:cid/:pid/:vid/url_add_many' => 'many_stories#url_create'
   get   'admin/:nid/:cid/:pid/:vid/edit_many'     => 'many_stories#edit', as: :many_stories_edit
   patch 'admin/:nid/:cid/:pid/:vid/edit_many'     => 'many_stories#update'
 

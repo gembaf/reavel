@@ -16,6 +16,11 @@
     = link_to many_stories_file_add_path do
       = render partial: "shared/buttons/add_many", locals: {text: "ファイルから一括登録"}
     | &nbsp;&nbsp;
+    = link_to many_stories_url_add_path do
+      = render partial: "shared/buttons/add_many", locals: {text: "URLから一括登録"}
+    | &nbsp;&nbsp;
+    br
+    br
     = link_to many_stories_edit_path do
       = render partial: "shared/buttons/edit_many"
   br

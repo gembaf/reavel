@@ -4,6 +4,11 @@ class ManyStoriesController < ApplicationController
     @volume.build_stories
   end
 
+  def url_add
+    @volume = Volume.new
+    @volume.build_stories
+  end
+
   def file_create
     stories_params.each do |val|
       break unless val[:contents]
@@ -11,6 +16,17 @@ class ManyStoriesController < ApplicationController
       contents_params = {file: val.delete(:contents)}
       story = Story.create(val)
       story.set_contents_info(contents_params)
+    end
+    redirect_to stories_list_path
+  end
+
+  def url_create
+    stories_params.each do |val|
+      break if val[:contents].blank?
+      val[:volume_id] = params[:vid]
+      url = val.delete(:contents)
+      story = Story.create(val)
+      story.convert_narou_to_text(url)
     end
     redirect_to stories_list_path
   end
