@@ -32,11 +32,10 @@ class Chapter < ActiveRecord::Base
     Chapter.where(novel_id: novel.id, serial: self.serial-1).first
   end
 
-  # override
-  def self.create(params)
-    chapter = self.where(novel_id: params[:novel_id]).last
-    params[:serial] = ModelHelper.get_serial(chapter)
-    super(params).tap {|chapter| skip_create(chapter)}
+  def set_serial
+    chapter = Chapter.where(novel_id: self.novel_id).last
+    self.serial = ModelHelper.get_serial(chapter)
+    #super(params).tap {|chapter| skip_create(chapter)}
   end
 
   private

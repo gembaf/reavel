@@ -8,7 +8,9 @@ class ManyVolumesController < ApplicationController
     volumes_params.each do |val|
       break if Common.skip?(val)
       val[:part_id] = params[:pid]
-      Volume.create(val)
+      volume = Volume.new(val)
+      volume.set_serial
+      volume.save
     end
     redirect_to volumes_list_path
   end

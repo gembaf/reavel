@@ -12,6 +12,7 @@ class PartsController < ApplicationController
 
   def create
     @part = Part.new(part_params.merge(chapter_id: params[:cid]))
+    @part.set_serial
     render :add and return unless @part.save
     render "shared/reload"
   end

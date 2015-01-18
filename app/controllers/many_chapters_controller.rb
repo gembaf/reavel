@@ -8,7 +8,9 @@ class ManyChaptersController < ApplicationController
     chapters_params.each do |val|
       break if Common.skip?(val)
       val[:novel_id] = params[:nid]
-      Chapter.create(val)
+      chapter = Chapter.new(val)
+      chapter.set_serial
+      chapter.save
     end
     redirect_to chapters_list_path
   end

@@ -40,11 +40,9 @@ class Volume < ActiveRecord::Base
     prev_part.volumes.last
   end
 
-  # override
-  def self.create(params)
-    volume = self.where(part_id: params[:part_id]).last
-    params[:serial] = ModelHelper.get_serial(volume)
-    super params
+  def set_serial
+    volume = Volume.where(part_id: self.part_id).last
+    self.serial = ModelHelper.get_serial(volume)
   end
 
   private

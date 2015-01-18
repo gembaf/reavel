@@ -8,7 +8,9 @@ class ManyPartsController < ApplicationController
     parts_params.each do |val|
       break if Common.skip?(val)
       val[:chapter_id] = params[:cid]
-      Part.create(val)
+      part = Part.new(val)
+      part.set_serial
+      part.save
     end
     redirect_to parts_list_path
   end

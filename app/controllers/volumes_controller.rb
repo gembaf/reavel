@@ -12,6 +12,7 @@ class VolumesController < ApplicationController
 
   def create
     @volume = Volume.new(volume_params.merge(part_id: params[:pid]))
+    @volume.set_serial
     render :add and return unless @volume.save
     render "shared/reload"
   end

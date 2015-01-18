@@ -40,11 +40,9 @@ class Part < ActiveRecord::Base
     prev_chapter.parts.last
   end
 
-  # override
-  def self.create(params)
-    part = self.where(chapter_id: params[:chapter_id]).last
-    params[:serial] = ModelHelper.get_serial(part)
-    super params
+  def set_serial
+    part = Part.where(chapter_id: self.chapter_id).last
+    self.serial = ModelHelper.get_serial(part)
   end
 
   private
