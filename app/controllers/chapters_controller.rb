@@ -14,6 +14,7 @@ class ChaptersController < ApplicationController
     @chapter = Chapter.new(chapter_params.merge(novel_id: params[:nid]))
     @chapter.set_serial
     render :add and return unless @chapter.save
+    @chapter.skip_create
     render "shared/reload"
   end
 

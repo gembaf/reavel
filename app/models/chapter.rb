@@ -35,14 +35,12 @@ class Chapter < ActiveRecord::Base
   def set_serial
     chapter = Chapter.where(novel_id: self.novel_id).last
     self.serial = ModelHelper.get_serial(chapter)
-    #super(params).tap {|chapter| skip_create(chapter)}
   end
 
-  private
-  def self.skip_create(chapter)
-    mode = chapter.novel.mode
+  def skip_create
+    mode = self.novel.mode
     unless mode == Novel::MODE_LONG
-      part = Part.create(chapter_id: chapter.id, title: "_skip")
+      part = Part.create(chapter_id: self.id, title: "_skip")
       if mode == Novel::MODE_SHORT
         Volume.create(part_id: part.id, title: "_skip")
       end
