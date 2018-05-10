@@ -1,0 +1,68 @@
+inherit_from:
+  - '.rubocop_todo.yml'
+
+AllCops:
+  TargetRubyVersion: 2.4.2
+  Exclude:
+    - '.bundle/**/*'
+    - 'bin/**/*'
+    - 'Rakefile'
+    - 'Gemfile'
+    - 'Capfile'
+    - 'config.ru'
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+
+AsciiComments:
+  Enabled: false
+
+TrailingBlankLines:
+  Enabled: false
+  # EnforcedStyle: final_blank_line
+
+Documentation:
+  Enabled: false
+
+AbcSize:
+  Max: 30
+  Exclude:
+    - 'lib/ragnarok/parser/**/*'
+
+MethodLength:
+  Max: 30
+  Exclude:
+    - 'lib/ragnarok/parser/**/*'
+
+LineLength:
+  Enabled: false
+
+BlockLength:
+  Exclude:
+    - '**/*.rake'
+    - 'spec/**/*'
+
+FrozenStringLiteralComment:
+  Enabled: false
+
+AlignParameters:
+  Enabled: false
+
+EmptyMethod:
+  Enabled: false
+
+TrailingCommaInArrayLiteral:
+  Enabled: false
+
+TrailingCommaInHashLiteral:
+  Enabled: false
+
+TrailingCommaInArguments:
+  Enabled: false
+
+MultilineBlockChain:
+  Enabled: false
+
+ParameterLists:
+  Exclude:
+    - 'app/finders/**/*'
+
