@@ -1,9 +1,0 @@
-
-p.ids.alert.alert-info
-  - if prev_id
-    = link_to "<< Prev", mains_show_path(sid: prev_id)
-  - if prev_id && next_id
-    | &nbsp;&nbsp;&nbsp;&nbsp;||&nbsp;&nbsp;&nbsp;&nbsp;
-  - if next_id
-    = link_to "Next >>", mains_show_path(sid: next_id)
-
