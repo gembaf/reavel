@@ -29,6 +29,8 @@ module Reavel
     config.generators.system_tests = nil
 
     config.generators do |g|
+      g.template_engine = :slim
+
       g.assets false
       g.helper false
       g.test_framework false
