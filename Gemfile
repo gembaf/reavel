@@ -20,11 +20,15 @@ gem 'uglifier', '>= 1.3.0'
 gem 'slim-rails'
 
 group :development, :test do
+  gem 'database_cleaner'
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
   gem 'pry-rails'
+  gem 'rspec-rails'
 end
 
 group :development do
+  gem 'annotate'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'rubocop'
   gem 'spring'
