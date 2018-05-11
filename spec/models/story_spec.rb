@@ -13,14 +13,10 @@
 #  updated_at :datetime         not null
 #
 
-FactoryBot.define do
-  factory :story do
-    title { '無題' }
-    comment { 'コメント' }
-    no { 1 }
-    time { 100 }
-    uuid { 'hoge-foo-bar' }
-    is_scene { false }
+describe Story do
+  context 'test' do
+    let(:story) { create(:story, title: 'hoge') }
+    it { expect(story.title).to eq 'hoge' }
   end
 end
 
