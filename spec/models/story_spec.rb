@@ -15,7 +15,7 @@
 
 require 'kconv'
 
-describe Story do
+describe Story, type: :model do
   describe '#write and #read' do
     subject do
       story.write(text)
