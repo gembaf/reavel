@@ -19,3 +19,6 @@
 .byebug_history
 
 .env
+
+/public/data/stories/*
+!/public/data/stories/.keep

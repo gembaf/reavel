@@ -13,10 +13,45 @@
 #  updated_at :datetime         not null
 #
 
-describe Story do
-  context 'test' do
-    let(:story) { create(:story, title: 'hoge') }
-    it { expect(story.title).to eq 'hoge' }
+require 'kconv'
+
+describe Story, type: :model do
+  describe '#write and #read' do
+    subject do
+      story.write(text)
+      story.read
+    end
+
+    let(:story) { create(:story, uuid: 'hoge') }
+    let(:expected_text) do
+      <<-TEXT.strip_heredoc
+        てすとtest
+        あいうえお
+      TEXT
+    end
+
+    context '普通のテキストを渡した場合' do
+      let(:text) { expected_text }
+
+      it '正しく書き込まれて読み取れること' do
+        expect(subject).to eq expected_text
+      end
+    end
+
+    context 'Shift_JISのテキストを渡した場合' do
+      let(:text) { expected_text.tosjis }
+
+      it '正しく書き込まれて読み取れること' do
+        expect(subject).to eq expected_text
+      end
+    end
+  end
+
+  describe '.required_time' do
+    subject { described_class.required_time(text) }
+    let(:text) { 'a' * 2500 }
+
+    it { expect(subject).to eq 2 }
   end
 end
 

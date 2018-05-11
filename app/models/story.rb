@@ -13,5 +13,25 @@
 #  updated_at :datetime         not null
 #
 
+require 'kconv'
+
 class Story < ApplicationRecord
+  DATA_DIR = Rails.root.join('public', 'data', 'stories')
+  READ_PER_MINUTES = 1000
+
+  def filepath
+    "#{DATA_DIR}/#{uuid}.txt"
+  end
+
+  def write(text)
+    File.write(filepath, text.toutf8)
+  end
+
+  def read
+    File.read(filepath)
+  end
+
+  def self.required_time(text)
+    text.length / READ_PER_MINUTES
+  end
 end
