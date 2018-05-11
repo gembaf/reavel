@@ -14,9 +14,19 @@
 #
 
 describe Story do
-  context 'test' do
-    let(:story) { create(:story, title: 'hoge') }
-    it { expect(story.title).to eq 'hoge' }
+  describe '#write and #read' do
+    subject { story.write(text) }
+
+    let(:story) { create(:story, uuid: 'hoge') }
+
+    context '普通のテキストを渡した場合' do
+      let(:text) { 'てすとtest' }
+
+      it '正しく書き込まれて読み取れること' do
+        subject
+        expect(story.read).to eq text
+      end
+    end
   end
 end
 

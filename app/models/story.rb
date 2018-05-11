@@ -14,4 +14,17 @@
 #
 
 class Story < ApplicationRecord
+  DATA_DIR = Rails.root.join('public', 'data', 'stories')
+
+  def filepath
+    "#{DATA_DIR}/#{uuid}.txt"
+  end
+
+  def write(text)
+    File.write(filepath, text)
+  end
+
+  def read
+    File.read(filepath)
+  end
 end

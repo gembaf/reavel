@@ -61,6 +61,10 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with(:truncation)
   end
 
+  config.before(:example) do
+    stub_const('Story::DATA_DIR', Rails.root.join('tmp'))
+  end
+
   config.around(:each) do |example|
     DatabaseCleaner.cleaning do
       example.run
