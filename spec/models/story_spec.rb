@@ -46,5 +46,12 @@ describe Story, type: :model do
       end
     end
   end
+
+  describe '.required_time' do
+    subject { described_class.required_time(text) }
+    let(:text) { 'a' * 2500 }
+
+    it { expect(subject).to eq 2 }
+  end
 end
 

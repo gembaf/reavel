@@ -9,6 +9,7 @@ class StoryCreateService
   def call
     uuid = SecureRandom.uuid
     no = 1
+    time = Story.required_time(@text)
 
     ActiveRecord::Base.transaction do
       story = Story.create(
@@ -17,6 +18,7 @@ class StoryCreateService
         is_scene: @is_scene,
         uuid: uuid,
         no: no,
+        time: time,
       )
 
       story.write(@text)
