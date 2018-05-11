@@ -13,6 +13,8 @@
 #  updated_at :datetime         not null
 #
 
+require 'kconv'
+
 class Story < ApplicationRecord
   DATA_DIR = Rails.root.join('public', 'data', 'stories')
 
@@ -21,7 +23,7 @@ class Story < ApplicationRecord
   end
 
   def write(text)
-    File.write(filepath, text)
+    File.write(filepath, text.toutf8)
   end
 
   def read
