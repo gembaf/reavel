@@ -11,6 +11,7 @@
 #  is_scene   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  chapter_id :integer          not null
 #
 
 FactoryBot.define do
@@ -21,6 +22,7 @@ FactoryBot.define do
     time { 100 }
     uuid { 'hoge-foo-bar' }
     is_scene { false }
+    chapter
   end
 end
 

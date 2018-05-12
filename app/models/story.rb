@@ -11,11 +11,14 @@
 #  is_scene   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  chapter_id :integer          not null
 #
 
 require 'kconv'
 
 class Story < ApplicationRecord
+  belongs_to :chapter
+
   DATA_DIR = Rails.root.join('public', 'data', 'stories')
   READ_PER_MINUTES = 1000
 

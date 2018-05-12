@@ -16,5 +16,6 @@ require 'rails_helper'
 RSpec.describe Chapter, type: :model do
   describe 'relations' do
     it { should belong_to(:novel) }
+    it { should have_many(:stories).dependent(:destroy) }
   end
 end

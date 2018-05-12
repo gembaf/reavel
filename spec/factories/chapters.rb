@@ -16,6 +16,6 @@ FactoryBot.define do
     title { 'タイトル' }
     comment { 'コメント' }
     no { 1 }
-    novel_id { 1 }
+    novel
   end
 end

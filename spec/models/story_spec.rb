@@ -11,12 +11,17 @@
 #  is_scene   :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  chapter_id :integer          not null
 #
 
 require 'kconv'
 require 'rails_helper'
 
 RSpec.describe Story, type: :model do
+  describe 'relations' do
+    it { should belong_to(:chapter) }
+  end
+
   describe '#write and #read' do
     subject do
       story.write(text)

@@ -13,4 +13,5 @@
 
 class Chapter < ApplicationRecord
   belongs_to :novel
+  has_many :stories, dependent: :destroy
 end
