@@ -17,6 +17,14 @@ class Chapter < ApplicationRecord
   belongs_to :novel
   has_many :stories, dependent: :destroy
 
+  TOP_LEVEL = 1
+
   def parent
+    return nil if top?
+    Chapter.find(parent_id)
+  end
+
+  def top?
+    level == TOP_LEVEL
   end
 end

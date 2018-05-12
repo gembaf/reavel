@@ -21,5 +21,10 @@ FactoryBot.define do
     novel
     level { 1 }
     parent_id { 1 }
+
+    trait :top do
+      level { 1 }
+      parent_id { nil }
+    end
   end
 end
