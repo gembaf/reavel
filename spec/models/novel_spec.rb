@@ -16,6 +16,17 @@ RSpec.describe Novel, type: :model do
     it { should have_many(:chapters).dependent(:destroy) }
   end
 
+  describe '#children' do
+    include_context 'novel!'
+
+    subject { novel.children }
+
+    it 'トップレベルのチャプターのみ取れること' do
+      expect(novel.chapters.count).not_to eq 3
+      expect(subject.count).to eq 3
+    end
+  end
+
   describe '#destroy' do
     include_context 'novel'
 

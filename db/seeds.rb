@@ -8,7 +8,23 @@
 
 require 'factory_bot'
 
+##-- 普通
 normal = FactoryBot.create(:novel, title: '普通の小説', summary: '普通っぽい')
+parents = [
+  FactoryBot.create(:chapter, :top, novel: normal),
+  FactoryBot.create(:chapter, :top, novel: normal),
+  FactoryBot.create(:chapter, :top, novel: normal),
+]
+children = parents.map do |parent|
+  [
+    FactoryBot.create(:chapter, level: 2, parent_id: parent.id, novel: normal, title: '子チャプター１'),
+    FactoryBot.create(:chapter, level: 2, parent_id: parent.id, novel: normal, title: '子チャプター２'),
+  ]
+end
+
+##-- 文字が長め
 long = FactoryBot.create(:novel, title: 'たいとるううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう', summary: 'がいよううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう')
+
+##-- 構成が複雑
 complex = FactoryBot.create(:novel, title: '小説', summary: 'これは小説です')
 

@@ -1,0 +1,11 @@
+table.table.table-bordered
+  thead
+    tr
+      th タイトル
+      th コメント
+  tbody
+    - @parts.each do |part|
+      tr
+        td= link_to part.title, viewer_chapters_path(chapter_id: part.id)
+        td= part.comment
+
