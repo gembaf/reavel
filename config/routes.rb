@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  ##-- Viewer
+  get 'viewer' => 'viewer#novels'
+  get 'viewer/:novel_id' => 'viewer#chapters'
+  get 'viewer/:novel_id/:story_id' => 'viewer#stories'
 end
