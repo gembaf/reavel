@@ -1,5 +1,6 @@
 class StoryCreateService
-  def initialize(text:, title: nil, comment: nil, is_scene: false)
+  def initialize(chapter:, text:, title: nil, comment: nil, is_scene: false)
+    @chapter = chapter
     @text = text
     @title = title
     @comment = comment
@@ -19,6 +20,7 @@ class StoryCreateService
         uuid: uuid,
         no: no,
         time: time,
+        chapter: @chapter,
       )
 
       story.write(@text)

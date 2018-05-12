@@ -1,5 +1,6 @@
 describe StoryCreateService do
-  let(:instance) { described_class.new(text: 'hoge', title: 'タイトル', comment: 'コメント') }
+  let(:instance) { described_class.new(chapter: chapter, text: 'hoge', title: 'タイトル', comment: 'コメント') }
+  let(:chapter) { create(:chapter) }
 
   describe '#call' do
     subject { instance.call }
