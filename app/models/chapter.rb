@@ -24,6 +24,12 @@ class Chapter < ApplicationRecord
     Chapter.find(parent_id)
   end
 
+  def children
+    binding.pry
+    chapters = Chapter.where(parent_id: id, level: level + 1).order(:no)
+    chapters.present? ? chapters : nil
+  end
+
   def top?
     level == TOP_LEVEL
   end

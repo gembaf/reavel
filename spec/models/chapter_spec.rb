@@ -46,6 +46,31 @@ RSpec.describe Chapter, type: :model do
     end
   end
 
+  describe '#children' do
+    subject { chapter.children }
+
+    let(:chapter) { create(:chapter, :top) }
+
+    context '子がいる場合' do
+      let!(:children) do
+        [
+          create(:chapter, level: 2, parent_id: chapter.id, no: 1),
+          create(:chapter, level: 2, parent_id: chapter.id, no: 2),
+        ]
+      end
+
+      it 'no順に子が返ること' do
+        expect(subject).to eq children
+      end
+    end
+
+    context '子がいない場合' do
+      it 'nilが返ること' do
+        expect(subject).to eq nil
+      end
+    end
+  end
+
   describe '#top?' do
     subject { chapter.top? }
 
