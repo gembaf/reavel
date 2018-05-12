@@ -11,6 +11,7 @@ describe StoryCreateService do
 
     context '正常に実行された場合' do
       it 'Storyが1つできること' do
+        expect(subject.chapter_id).to eq chapter.id
         expect(subject.title).to eq 'タイトル'
         expect(subject.comment).to eq 'コメント'
         expect(subject.no).to eq 1
