@@ -10,6 +10,7 @@ require 'factory_bot'
 
 ##-- 普通
 normal = FactoryBot.create(:novel, title: '普通の小説', summary: '普通っぽい')
+
 parents = [
   FactoryBot.create(:chapter, :top, novel: normal),
   FactoryBot.create(:chapter, :top, novel: normal),
@@ -20,6 +21,10 @@ children = parents.map do |parent|
     FactoryBot.create(:chapter, level: 2, parent_id: parent.id, novel: normal, title: '子チャプター１'),
     FactoryBot.create(:chapter, level: 2, parent_id: parent.id, novel: normal, title: '子チャプター２'),
   ]
+end
+
+children.flatten.each.with_index(1) do |chapter, i|
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}", comment: 'あ').call
 end
 
 ##-- 文字が長め

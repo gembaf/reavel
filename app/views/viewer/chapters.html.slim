@@ -6,6 +6,9 @@ table.table.table-bordered
   tbody
     - @parts.each do |part|
       tr
-        td= link_to part.title, viewer_chapters_path(chapter_id: part.id)
+        - if part.class == Chapter
+          td= link_to part.title, viewer_chapters_path(chapter_id: part.id)
+        - else
+          td= link_to part.title, viewer_stories_path(story_id: part.id)
         td= part.comment
 
