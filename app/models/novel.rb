@@ -11,4 +11,8 @@
 
 class Novel < ApplicationRecord
   has_many :chapters, dependent: :destroy
+
+  def children
+    chapters.select(&:top?)
+  end
 end

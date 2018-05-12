@@ -1,0 +1,11 @@
+table.table.table-bordered
+  thead
+    tr
+      th タイトル
+      th 概要
+  tbody
+    - @novels.each do |novel|
+      tr
+        td= link_to novel.title, viewer_chapters_path(novel_id: novel.id)
+        td= novel.summary
+

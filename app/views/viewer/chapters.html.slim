@@ -1,0 +1,14 @@
+table.table.table-bordered
+  thead
+    tr
+      th タイトル
+      th コメント
+  tbody
+    - @parts.each do |part|
+      tr
+        - if part.class == Chapter
+          td= link_to part.title, viewer_chapters_path(chapter_id: part.id)
+        - else
+          td= link_to part.title, viewer_stories_path(story_id: part.id)
+        td= part.comment
+
