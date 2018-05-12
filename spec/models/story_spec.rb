@@ -14,8 +14,9 @@
 #
 
 require 'kconv'
+require 'rails_helper'
 
-describe Story, type: :model do
+RSpec.describe Story, type: :model do
   describe '#write and #read' do
     subject do
       story.write(text)

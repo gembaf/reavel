@@ -70,5 +70,7 @@ RSpec.configure do |config|
       example.run
     end
   end
+
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 end
 

@@ -13,9 +13,9 @@
 
 FactoryBot.define do
   factory :chapter do
-    title "MyString"
-    comment "MyString"
-    no 1
-    novel_id 1
+    title { 'タイトル' }
+    comment { 'コメント' }
+    no { 1 }
+    novel_id { 1 }
   end
 end
