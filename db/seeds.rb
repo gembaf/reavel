@@ -5,3 +5,10 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+require 'factory_bot'
+
+normal = FactoryBot.create(:novel, title: '普通の小説', summary: '普通っぽい')
+long = FactoryBot.create(:novel, title: 'たいとるううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう', summary: 'がいよううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう')
+complex = FactoryBot.create(:novel, title: '小説', summary: 'これは小説です')
+
