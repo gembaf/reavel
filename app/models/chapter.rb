@@ -25,7 +25,6 @@ class Chapter < ApplicationRecord
   end
 
   def children
-    binding.pry
     chapters = Chapter.where(parent_id: id, level: level + 1).order(:no)
     chapters.present? ? chapters : nil
   end
