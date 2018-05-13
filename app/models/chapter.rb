@@ -26,6 +26,10 @@ class Chapter < ApplicationRecord
     chapters.present? ? chapters : []
   end
 
+  def brothers
+    Chapter.where(novel_id: novel_id, parent_id: parent_id)
+  end
+
   def top?
     parent_id == 0
   end

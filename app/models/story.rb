@@ -34,6 +34,10 @@ class Story < ApplicationRecord
     File.read(filepath)
   end
 
+  def brothers
+    Story.where(chapter_id: chapter_id)
+  end
+
   def self.required_time(text)
     text.length / READ_PER_MINUTES
   end

@@ -68,6 +68,35 @@ RSpec.describe Chapter, type: :model do
     end
   end
 
+  describe '#brothers' do
+    include_context 'novel!'
+
+    subject { chapter.brothers }
+
+    context 'トップレベルのChapterだった場合' do
+      let(:chapter) { chapters.select(&:top?).sample }
+      it '兄弟関係にあるChapterが返ること' do
+        expect(subject.count).to eq 3
+      end
+    end
+
+    context '子供のChapterだった場合' do
+      let(:chapter) { chapters.reject(&:top?).sample }
+      it '兄弟関係にあるChapterが返ること' do
+        expect(subject.count).to eq 3
+      end
+    end
+
+    context '他のNovelのChapterだった場合' do
+      let(:chapter) { create(:chapter, :top, novel: another_novel) }
+      let(:another_novel) { create(:novel) }
+
+      it '自分のNovelの兄弟関係にあるChapterのみが返ること' do
+        expect(subject.count).to eq 1
+      end
+    end
+  end
+
   describe '#top?' do
     subject { chapter.top? }
 
