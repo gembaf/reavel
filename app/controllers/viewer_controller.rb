@@ -19,7 +19,6 @@ class ViewerController < ApplicationController
   end
 
   def show
-    @stories = @story.brothers
   end
 
   private
