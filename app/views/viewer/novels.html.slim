@@ -6,6 +6,6 @@ table.table.table-bordered
   tbody
     - @novels.each do |novel|
       tr
-        td= link_to novel.title, viewer_chapters_path(novel_id: novel.id)
+        td= link_to novel.title, viewer_top_chapters_path(novel_id: novel.id)
         td= novel.summary
 

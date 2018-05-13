@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180512063826) do
+ActiveRecord::Schema.define(version: 20180513003634) do
 
   create_table "chapters", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "title"
@@ -19,9 +19,8 @@ ActiveRecord::Schema.define(version: 20180512063826) do
     t.integer "novel_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "level", default: 1, null: false
-    t.integer "parent_id"
-    t.index ["parent_id", "level", "no"], name: "index_chapters_on_parent_id_and_level_and_no"
+    t.integer "parent_id", default: 0, null: false
+    t.index ["parent_id", "no"], name: "index_chapters_on_parent_id_and_no"
   end
 
   create_table "novels", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

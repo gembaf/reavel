@@ -9,8 +9,7 @@
 #  novel_id   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  level      :integer          default(1), not null
-#  parent_id  :integer
+#  parent_id  :integer          default(0), not null
 #
 
 FactoryBot.define do
@@ -19,12 +18,10 @@ FactoryBot.define do
     comment { 'コメント' }
     no { 1 }
     novel
-    level { 1 }
-    parent_id { 1 }
+    parent_id { 0 }
 
     trait :top do
-      level { 1 }
-      parent_id { nil }
+      parent_id { 0 }
     end
   end
 end

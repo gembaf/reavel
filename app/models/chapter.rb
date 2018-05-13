@@ -9,15 +9,12 @@
 #  novel_id   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  level      :integer          default(1), not null
-#  parent_id  :integer
+#  parent_id  :integer          default(0), not null
 #
 
 class Chapter < ApplicationRecord
   belongs_to :novel
   has_many :stories, dependent: :destroy
-
-  TOP_LEVEL = 1
 
   def parent
     return nil if top?
@@ -25,12 +22,11 @@ class Chapter < ApplicationRecord
   end
 
   def children
-    chapters = Chapter.where(parent_id: id, level: level + 1).order(:no)
-    list = [chapters, stories].flatten
-    list.present? ? list : nil
+    chapters = Chapter.where(parent_id: id).order(:no)
+    chapters.present? ? chapters : []
   end
 
   def top?
-    level == TOP_LEVEL
+    parent_id == 0
   end
 end
