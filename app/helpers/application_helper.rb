@@ -7,4 +7,8 @@ module ApplicationHelper
     end
     @markdown.render(text).html_safe
   end
+
+  def side_menu(object)
+    render partial: 'side_menu', locals: { brothers: object.brothers, current_id: object.id }
+  end
 end

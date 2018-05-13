@@ -2,9 +2,7 @@ h1 Story
 
 h2 side menu
 
-ul
-  - @stories.each do |story|
-    li= link_to story.title, viewer_show_path(story_id: story.id)
+= side_menu @story
 
 h2 本文
 
