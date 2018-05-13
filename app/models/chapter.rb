@@ -26,8 +26,7 @@ class Chapter < ApplicationRecord
 
   def children
     chapters = Chapter.where(parent_id: id, level: level + 1).order(:no)
-    list = [chapters, stories].flatten
-    list.present? ? list : nil
+    chapters.present? ? chapters : nil
   end
 
   def top?

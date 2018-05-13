@@ -50,37 +50,14 @@ RSpec.describe Chapter, type: :model do
     subject { chapter.children }
 
     let(:chapter) { create(:chapter, :top) }
-    let(:chapters) do
-      [
-        create(:chapter, level: 2, parent_id: chapter.id, no: 1),
-        create(:chapter, level: 2, parent_id: chapter.id, no: 2),
-      ]
-    end
-    let(:stories) do
-      [
-        create(:story, no: 1, chapter: chapter),
-        create(:story, no: 2, chapter: chapter),
-      ]
-    end
 
     context 'chapterとstoryの子がいる場合' do
-      let!(:children) { [chapters, stories].flatten }
-
-      it 'no順に子が返ること' do
-        expect(subject).to eq children
+      let!(:children) do
+        [
+          create(:chapter, level: 2, parent_id: chapter.id, no: 1),
+          create(:chapter, level: 2, parent_id: chapter.id, no: 2),
+        ]
       end
-    end
-
-    context 'chapterの子がいる場合' do
-      let!(:children) { chapters }
-
-      it 'no順に子が返ること' do
-        expect(subject).to eq children
-      end
-    end
-
-    context 'storyの子がいる場合' do
-      let!(:children) { stories }
 
       it 'no順に子が返ること' do
         expect(subject).to eq children
