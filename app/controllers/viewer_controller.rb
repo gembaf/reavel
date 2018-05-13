@@ -1,4 +1,6 @@
 class ViewerController < ApplicationController
+  before_action :assign, only: [:top_chapters, :chapters, :show]
+
   def novels
     @novels = Novel.all
   end
@@ -9,7 +11,6 @@ class ViewerController < ApplicationController
 
   def chapters
     @chapters = current_chapter.children
-    @chapter = current_chapter
 
     if @chapters.blank?
       @stories = Story.where(chapter_id: params[:chapter_id])
@@ -18,7 +19,14 @@ class ViewerController < ApplicationController
   end
 
   def show
-    @story = Story.find(params[:story_id])
     @stories = @story.brothers
+  end
+
+  private
+
+  def assign
+    @novel = current_novel
+    @chapter = current_chapter
+    @story = current_story
   end
 end
