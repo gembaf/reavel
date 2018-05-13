@@ -11,4 +11,14 @@ module ApplicationHelper
   def side_menu(object)
     render partial: 'side_menu', locals: { brothers: object.brothers, current_id: object.id }
   end
+
+  def breadcrumbs(chapter)
+    list = []
+    while chapter
+      list.unshift(chapter)
+      chapter = chapter.parent
+    end
+    list
+    render partial: 'breadcrumbs', locals: { chapters: list }
+  end
 end
