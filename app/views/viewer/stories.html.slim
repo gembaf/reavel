@@ -1,5 +1,13 @@
 h1 Stories
 
+h2 side menu
+
+ul
+  - @parents.each do |parent|
+    li= link_to parent.title, viewer_chapters_path(chapter_id: parent.id)
+
+h2 list
+
 table.table.table-bordered
   thead
     tr
