@@ -3,17 +3,18 @@ class ViewerController < ApplicationController
     @novels = Novel.all
   end
 
+  def top_chapters
+    @chapters = current_novel.children
+    render :chapters
+  end
+
   def chapters
-    @chapters = if params[:chapter_id]
-                  chapter = Chapter.find(params[:chapter_id])
-                  chapter.children
-                else
-                  current_novel.children
-                end
+    chapter = Chapter.find(params[:chapter_id])
+    @chapters = chapter.children
 
     if @chapters.blank?
       @stories = Story.where(chapter_id: params[:chapter_id])
-      return render :stories
+      render :stories
     end
   end
 
