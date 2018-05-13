@@ -18,8 +18,8 @@ parents = [
 ]
 children = parents.map do |parent|
   [
-    FactoryBot.create(:chapter, level: 2, parent_id: parent.id, novel: normal, title: '子チャプター１'),
-    FactoryBot.create(:chapter, level: 2, parent_id: parent.id, novel: normal, title: '子チャプター２'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター１'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター２'),
   ]
 end
 

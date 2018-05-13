@@ -13,7 +13,7 @@ shared_context 'novel!' do
   let!(:chapters) do
     parents = create_list(:chapter, 3, :top, novel: novel)
     children = parents.map do |parent|
-      create_list(:chapter, 3, novel: novel, level: 2, parent_id: parent.id)
+      create_list(:chapter, 3, novel: novel, parent_id: parent.id)
     end
     [parents, children].flatten
   end

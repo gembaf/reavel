@@ -9,8 +9,7 @@
 #  novel_id   :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
-#  level      :integer          default(1), not null
-#  parent_id  :integer
+#  parent_id  :integer          default(0), not null
 #
 
 require 'rails_helper'
@@ -24,10 +23,9 @@ RSpec.describe Chapter, type: :model do
   describe '#parent' do
     subject { chapter.parent }
 
-    let(:chapter) { create(:chapter, level: level, parent_id: parent_id) }
+    let(:chapter) { create(:chapter, parent_id: parent_id) }
 
     context '親がいる場合' do
-      let(:level) { 2 }
       let(:parent_id) { parent.id }
       let(:parent) { create(:chapter, :top) }
 
@@ -37,8 +35,7 @@ RSpec.describe Chapter, type: :model do
     end
 
     context '親がいない場合' do
-      let(:level) { 1 }
-      let(:parent_id) { nil }
+      let(:parent_id) { 0 }
 
       it 'nilが返ること' do
         expect(subject).to eq nil
@@ -54,8 +51,8 @@ RSpec.describe Chapter, type: :model do
     context 'chapterとstoryの子がいる場合' do
       let!(:children) do
         [
-          create(:chapter, level: 2, parent_id: chapter.id, no: 1),
-          create(:chapter, level: 2, parent_id: chapter.id, no: 2),
+          create(:chapter, parent_id: chapter.id, no: 1),
+          create(:chapter, parent_id: chapter.id, no: 2),
         ]
       end
 
@@ -74,15 +71,15 @@ RSpec.describe Chapter, type: :model do
   describe '#top?' do
     subject { chapter.top? }
 
-    let(:chapter) { create(:chapter, level: level) }
+    let(:chapter) { create(:chapter, parent_id: parent_id) }
 
-    context 'levelが1の場合' do
-      let(:level) { 1 }
+    context 'parent_idが0の場合' do
+      let(:parent_id) { 0 }
       it { expect(subject).to eq true }
     end
 
     context 'levelが1以外の場合' do
-      let(:level) { 2 }
+      let(:parent_id) { 3 }
       it { expect(subject).to eq false }
     end
   end
