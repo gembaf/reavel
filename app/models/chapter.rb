@@ -23,7 +23,7 @@ class Chapter < ApplicationRecord
 
   def children
     chapters = Chapter.where(parent_id: id).order(:no)
-    chapters.present? ? chapters : nil
+    chapters.present? ? chapters : []
   end
 
   def top?

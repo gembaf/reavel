@@ -62,8 +62,8 @@ RSpec.describe Chapter, type: :model do
     end
 
     context '子がいない場合' do
-      it 'nilが返ること' do
-        expect(subject).to eq nil
+      it '[]が返ること' do
+        expect(subject).to eq []
       end
     end
   end
@@ -78,7 +78,7 @@ RSpec.describe Chapter, type: :model do
       it { expect(subject).to eq true }
     end
 
-    context 'levelが1以外の場合' do
+    context 'parent_idが1以外の場合' do
       let(:parent_id) { 3 }
       it { expect(subject).to eq false }
     end
