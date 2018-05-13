@@ -24,7 +24,8 @@ children = parents.map do |parent|
 end
 
 children.flatten.each.with_index(1) do |chapter, i|
-  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}", comment: 'あ').call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-1", comment: 'あ').call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-2").call
 end
 
 ##-- 文字が長め
