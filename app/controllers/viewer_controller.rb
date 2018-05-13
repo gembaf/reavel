@@ -22,6 +22,6 @@ class ViewerController < ApplicationController
 
   def show
     @story = Story.find(params[:story_id])
-    @stories = Story.where(chapter_id: @story.chapter_id)
+    @stories = @story.brothers
   end
 end

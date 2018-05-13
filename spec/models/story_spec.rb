@@ -53,6 +53,25 @@ RSpec.describe Story, type: :model do
     end
   end
 
+  describe '#brothers' do
+    subject { story.brothers }
+
+    let(:story) { stories.first }
+    let(:stories) do
+      [
+        create(:story, chapter: current_chapter),
+        create(:story, chapter: current_chapter),
+        create(:story, chapter: another_chapter),
+      ]
+    end
+    let(:current_chapter) { create(:chapter) }
+    let(:another_chapter) { create(:chapter) }
+
+    it '同じchapterに紐付くStoryを返すこと' do
+      expect(subject).to eq stories[0..1]
+    end
+  end
+
   describe '.required_time' do
     subject { described_class.required_time(text) }
     let(:text) { 'a' * 2500 }
