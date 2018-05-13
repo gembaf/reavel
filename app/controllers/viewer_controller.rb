@@ -10,9 +10,8 @@ class ViewerController < ApplicationController
   end
 
   def chapters
-    chapter = Chapter.find(params[:chapter_id])
-    @chapters = chapter.children
-    @parents = current_novel.chapters.where(parent_id: chapter.parent_id)
+    @chapters = current_chapter.children
+    @parents = current_chapter.brothers
 
     if @chapters.blank?
       @stories = Story.where(chapter_id: params[:chapter_id])
