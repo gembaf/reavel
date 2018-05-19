@@ -1,5 +1,8 @@
-ul
-  - brothers.each do |brother|
-    - path = brother.class == Story ? viewer_show_path(story_id: brother.id) : viewer_chapters_path(chapter_id: brother.id)
-    li= link_to brother.title, path
+.side_menu
+  .list
+    - brothers.each do |brother|
+      - path = brother.class == Story ? viewer_show_path(story_id: brother.id) : viewer_chapters_path(chapter_id: brother.id)
+      p.title
+        = "#{brother.no}. "
+        = link_to brother.title, path
 
