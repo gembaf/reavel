@@ -2,9 +2,9 @@
   .col-md-2
     = side_menu @story
   .col-md-10
-    h2 本文
     = breadcrumbs @chapter, @story.title
 
-    h3= @story.title
-    = markdown @story.read
+    h3.center= @story.title
+    .contents
+      = markdown @story.read
 
