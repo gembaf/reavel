@@ -18,8 +18,8 @@ parents = [
 ]
 children = parents.map do |parent|
   [
-    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター１'),
-    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター２'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター1'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター2'),
   ]
 end
 
@@ -30,6 +30,23 @@ end
 
 ##-- 文字が長め
 long = FactoryBot.create(:novel, title: 'たいとるううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう', summary: 'がいよううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう')
+
+parents = [
+  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプターーーーーーーーーーーーーーーーーーー1'),
+  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプターーーーーーーーーーーーーーーーーーー2'),
+  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプター333333333333333333333333333333333333333333333333333333333333333333333'),
+]
+children = parents.map do |parent|
+  [
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: long, title: '子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子チャプター1'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: long, title: '子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子チャプター2'),
+  ]
+end
+
+children.flatten.each.with_index(1) do |chapter, i|
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトルううううううううううううううううううううううううううううううううううううう#{i}-1", comment: 'あ').call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-2").call
+end
 
 ##-- 構成が複雑
 complex = FactoryBot.create(:novel, title: '小説', summary: 'これは小説です')
