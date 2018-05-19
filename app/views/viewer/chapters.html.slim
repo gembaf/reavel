@@ -1,21 +1,17 @@
-h1 Chapters
+.row
+  .col-md-2
+    = side_menu @chapter
+  .col-md-10
+    = breadcrumbs @chapter.parent, @chapter.title
 
-h2 side menu
-
-= side_menu @chapter
-
-h2 list
-
-= breadcrumbs @chapter
-
-table.table.table-bordered
-  thead
-    tr
-      th タイトル
-      th コメント
-  tbody
-    - @chapters.each do |chapter|
-      tr
-        td= link_to chapter.title, viewer_chapters_path(chapter_id: chapter.id)
-        td= chapter.comment
+    table.table.table-bordered
+      thead
+        tr
+          th タイトル
+          th コメント
+      tbody
+        - @chapters.each do |chapter|
+          tr
+            td= link_to chapter.title, viewer_chapters_path(chapter_id: chapter.id)
+            td= chapter.comment
 

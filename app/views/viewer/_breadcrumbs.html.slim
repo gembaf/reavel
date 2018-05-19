@@ -1,4 +1,5 @@
 ol.breadcrumb
   - chapters.each do |chapter|
     li= link_to chapter.title, viewer_chapters_path(chapter_id: chapter.id)
+  li.active= current_title
 
