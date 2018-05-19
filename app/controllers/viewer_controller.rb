@@ -1,5 +1,5 @@
 class ViewerController < ApplicationController
-  before_action :assign, only: [:top_chapters, :chapters, :show]
+  before_action :assign, only: %i[top_chapters chapters show]
 
   def novels
     @novels = Novel.all
