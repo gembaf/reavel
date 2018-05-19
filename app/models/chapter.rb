@@ -30,6 +30,22 @@ class Chapter < ApplicationRecord
     Chapter.where(novel_id: novel_id, parent_id: parent_id)
   end
 
+  def next
+    next_chapter = brothers.find_by(no: no + 1)
+    return next_chapter if next_chapter.present?
+
+    return nil unless parent&.next&.children.present?
+    parent.next.children.first
+  end
+
+  def prev
+    prev_chapter = brothers.find_by(no: no - 1)
+    return prev_chapter if prev_chapter.present?
+
+    return nil unless parent&.prev&.children.present?
+    parent.prev.children.last
+  end
+
   def top?
     parent_id == 0
   end

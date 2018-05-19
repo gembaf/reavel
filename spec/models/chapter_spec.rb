@@ -97,6 +97,74 @@ RSpec.describe Chapter, type: :model do
     end
   end
 
+  describe '#next' do
+    include_context 'complex_novel!'
+
+    subject { chapter.next }
+
+    context '次のChapterが存在する場合' do
+      let(:chapter) { chapter1 }
+      let(:next_chapter) { chapter2 }
+
+      it { expect(subject).to eq next_chapter }
+    end
+
+    context '次のChapterが存在しない場合' do
+      let(:chapter) { chapter3 }
+      let(:next_chapter) { nil }
+
+      it { expect(subject).to eq next_chapter }
+    end
+
+    context '親をたどれば次のChapterが存在する場合' do
+      let(:chapter) { chapter1_3 }
+      let(:next_chapter) { chapter2_1 }
+
+      it { expect(subject).to eq next_chapter }
+    end
+
+    context '親をたどっても次のChapterが存在しない場合' do
+      let(:chapter) { chapter2_3 }
+      let(:next_chapter) { nil }
+
+      it { expect(subject).to eq next_chapter }
+    end
+  end
+
+  describe '#prev' do
+    include_context 'complex_novel!'
+
+    subject { chapter.prev }
+
+    context '前のChapterが存在する場合' do
+      let(:chapter) { chapter3 }
+      let(:prev_chapter) { chapter2 }
+
+      it { expect(subject).to eq prev_chapter }
+    end
+
+    context '前のChapterが存在しない場合' do
+      let(:chapter) { chapter1 }
+      let(:prev_chapter) { nil }
+
+      it { expect(subject).to eq prev_chapter }
+    end
+
+    context '親をたどれば前のChapterが存在する場合' do
+      let(:chapter) { chapter2_1 }
+      let(:prev_chapter) { chapter1_3 }
+
+      it { expect(subject).to eq prev_chapter }
+    end
+
+    context '親をたどっても前のChapterが存在しない場合' do
+      let(:chapter) { chapter1_1 }
+      let(:prev_chapter) { nil }
+
+      it { expect(subject).to eq prev_chapter }
+    end
+  end
+
   describe '#top?' do
     subject { chapter.top? }
 
