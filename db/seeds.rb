@@ -12,40 +12,40 @@ require 'factory_bot'
 normal = FactoryBot.create(:novel, title: '普通の小説', summary: '普通っぽい')
 
 parents = [
-  FactoryBot.create(:chapter, :top, novel: normal),
-  FactoryBot.create(:chapter, :top, novel: normal),
-  FactoryBot.create(:chapter, :top, novel: normal),
+  FactoryBot.create(:chapter, :top, novel: normal, no: 1),
+  FactoryBot.create(:chapter, :top, novel: normal, no: 2),
+  FactoryBot.create(:chapter, :top, novel: normal, no: 3),
 ]
 children = parents.map do |parent|
   [
-    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター1'),
-    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター2'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター1', no: 1),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: normal, title: '子チャプター2', no: 2),
   ]
 end
 
 children.flatten.each.with_index(1) do |chapter, i|
-  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-1", comment: 'あ').call
-  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-2").call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-1", comment: 'あ', no: 1).call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-2", no: 2).call
 end
 
 ##-- 文字が長め
 long = FactoryBot.create(:novel, title: 'たいとるううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう', summary: 'がいよううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううううう')
 
 parents = [
-  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプターーーーーーーーーーーーーーーーーーー1'),
-  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプターーーーーーーーーーーーーーーーーーー2'),
-  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプター333333333333333333333333333333333333333333333333333333333333333333333'),
+  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプターーーーーーーーーーーーーーーーーーー1', no: 1),
+  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプターーーーーーーーーーーーーーーーーーー2', no: 2),
+  FactoryBot.create(:chapter, :top, novel: long, title: '親チャプター333333333333333333333333333333333333333333333333333333333333333333333', no: 3),
 ]
 children = parents.map do |parent|
   [
-    FactoryBot.create(:chapter, parent_id: parent.id, novel: long, title: '子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子チャプター1'),
-    FactoryBot.create(:chapter, parent_id: parent.id, novel: long, title: '子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子チャプター2'),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: long, title: '子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子チャプター1', no: 1),
+    FactoryBot.create(:chapter, parent_id: parent.id, novel: long, title: '子子子子子子子子子子子子子子子子子子子子子子子子子子子子子子チャプター2', no: 2),
   ]
 end
 
 children.flatten.each.with_index(1) do |chapter, i|
-  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトルううううううううううううううううううううううううううううううううううううう#{i}-1", comment: 'あ').call
-  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-2").call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトルううううううううううううううううううううううううううううううううううううう#{i}-1", comment: 'あ', no: 1).call
+  StoryCreateService.new(chapter: chapter, text: "てき\nすと", title: "タイトル#{i}-2", no: 2).call
 end
 
 ##-- 構成が複雑
