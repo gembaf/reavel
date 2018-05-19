@@ -1,12 +1,10 @@
-h1 Story
+.row
+  .col-md-2
+    = side_menu @story
+  .col-md-10
+    h2 本文
+    = breadcrumbs @chapter, @story.title
 
-h2 side menu
-
-= side_menu @story
-
-h2 本文
-
-= breadcrumbs @chapter, @story.title
-h3= @story.title
-= markdown @story.read
+    h3= @story.title
+    = markdown @story.read
 
