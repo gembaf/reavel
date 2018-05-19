@@ -3,8 +3,12 @@
     = side_menu @story
   .col-md-10
     = breadcrumbs @chapter, @story.title
+    = render partial: 'title_bar', locals: { prev_story: @story.prev, next_story: @story.next }
 
-    h3.center= @story.title
-    .contents
-      = markdown @story.read
+    .story
+      h3.center= @story.title
+      .contents
+        = markdown @story.read
+
+    = render partial: 'title_bar', locals: { prev_story: @story.prev, next_story: @story.next }
 
