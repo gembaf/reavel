@@ -1,4 +1,4 @@
-.side_menu
+#side_menu
   .list
     - brothers.each do |brother|
       - path = brother.class == Story ? viewer_show_path(story_id: brother.id) : viewer_chapters_path(chapter_id: brother.id)
