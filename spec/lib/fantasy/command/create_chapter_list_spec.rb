@@ -60,5 +60,29 @@ RSpec.describe Fantasy::Command::CreateChapterList do
       end
     end
   end
+
+  describe '#title_type' do
+    subject { instance.title_type(line) }
+
+    context 'チャプター大の場合' do
+      let(:line) { '●第三部　第九章：吸血城主' }
+      it { expect(subject).to eq described_class::TYPE_BIG_CHAPTER }
+    end
+
+    context 'チャプター小の場合' do
+      let(:line) { '・新たな家族編' }
+      it { expect(subject).to eq described_class::TYPE_SMALL_CHAPTER }
+    end
+
+    context 'ストーリーの場合' do
+      let(:line) { '第32話　野伏（のぶせり）(1/5)' }
+      it { expect(subject).to eq described_class::TYPE_STORY }
+    end
+
+    context 'よくわからないものだった場合' do
+      let(:line) { "\n" }
+      it { expect { subject }.to raise_error(RuntimeError) }
+    end
+  end
 end
 
