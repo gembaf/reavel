@@ -72,6 +72,74 @@ RSpec.describe Story, type: :model do
     end
   end
 
+  describe '#next' do
+    include_context 'complex_novel!'
+
+    subject { story.next }
+
+    context '次のStoryが存在する場合' do
+      let(:story) { story1_1_1 }
+      let(:next_story) { story1_1_2 }
+
+      it { expect(subject).to eq next_story }
+    end
+
+    context '親をたどれば次のStoryが存在する場合' do
+      let(:story) { story1_1_3 }
+      let(:next_story) { story1_2_1 }
+
+      it { expect(subject).to eq next_story }
+    end
+
+    context '親の親をたどれば次のStoryが存在する場合' do
+      let(:story) { story1_3_1 }
+      let(:next_story) { story2_1_1 }
+
+      it { expect(subject).to eq next_story }
+    end
+
+    context '親をたどっても次のStoryが存在しない場合' do
+      let(:story) { story2_1_3 }
+      let(:next_story) { nil }
+
+      it { expect(subject).to eq next_story }
+    end
+  end
+
+  describe '#prev' do
+    include_context 'complex_novel!'
+
+    subject { story.prev }
+
+    context '前のStoryが存在する場合' do
+      let(:story) { story1_1_2 }
+      let(:prev_story) { story1_1_1 }
+
+      it { expect(subject).to eq prev_story }
+    end
+
+    context '親をたどれば前のStoryが存在する場合' do
+      let(:story) { story1_2_1 }
+      let(:prev_story) { story1_1_3 }
+
+      it { expect(subject).to eq prev_story }
+    end
+
+    context '親の親をたどれば前のStoryが存在する場合' do
+      let(:story) { story2_1_1 }
+      let(:prev_story) { story1_3_1 }
+
+      it { expect(subject).to eq prev_story }
+    end
+
+    context '親をたどっても前のStoryが存在しない場合' do
+      let(:story) { story1_1_1 }
+      let(:prev_story) { nil }
+
+      it { expect(subject).to eq prev_story }
+    end
+  end
+
   describe '.required_time' do
     subject { described_class.required_time(text) }
     let(:text) { 'a' * 2500 }

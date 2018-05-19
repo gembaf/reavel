@@ -38,6 +38,22 @@ class Story < ApplicationRecord
     Story.where(chapter_id: chapter_id)
   end
 
+  def next
+    next_story = brothers.find_by(no: no + 1)
+    return next_story if next_story
+
+    return nil unless chapter&.next&.stories.present?
+    chapter.next.stories.first
+  end
+
+  def prev
+    prev_story = brothers.find_by(no: no - 1)
+    return prev_story if prev_story
+
+    return nil unless chapter&.prev&.stories.present?
+    chapter.prev.stories.last
+  end
+
   def self.required_time(text)
     text.length / READ_PER_MINUTES
   end
