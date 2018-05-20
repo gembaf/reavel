@@ -28,8 +28,10 @@ module Fantasy
         zip.each do |entry|
           next if entry.name =~ /^__MACOSX/
           output = "#{@dir_path}/#{entry.name.sub(%r{^(.*?)/}, '').force_encoding('utf-8')}"
-          if output =~ /第(.*?)話/
-            output.sub!(/第#{$1}話/, "第#{format('%04d', $1)}話")
+          if output =~ /第(\d{1,3})話\+0\.5/ # 閑話
+            output.sub!(/第#{$1}話/, "第#{format('%04d1', $1)}話")
+          elsif output =~ /第(\d{1,3})話/ # 通常
+            output.sub!(/第#{$1}話/, "第#{format('%04d0', $1)}話")
           end
           zip.extract(entry, output) { true }
         end
