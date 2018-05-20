@@ -7,7 +7,7 @@ class StoryCreateService
 
   def call
     uuid = SecureRandom.uuid
-    no = 1
+    no = @chapter.stories.count + 1
     time = Story.required_time(@text)
 
     ActiveRecord::Base.transaction do
