@@ -11,11 +11,12 @@ module Fantasy
     end
 
     def chapter_list_file
-      files.select { |name| name =~ /\.txt$/ }.first
+      path = files.select { |name| name =~ /\.txt$/ }.first
+      "#{@dir_path}/#{path}"
     end
 
     def mht_files
-      files.select { |name| name =~ /\.mht$/ }
+      files.select { |name| name =~ /\.mht$/ }.map { |path| "#{@dir_path}/#{path}" }
     end
 
     def unzip

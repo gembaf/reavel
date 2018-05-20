@@ -8,7 +8,7 @@ RSpec.describe Fantasy::ChapterManager do
     subject { instance.chapter_list_file }
 
     it '正常に取得できること' do
-      expect(subject).to eq '第一部.txt'
+      expect(subject).to eq "#{instance.dir_path}/第一部.txt"
     end
   end
 
