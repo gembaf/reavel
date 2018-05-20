@@ -8,6 +8,8 @@ class FantasyStoryCreateService
   end
 
   def call
+    Rails.logger.info("[FantasyStoryCreateService] title: #{@title}, mht_path: #{@mht_path}")
+
     scraped_text = text
     StoryCreateService.new(chapter: @chapter, text: scraped_text, title: @title).call
   end
