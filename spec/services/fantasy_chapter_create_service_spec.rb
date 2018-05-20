@@ -9,7 +9,7 @@ RSpec.describe FantasyChapterCreateService do
 
     let(:chapter) { create(:chapter, :top) }
 
-    context 'トップレベルのチャプターに対して実行した場合' do
+    context '空のチャプターに対して実行した場合' do
       it '正常に追加されること' do
         subject
 
@@ -35,6 +35,20 @@ RSpec.describe FantasyChapterCreateService do
         chapter2_2 = chapter2.children[1]
         expect(chapter2_2.stories.pluck(:title)).to eq ['野営']
         expect(chapter2_2.stories.pluck(:no)).to eq [1]
+      end
+    end
+
+    context '既に他のチャプターが存在するものに対して実行した場合' do
+      before do
+        create(:chapter, parent_id: chapter.id, no: 1, title: 'ほげ')
+        create(:chapter, parent_id: chapter.id, no: 2, title: 'ふー')
+      end
+
+      it '正常に追加されること' do
+        subject
+
+        expect(chapter.children.pluck(:title)).to eq ['ほげ', 'ふー', '無垢なる少女', '貴婦人討伐']
+        expect(chapter.children.pluck(:no)).to eq [1, 2, 3, 4]
       end
     end
   end

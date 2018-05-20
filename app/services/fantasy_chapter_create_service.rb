@@ -6,8 +6,9 @@ class FantasyChapterCreateService
 
   def call
     @story_index = 0
+    index = @chapter.children.count + 1
 
-    list.each.with_index(1) do |big_chapter_entity, i|
+    list.each.with_index(index) do |big_chapter_entity, i|
       big_chapter = Chapter.create(
         novel_id: @chapter.novel_id,
         parent_id: @chapter.id,
@@ -29,6 +30,7 @@ class FantasyChapterCreateService
             title: story_entity.title,
             mht_path: mht_files[@story_index],
           ).call
+          @story_index += 1
         end
       end
     end
