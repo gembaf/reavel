@@ -27,7 +27,10 @@ module Fantasy
       ::Zip::File.open(@zip_file) do |zip|
         zip.each do |entry|
           next if entry.name =~ /^__MACOSX/
-          output = "#{@dir_path}/#{entry.name.sub(%r{^(.*?)/}, '')}"
+          output = "#{@dir_path}/#{entry.name.sub(%r{^(.*?)/}, '').force_encoding('utf-8')}"
+          if output =~ /第(.*?)話/
+            output.sub!(/第#{$1}話/, "第#{format('%04d', $1)}話")
+          end
           zip.extract(entry, output) { true }
         end
       end
