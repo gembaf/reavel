@@ -4,7 +4,30 @@ RSpec.describe Fantasy::Command::CreateChapterList do
   let(:instance) { described_class.new }
 
   describe '#execute' do
-    it { expect(instance.execute).to eq 'hoge' }
+    subject { instance.execute(path) }
+    let(:path) { Rails.root.join('spec', 'fixtures', 'fantasy', 'chapter_list.txt') }
+
+    it '正しく分割されていること' do
+      expect(subject.count).to eq 2
+
+      chapter1 = subject[0]
+      expect(chapter1.children.count).to eq 2
+
+      chapter1_1 = chapter1.children[0]
+      expect(chapter1_1.children.count).to eq 2
+
+      chapter1_2 = chapter1.children[1]
+      expect(chapter1_2.children.count).to eq 2
+
+      chapter2 = subject[1]
+      expect(chapter2.children.count).to eq 2
+
+      chapter2_1 = chapter2.children[0]
+      expect(chapter2_1.children.count).to eq 1
+
+      chapter2_2 = chapter2.children[1]
+      expect(chapter2_2.children.count).to eq 3
+    end
   end
 
   describe '#story_title' do

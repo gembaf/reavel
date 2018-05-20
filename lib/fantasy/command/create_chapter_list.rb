@@ -9,8 +9,24 @@ module Fantasy
         new.execute
       end
 
-      def execute
-        'hoge'
+      def execute(path)
+        lines = Reavel::Iconv.read_and_split(path)
+        lines = lines.delete_if { |line| line.blank? }
+
+        result = []
+        lines.each do |line|
+          case title_type(line)
+          when TYPE_BIG_CHAPTER
+            result << Reavel::Entity::ChapterEntity.new(title: big_chapter_title(line))
+          when TYPE_SMALL_CHAPTER
+            children = result.last.children
+            children << Reavel::Entity::ChapterEntity.new(title: small_chapter_title(line))
+          when TYPE_STORY
+            children = result.last.children.last.children
+            children << Reavel::Entity::ChapterEntity.new(title: story_title(line))
+          end
+        end
+        result
       end
 
       def title(line)
