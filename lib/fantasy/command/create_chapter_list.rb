@@ -5,8 +5,8 @@ module Fantasy
       TYPE_SMALL_CHAPTER = :small_chapter
       TYPE_BIG_CHAPTER = :big_chapter
 
-      def self.execute
-        new.execute
+      def self.execute(path)
+        new.execute(path)
       end
 
       def execute(path)

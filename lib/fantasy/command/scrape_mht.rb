@@ -1,8 +1,8 @@
 module Fantasy
   module Command
     class ScrapeMht
-      def self.execute
-        new.execute
+      def self.execute(path)
+        new.execute(path)
       end
 
       def execute(path)
