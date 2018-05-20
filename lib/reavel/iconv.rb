@@ -7,7 +7,7 @@ module Reavel
     end
 
     def encode(data, code = 'shift-jis')
-      ::Iconv.conv('utf-8', code, data)
+      ::Iconv.conv('utf-8//ignore', code, data)
     end
 
     module_function :read_and_split, :encode
