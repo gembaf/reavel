@@ -2,7 +2,7 @@ require 'zip'
 
 module Fantasy
   class ChapterManager
-    IGNORE = %w(FORE_00.txt FORE_99_01.txt FORE_99_02.txt)
+    IGNORE = %w(FORE_00.txt FORE_99.txt FORE_99_01.txt FORE_99_02.txt)
 
     attr_reader :dir_path
 
