@@ -7,16 +7,17 @@ css:
   .col-md-2
     = side_menu @chapter
   .col-md-10
-    = breadcrumbs @chapter.parent, @chapter.title
+    #main
+      = breadcrumbs @chapter.parent, @chapter.title
 
-    table.table.table-bordered
-      thead
-        tr
-          th タイトル
-          th コメント
-      tbody
-        - @stories.each do |story|
+      table.table.table-bordered
+        thead
           tr
-            td= link_to story.title, viewer_show_path(story_id: story.id)
-            td= story.comment
+            th タイトル
+            th コメント
+        tbody
+          - @stories.each do |story|
+            tr
+              td= link_to story.title, viewer_show_path(story_id: story.id)
+              td= story.comment
 
