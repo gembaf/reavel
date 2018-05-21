@@ -22,6 +22,15 @@ describe StoryCreateService do
       end
     end
 
+    context '既にStoryが存在するChapterに追加した場合' do
+      before do
+        create(:story, chapter: chapter, no: 1, title: 'ほげ')
+      end
+      it '正常に追加されること' do
+        expect(subject.no).to eq 2
+      end
+    end
+
     context '異常が起きた場合' do
       before do
         allow_any_instance_of(Story).to receive(:write).and_raise
