@@ -102,6 +102,11 @@ RSpec.describe Fantasy::Command::CreateChapterList do
       it { expect(subject).to eq described_class::TYPE_STORY }
     end
 
+    context '複雑な文字列が来た場合' do
+      let(:line) { '・ファンタジー俺　番外編　聖騎士見習いシモンの道程(1/5)' }
+      it { expect(subject).to eq described_class::TYPE_STORY }
+    end
+
     context 'よくわからないものだった場合' do
       let(:line) { "\n" }
       it { expect { subject }.to raise_error(RuntimeError) }
