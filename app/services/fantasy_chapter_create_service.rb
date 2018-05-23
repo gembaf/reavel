@@ -8,6 +8,11 @@ class FantasyChapterCreateService
     @story_index = 0
     index = @chapter.children.count + 1
 
+    list_count = list.map(&:children).flatten.map(&:children).flatten.count
+    unless list_count == mht_files.count
+      raise "zip_file: #{@zip_file}, list_count != mht_count"
+    end
+
     ActiveRecord::Base.transaction do
       list.each.with_index(index) do |big_chapter_entity, i|
         big_chapter = Chapter.create(
