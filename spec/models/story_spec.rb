@@ -140,6 +140,25 @@ RSpec.describe Story, type: :model do
     end
   end
 
+  describe '#destroy' do
+    subject { story.destroy }
+
+    let(:story) { create(:story) }
+    let(:filepath) { Rails.root.join('tmp', 'test.txt') }
+
+    before do
+      `touch #{filepath}`
+      allow(story).to receive(:filepath).and_return(filepath)
+    end
+
+    it 'モデルと一緒にファイルも削除されること' do
+      expect(File.exist?(filepath)).to eq true
+      subject
+      expect(File.exist?(filepath)).to eq false
+      expect(Story.count).to eq 0
+    end
+  end
+
   describe '.required_time' do
     subject { described_class.required_time(text) }
     let(:text) { 'a' * 2500 }

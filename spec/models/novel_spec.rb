@@ -36,6 +36,7 @@ RSpec.describe Novel, type: :model do
       novel
       chapters
       stories
+      allow_any_instance_of(Story).to receive(:delete_text)
     end
 
     context 'novelを削除した場合' do

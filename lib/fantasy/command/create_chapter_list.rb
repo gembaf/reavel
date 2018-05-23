@@ -54,7 +54,7 @@ module Fantasy
 
       def title_type(line)
         line.match(%r{^●}) { return TYPE_BIG_CHAPTER }
-        line.match(%r{^・(.*?)編}) { return TYPE_SMALL_CHAPTER }
+        line.match(%r{^・(.*?)編$}) { return TYPE_SMALL_CHAPTER }
         line.match(%r{\(1/(5|6)\)}) { return TYPE_STORY }
         raise
       end

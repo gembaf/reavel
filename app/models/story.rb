@@ -17,6 +17,8 @@
 require 'kconv'
 
 class Story < ApplicationRecord
+  before_destroy :delete_text
+
   belongs_to :chapter
 
   DATA_DIR = Rails.root.join('public', 'data', 'stories')
@@ -52,6 +54,10 @@ class Story < ApplicationRecord
 
     return nil unless chapter&.prev&.stories.present?
     chapter.prev.stories.last
+  end
+
+  def delete_text
+    FileUtils.rm(filepath)
   end
 
   def self.required_time(text)
