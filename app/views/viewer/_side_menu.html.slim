@@ -2,11 +2,11 @@
   .list
     - brothers.each do |brother|
       - path = brother.class == Story ? viewer_show_path(story_id: brother.id) : viewer_chapters_path(chapter_id: brother.id)
+      - title = "#{brother.no}. #{brother.title}"
       - if brother.id == current_id
         p.title.current
-          = "#{brother.no}. #{brother.title}"
+          = title
       - else
         p.title
-          = "#{brother.no}. "
-          = link_to brother.title, path
+          = link_to title, path
 
