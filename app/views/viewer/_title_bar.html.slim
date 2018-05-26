@@ -1,11 +1,11 @@
 ul.pager
   - if prev_story.present?
-    li.previous= link_to viewer_show_path(story_id: prev_story.id) do
+    li.previous= link_to viewer_show_path(chapter_id: prev_story.chapter_id, story_id: prev_story.id) do
         span aria-hidden=true &larr;
         |  
         = prev_story.title
   - if next_story.present?
-    li.next= link_to viewer_show_path(story_id: next_story.id) do
+    li.next= link_to viewer_show_path(chapter_id: next_story.chapter_id, story_id: next_story.id) do
         = next_story.title
         |  
         span aria-hidden=true &rarr;
